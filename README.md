@@ -1,2 +1,0 @@
-# scarab
-Fullstack - Stava Clone
