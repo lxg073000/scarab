@@ -1,6 +1,6 @@
 import React from "react";
 
-class SessionForm extends React.Component {
+class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class SessionForm extends React.Component {
   render() {
     return (
       <div className="session-form">
-        <h1>Session Form</h1>
+        <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Username
@@ -57,4 +57,4 @@ class SessionForm extends React.Component {
   }
 }
 
-export default SessionForm;
+export default SignUpForm;
