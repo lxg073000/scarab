@@ -1,16 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default class nav_items extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Scarab Nav</h1>
-        <ul>
-          <li>Logo</li>
-          <li>Profile Pic</li>
-          <button>Logout</button>
-        </ul>
-      </div>
-    );
-  }
+function nav_items({ currentUser, logout }) {
+  const _signedIn = !!currentUser ? (
+    <div>
+      <button onClick={logout}>Sign Out</button>
+      <Link to="/user/:id">Edit Profile</Link>
+    </div>
+  ) : null;
+
+  return (
+    <div>
+      <h3>Scarab Nav</h3>
+      {_signedIn}
+      <ul>
+        <li>Logo</li>
+        <li>Profile Pic</li>
+      </ul>
+    </div>
+  );
 }
+
+export default nav_items;

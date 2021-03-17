@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
-import nav_container from "./nav/nav_container";
+import NavContainer from "./nav/nav_container";
 import splash_container from "./splash/splash_container";
 import signup_form_container from "./session/signup_form_container";
 import login_form_container from "./session/login_form_container";
@@ -19,8 +19,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/" component={nav_container} />
-        <Route path="/splash" component={splash_container} />
+        <NavContainer />
+        <Route path="/" component={splash_container} />
         <Route path="/new" component={signup_form_container} />
         <Route path="/login" component={login_form_container} />
         <Route path="/user/:id" component={user_profile_container} />

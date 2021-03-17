@@ -3,11 +3,13 @@ import React from "react";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      email: "",
+    // const token = document.querySelector('meta[name="csrf-token"]').content;
+    (this.state = {
+      username: "",
       password: "",
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
+      token: props.token,
+    }),
+      (this.handleSubmit = this.handleSubmit.bind(this));
   }
   handleInput(control) {
     return (e) =>
@@ -17,7 +19,7 @@ class LoginForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.signup(this.state).then(() => this.props.history.push("/"));
+    this.props.login(this.state).then(() => this.props.history.push("/"));
   }
 
   render() {
@@ -26,11 +28,11 @@ class LoginForm extends React.Component {
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Email
+            Username
             <input
               type="text"
-              value={this.state.email}
-              onChange={this.handleInput("email")}
+              value={this.state.username}
+              onChange={this.handleInput("username")}
             />
           </label>
           <label>
