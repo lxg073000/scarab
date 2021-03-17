@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "../util/route_utils";
 import NavContainer from "./nav/nav_container";
 import splash_container from "./splash/splash_container";
 import signup_form_container from "./session/signup_form_container";
@@ -20,24 +21,30 @@ class App extends React.Component {
     return (
       <div>
         <NavContainer />
-        <Route path="/" component={splash_container} />
-        <Route path="/new" component={signup_form_container} />
-        <Route path="/login" component={login_form_container} />
-        <Route path="/user/:id" component={user_profile_container} />
-        <Route path="/user/:id/feed" component={user_feed_container} />
-        <Route path="/user/:id/routes" component={user_routes_container} />
-        <Route
+        <AuthRoute path="/" component={splash_container} />
+        <AuthRoute path="/new" component={signup_form_container} />
+        <AuthRoute path="/login" component={login_form_container} />
+        <ProtectedRoute path="/user/:id" component={user_profile_container} />
+        <ProtectedRoute path="/user/:id/feed" component={user_feed_container} />
+        <ProtectedRoute
+          path="/user/:id/routes"
+          component={user_routes_container}
+        />
+        <ProtectedRoute
           path="/user/:id/buggout"
           component={user_buggout_index_container}
         />
-        <Route
+        <ProtectedRoute
           path="/user/:id/buggout/:id"
           component={user_buggout_container}
         />
-        <Route path="/route/new" component={route_form_container} />
-        <Route path="/route/:id/edit" component={route_edit_form_container} />
-        <Route path="/route/:id/" component={route_container} />
-        <Route
+        <ProtectedRoute path="/route/new" component={route_form_container} />
+        <ProtectedRoute
+          path="/route/:id/edit"
+          component={route_edit_form_container}
+        />
+        <ProtectedRoute path="/route/:id/" component={route_container} />
+        <ProtectedRoute
           path="/route/:id/buggout"
           component={route_buggout_index_container}
         />
