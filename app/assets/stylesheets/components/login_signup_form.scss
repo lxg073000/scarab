@@ -1,0 +1,150 @@
+.background-pic {
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  position: fixed;
+  background-position: 100%;
+}
+.form-container {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 115px;
+  position: relative;
+}
+.session-form {
+  height: 640px;
+  width: 400px;
+  background: #000000e3;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  color: white;
+  text-align: -webkit-center;
+}
+
+.login-header {
+  background: #000000e3;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
+  font-size: 37px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  padding: 23px 20px;
+  line-height: 43px;
+  letter-spacing: 1px;
+}
+.signup-header {
+  background: #000000e3;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
+  font-size: 35px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  padding: 19px 20px;
+  line-height: 43px;
+}
+.form-field {
+  background: inherit;
+  border: 1px solid #b0b0b0;
+  font-size: 15px;
+  padding: 10px;
+  margin: 15px 0px;
+  height: 43px;
+  width: 300px;
+  color: white;
+  border-radius: 5px;
+}
+
+.form-field:focus {
+  background: #ffffffe6;
+  box-shadow: 0px 0px 7px 0px #ffffff;
+  color: #383838;
+  border: #666666d9 1px solid;
+}
+
+.form-submit {
+  border: 1px solid #666;
+  font-size: 15px;
+  padding: 10px;
+  margin: 15px 0px;
+  height: 43px;
+  width: 300px;
+  background-color: #ff5e00;
+  color: white;
+  border-radius: 5px;
+}
+
+.form-submit:hover {
+  background: #db4900;
+  animation: dim 0.2s;
+}
+.form-submit:active {
+  background: #ff7a38;
+  animation: glow 0.3s;
+}
+
+@keyframes dim {
+  from {
+    background: #ff5e00;
+  }
+  to {
+    background: #db4900;
+  }
+}
+@keyframes glow {
+  from {
+    background: #ff5e00;
+  }
+  to {
+    background: #ff7a38;
+  }
+}
+
+.form-border {
+  border-bottom: #666 solid 1px;
+  width: 80%;
+}
+.form-footer {
+  padding: 18px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 79px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.signup-footer {
+  padding: 18px 33px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 105px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  color: #666;
+}
+
+.guest-link {
+  text-decoration: underline;
+  color: #ff5e00;
+}
+
+::selection {
+  background: rgb(255, 85, 23);
+}
+
+::placeholder {
+  color: rgb(218, 218, 218);
+}

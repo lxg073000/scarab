@@ -1,24 +1,54 @@
 import React from "react";
+import { render } from "react-dom";
 import { Link } from "react-router-dom";
 
-function nav_items({ currentUser, logout }) {
-  const _signedIn = !!currentUser ? (
-    <div>
-      <button onClick={logout}>Sign Out</button>
-      <Link to="/user/:id">Edit Profile</Link>
-    </div>
-  ) : null;
+class Nav_items extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const { currentUser, currentPage, logout } = this.props;
+    let pathname = this.props.location.pathname;
+    // debugger;
 
-  return (
-    <div>
-      <h3>Scarab Nav</h3>
-      {_signedIn}
-      <ul>
-        <li>Logo</li>
-        <li>Profile Pic</li>
-      </ul>
-    </div>
-  );
+    debugger;
+    const _sessionToggle = currentUser ? null : pathname == "/login" ? (
+      <div>
+        <Link className="nav-btn" to="/signup">
+          <span className="btn-white">Sign Up</span>
+        </Link>
+      </div>
+    ) : (
+      <div>
+        <Link className="nav-btn" to="/login">
+          <span className="btn-white">Log In</span>
+        </Link>
+      </div>
+    );
+
+    const _signedIn = !!currentUser ? (
+      <div>
+        <span className="nav-btn" onClick={logout}>
+          Sign Out
+        </span>
+        <Link className="nav-btn-orange" to="/user/:id">
+          Edit Profile
+        </Link>
+      </div>
+    ) : null;
+
+    return (
+      <div className="nav-bar">
+        <Link className="nav-logo" to="/splash">
+          SCARAB
+        </Link>
+        <ul>
+          {_signedIn}
+          {_sessionToggle}
+        </ul>
+      </div>
+    );
+  }
 }
 
-export default nav_items;
+export default Nav_items;

@@ -4,13 +4,18 @@ import { connect } from "react-redux";
 
 const mapState = (state) => ({
   loggedIn: Boolean(state.session.currentUser),
+  currentUser: state.session.currentUser,
 });
 
 const Auth = ({ loggedIn, path, component: Component }) => (
   <Route
     path={path}
     render={(props) =>
-      loggedIn ? <Redirect to="/" /> : <Component {...props} />
+      loggedIn ? (
+        <Redirect to={`/user/${currentUser.id}/feed`} />
+      ) : (
+        <Component {...props} />
+      )
     }
   />
 );

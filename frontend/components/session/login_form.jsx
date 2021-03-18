@@ -3,11 +3,9 @@ import React from "react";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    // const token = document.querySelector('meta[name="csrf-token"]').content;
     (this.state = {
       username: "",
       password: "",
-      token: props.token,
     }),
       (this.handleSubmit = this.handleSubmit.bind(this));
   }
@@ -22,29 +20,58 @@ class LoginForm extends React.Component {
     this.props.login(this.state);
   }
 
+  renderErrors() {
+    return (
+      <ul className="form-errors">
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>{error}</li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     return (
-      <div className="session-form">
-        <h1>Log In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.handleInput("username")}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.handleInput("password")}
-            />
-          </label>
-          <button>Submit</button>
-        </form>
+      <div
+        className="background-pic"
+        style={{ backgroundImage: `url(${window.login_2})` }}
+      >
+        <div className="form-container">
+          <div className="session-form">
+            <form onSubmit={this.handleSubmit}>
+              <h1 className="login-header">Log In</h1>
+              <div className="signup-errors">{this.renderErrors()}</div>
+              <input
+                className="form-field"
+                type="text"
+                placeholder="Your Name"
+                value={this.state.username}
+                onChange={this.handleInput("username")}
+              />
+              <input
+                className="form-field"
+                type="password"
+                placeholder="Your Password"
+                value={this.state.password}
+                onChange={this.handleInput("password")}
+              />
+              <input className="form-submit" type="submit" value="Log In" />
+              <div className="form-border" />
+              <div className="form-footer">
+                <p>Forgot your password?</p>
+                <p>
+                  Log In with the{" "}
+                  <span
+                    onClick={() => this.props.login(this.props.demoUser)}
+                    className="guest-link"
+                  >
+                    Guest Account
+                  </span>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

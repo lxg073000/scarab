@@ -23,35 +23,55 @@ class SignUpForm extends React.Component {
 
   render() {
     return (
-      <div className="session-form">
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.handleInput("username")}
-            />
-          </label>
-          <label>
-            Email
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.handleInput("email")}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.handleInput("password")}
-            />
-          </label>
-          <button>Submit</button>
-        </form>
+      <div
+        className="background-pic"
+        style={{ backgroundImage: `url(${window.login_0})` }}
+      >
+        <div className="form-container">
+          <div className="session-form">
+            <form onSubmit={this.handleSubmit}>
+              <p className="signup-header">Join Scarab today, it's Free.</p>
+              <input
+                className="form-field"
+                type="text"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleInput("username")}
+              />
+              <input
+                className="form-field"
+                type="text"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.handleInput("email")}
+              />
+              <input
+                className="form-field"
+                type="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleInput("password")}
+              />
+              <input className="form-submit" type="submit" value="Sign Up" />
+              <div className="form-border" />
+              <div className="signup-footer">
+                <p>
+                  By signing up for Scarab, you agree to the Terms of Service.
+                  View our Privacy Policy.
+                </p>
+                <p>
+                  Or simply Log In with the{" "}
+                  <span
+                    onClick={() => this.props.login(this.props.demoUser)}
+                    className="guest-link"
+                  >
+                    Guest Account
+                  </span>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

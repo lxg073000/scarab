@@ -1,5 +1,4 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_utils";
 import NavContainer from "./nav/nav_container";
@@ -21,8 +20,11 @@ class App extends React.Component {
     return (
       <div>
         <NavContainer />
-        <AuthRoute path="/" component={splash_container} />
-        <AuthRoute path="/new" component={signup_form_container} />
+        <Route exact path="/">
+          <Redirect to="/splash" />
+        </Route>
+        <AuthRoute path="/splash" component={splash_container} />
+        <AuthRoute path="/signup" component={signup_form_container} />
         <AuthRoute path="/login" component={login_form_container} />
         <ProtectedRoute path="/user/:id" component={user_profile_container} />
         <ProtectedRoute path="/user/:id/feed" component={user_feed_container} />
@@ -38,7 +40,7 @@ class App extends React.Component {
           path="/user/:id/buggout/:id"
           component={user_buggout_container}
         />
-        <ProtectedRoute path="/route/new" component={route_form_container} />
+        <ProtectedRoute path="/route/signup" component={route_form_container} />
         <ProtectedRoute
           path="/route/:id/edit"
           component={route_edit_form_container}

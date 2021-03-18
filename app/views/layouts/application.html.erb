@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"></link>
     <% if current_user %>
     <script>
     window.currentUser = {
@@ -16,6 +17,15 @@
     }
     </script>
     <% end %>
+    <script type="text/javascript">
+      window.splash_0 = "<%= image_url('splash_0.jpg') %>";
+      window.login_0 = "<%= image_url('login_0.jpg') %>";
+      window.login_1 = "<%= image_url('login_1.jpg') %>";
+      window.login_2 = "<%= image_url('login_2.jpg') %>";
+      window.login_3 = "<%= image_url('login_3.jpg') %>";
+      window.login_4 = "<%= image_url('login_4.jpg') %>";
+      window.login_5 = "<%= image_url('login_5.jpg') %>";
+    </script>
   </head>
 
   <body>
@@ -23,3 +33,4 @@
     <div id="main"></div>
   </body>
 </html>
+
