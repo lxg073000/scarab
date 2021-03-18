@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { login, logout } from "../../actions/session";
+import { login, logout, clearSessionErrors } from "../../actions/session";
 import LoginForm from "./login_form";
 
 const mapState = (state) => ({
@@ -14,6 +14,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   login: (user) => dispatch(login(user)),
   logout: () => dispatch(logout()),
+  clearSessionErrors: () => dispatch(clearSessionErrors()),
 });
 
 export default connect(mapState, mapDispatch)(LoginForm);

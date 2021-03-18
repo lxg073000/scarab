@@ -21,6 +21,20 @@ class SignUpForm extends React.Component {
     this.props.signup(this.state);
   }
 
+  renderErrors() {
+    return (
+      <ul className="form-errors">
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>{error}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  componentWillUnmount() {
+    this.props.clearSessionErrors();
+  }
+
   render() {
     return (
       <div
@@ -31,6 +45,7 @@ class SignUpForm extends React.Component {
           <div className="session-form">
             <form onSubmit={this.handleSubmit}>
               <p className="signup-header">Join Scarab today, it's Free.</p>
+              <div className="signup-errors">{this.renderErrors()}</div>
               <input
                 className="form-field"
                 type="text"

@@ -9,9 +9,7 @@ class Nav_items extends React.Component {
   render() {
     const { currentUser, currentPage, logout } = this.props;
     let pathname = this.props.location.pathname;
-    // debugger;
 
-    debugger;
     const _sessionToggle = currentUser ? null : pathname == "/login" ? (
       <div>
         <Link className="nav-btn" to="/signup">
