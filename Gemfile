@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem "bcrypt"
 ruby '2.5.1'
 gem "jquery-rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -44,7 +45,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'faker'
   gem "factory_bot_rails"
-  gem "bcrypt"
 end
 
 group :development do
