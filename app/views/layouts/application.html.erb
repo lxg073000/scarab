@@ -8,6 +8,9 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"></link>
+    <script type="text/javascript">
+    window.googleAPIKey = "<%= Rails.application.credentials.google[:api_key] %>"
+    </script>
     <% if current_user %>
     <script>
     window.currentUser = {

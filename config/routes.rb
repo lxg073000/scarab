@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'waypoints/index'
+  get 'waypoints/create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root "static_pages#root"
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
     end
     
     resource :session, only: [:show, :create, :destroy]
+    resources :waypoints, only: [:index, :create]
   end
   
 end
