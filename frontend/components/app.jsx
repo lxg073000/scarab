@@ -5,6 +5,7 @@ import NavContainer from "./nav/nav_container";
 import splash_container from "./splash/splash_container";
 import signup_form_container from "./session/signup_form_container";
 import login_form_container from "./session/login_form_container";
+import onboarding_form_container from "./session/onboarding_form_container";
 import user_profile_container from "./user/user_profile_container";
 import user_feed_container from "./user/user_feed_container";
 import user_routes_container from "./user/user_routes_container";
@@ -26,6 +27,10 @@ class App extends React.Component {
         <AuthRoute path="/splash" component={splash_container} />
         <AuthRoute path="/signup" component={signup_form_container} />
         <AuthRoute path="/login" component={login_form_container} />
+        <ProtectedRoute
+          path="/onboarding"
+          component={onboarding_form_container}
+        />
         <ProtectedRoute path="/user/:id" component={user_profile_container} />
         <ProtectedRoute path="/user/:id/feed" component={user_feed_container} />
         <ProtectedRoute

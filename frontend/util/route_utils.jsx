@@ -11,11 +11,7 @@ const Auth = ({ loggedIn, path, component: Component }) => (
   <Route
     path={path}
     render={(props) =>
-      loggedIn ? (
-        <Redirect to={`/user/${currentUser.id}/feed`} />
-      ) : (
-        <Component {...props} />
-      )
+      loggedIn ? <Redirect to={`/onboarding`} /> : <Component {...props} />
     }
   />
 );

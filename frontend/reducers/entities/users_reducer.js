@@ -1,5 +1,3 @@
-debugger;
-
 import { RECEIVE_CURRENT_USER } from "../../actions/session";
 
 const userReducer = (oldState = {}, action) => {

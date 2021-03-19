@@ -9,7 +9,6 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 export const receiveCurrentUser = (user) => {
-  debugger;
   return {
     type: RECEIVE_CURRENT_USER,
     user,
@@ -39,7 +38,6 @@ export const signup = (user) => (dispatch) =>
   );
 export const login = (user) =>
   function (dispatch) {
-    debugger;
     return API_sessionLogin(user).then(
       (user) => dispatch(receiveCurrentUser(user)),
       (errors) => dispatch(receieveSessionErrors(errors.responseJSON))

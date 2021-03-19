@@ -22,8 +22,9 @@ class SignUpForm extends React.Component {
   }
 
   renderErrors() {
+    const errorControl = !!this.props.errors.length ? "signup-errors" : "hide";
     return (
-      <ul className="form-errors">
+      <ul className={errorControl}>
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>{error}</li>
         ))}
@@ -45,7 +46,7 @@ class SignUpForm extends React.Component {
           <div className="session-form">
             <form onSubmit={this.handleSubmit}>
               <p className="signup-header">Join Scarab today, it's Free.</p>
-              <div className="signup-errors">{this.renderErrors()}</div>
+              <div className="">{this.renderErrors()}</div>
               <input
                 className="form-field"
                 type="text"

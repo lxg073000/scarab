@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :trustees
   has_many :liked_buggouts
   has_many :buggouts_liked
+  has_one_attached :profile_picture
 
   def password=(password)
     @password = password

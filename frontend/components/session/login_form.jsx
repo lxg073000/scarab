@@ -3,11 +3,11 @@ import React from "react";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    (this.state = {
+    this.state = {
       username: "",
       password: "",
-    }),
-      (this.handleSubmit = this.handleSubmit.bind(this));
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleInput(control) {
     return (e) =>
@@ -21,8 +21,9 @@ class LoginForm extends React.Component {
   }
 
   renderErrors() {
+    const errorControl = !!this.props.errors.length ? "signup-errors" : "hide";
     return (
-      <ul className="form-errors">
+      <ul className={errorControl}>
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>{error}</li>
         ))}
@@ -44,7 +45,7 @@ class LoginForm extends React.Component {
           <div className="session-form">
             <form onSubmit={this.handleSubmit}>
               <h1 className="login-header">Log In</h1>
-              <div className="signup-errors">{this.renderErrors()}</div>
+              <div className="">{this.renderErrors()}</div>
               <input
                 className="form-field"
                 type="text"

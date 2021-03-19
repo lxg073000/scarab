@@ -26,12 +26,12 @@ class Nav_items extends React.Component {
 
     const _signedIn = !!currentUser ? (
       <div>
-        <span className="nav-btn" onClick={logout}>
-          Sign Out
-        </span>
         <Link className="nav-btn-orange" to="/user/:id">
           Edit Profile
         </Link>
+        <span className="nav-btn" onClick={logout}>
+          Sign Out
+        </span>
       </div>
     ) : null;
 
