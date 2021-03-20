@@ -13,8 +13,9 @@ import user_buggout_index_container from "./user/user_buggout_index_container";
 import user_buggout_container from "./user/user_buggout_container";
 import route_form_container from "./route/route_form_container";
 import route_edit_form_container from "./route/route_edit_form_container";
-import route_container from "./route/route_container";
+import search_container from "./googleMap/search_container";
 import route_buggout_index_container from "./route/route_buggout_index_container";
+import waypoint_index_container from "./route/waypoint_index_container";
 
 class App extends React.Component {
   render() {
@@ -50,10 +51,14 @@ class App extends React.Component {
           path="/route/:id/edit"
           component={route_edit_form_container}
         />
-        <ProtectedRoute path="/route/:id/" component={route_container} />
+        <ProtectedRoute path="/routes/" component={search_container} />
         <ProtectedRoute
           path="/route/:id/buggout"
           component={route_buggout_index_container}
+        />
+        <ProtectedRoute
+          path="/waypoints/"
+          component={waypoint_index_container}
         />
       </div>
     );

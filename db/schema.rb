@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_214357) do
   create_table "waypoints", force: :cascade do |t|
     t.float "lat"
     t.float "lng"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
