@@ -16,6 +16,10 @@ export default class route_map extends Component {
   }
 
   render() {
-    return <div id="map-container" ref={(map) => (this.mapNode = map)}></div>;
+    return (
+      <div>
+        <div id="map-container" ref={(map) => (this.mapNode = map)}></div>
+      </div>
+    );
   }
 }

@@ -9,11 +9,13 @@ export default class route_card extends Component {
   render() {
     debugger;
     return (
-      <div>
-        <h1>Routes</h1>
-        <ul>
+      <div className="main-container">
+        <h1 className="main-content">Routes Points</h1>
+        <ul className="main-container">
           {this.props.waypoints.map((waypoint) => (
-            <li key={waypoint.id}>{waypoint.description}</li>
+            <li className="main-form-label" key={waypoint.id}>
+              {waypoint.description}
+            </li>
           ))}
         </ul>
       </div>

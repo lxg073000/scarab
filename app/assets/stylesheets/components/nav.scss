@@ -1,18 +1,82 @@
+.shell {
+  border-bottom: rgb(226, 226, 226) 1px solid;
+}
 .nav-bar {
   display: flex;
-  padding: 0 13px;
-  height: 58px;
+  max-width: 1010px;
+  margin: 0 auto;
+  padding: 0 48px;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
 }
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.nav-menu {
+  display: flex;
+}
+
+.nav-menu-link {
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  border-bottom: 2px solid orangered;
+}
+
+.nav-menu-link > li {
+  font-size: 14px;
+  color: rgb(56, 56, 56);
+  font-family: sans-serif;
+  padding: 16px 0 20px 30px;
+}
+.nav-menu-link:first-child li {
+  padding-left: 8px;
+}
+.nav-menu-link:last-child i {
+  padding-right: 8px;
+}
+
+.nav-menu-link > i {
+  font-size: 10px;
+  font-weight: bolder;
+  padding-left: 4px;
+}
+
+.nav-title {
+  display: flex;
+  align-items: flex-end;
+}
 
 .nav-logo {
   color: #fc4d02;
-  font-size: 21px;
+  font-size: 25px;
   font-family: sans-serif;
   font-weight: 800;
   text-decoration: none;
+  letter-spacing: -2px;
+}
+.fa-search {
+  font-size: 20px;
+  color: rgb(56, 56, 56);
+  padding: 0 20px 0 15px;
+}
+
+.fa-plus-circle {
+  font-size: 21px;
+  color: #fc4d02c9;
+}
+
+.nav-head {
+  margin-left: 10px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 25px;
 }
 
 .nav-btn {

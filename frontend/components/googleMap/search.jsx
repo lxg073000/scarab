@@ -5,10 +5,15 @@ import WaypointManager from "../../util/waypoint_manager";
 
 const search = ({ waypoints, fetchWaypoints }) => {
   return (
-    <div>
-      <h1>Routes</h1>
-      <RouteMap waypoints={waypoints} WaypointManager={WaypointManager} />
+    <div className="main-container">
+      <h1 className="main-headline">Routes</h1>
+      <RouteMap
+        className="route-main"
+        waypoints={waypoints}
+        WaypointManager={WaypointManager}
+      />
       <WaypointIndexCard
+        className="main-content"
         waypoints={waypoints}
         fetchWaypoints={fetchWaypoints}
       />

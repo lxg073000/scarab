@@ -33,7 +33,7 @@ export default class onboarding_form extends Component {
           <button onClick={this.handleSubmit} className="main-form-btn">
             Update Profile
           </button>
-          <Link className="main-form-btn" to={`/route/1`}>
+          <Link className="main-form-btn" to={`/routes`}>
             DefaultRoute
           </Link>
         </form>

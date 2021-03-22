@@ -21,4 +21,5 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(<Root store={store} />, root);
   window.fetchWaypoints = fetchWaypoints;
   window.store = store;
+  window.renderDIR = WaypointManager.renderSupplyRoute;
 });
