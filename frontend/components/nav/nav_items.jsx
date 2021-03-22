@@ -5,34 +5,85 @@ import { Link } from "react-router-dom";
 class Nav_items extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      dashboard: "hide",
+      training: "hide",
+      explore: "hide",
+      locked: "hide",
+      profile: "hide",
+      add: "hide",
+      nav: "hide",
+    };
+  }
+
+  // shouldComponentUpdate() {
+  //   window.addEventListener("click", this.toggleNav());
+  // }
+
+  componentDidUpdate(prevProps) {
+    const newURLPath = this.props.location !== prevProps.location;
+    newURLPath ? this.toggleNav() : null;
+  }
+
+  // componentDidMount() {
+  //   this.props.location.pathname.includes("!")
+  //     ? this.setState({
+  //         nav: "hide",
+  //       })
+  //     : this.setState({
+  //         nav: "reveal-nav",
+  //       });
+  //   window.addEventListener("click", this.toggleNav());
+  // }
+  toggleNav() {
+    this.props.location.pathname.includes("!")
+      ? this.setState({
+          nav: "hide",
+        })
+      : this.setState({
+          nav: "reveal-nav",
+        });
+  }
+
+  dropdown(control) {
+    return (e) => {
+      this.state[control] === "hide"
+        ? this.setState({
+            [control]: "show",
+          })
+        : this.setState({
+            [control]: "hide",
+          });
+    };
   }
 
   render() {
     const { currentUser, currentPage, logout } = this.props;
     let pathname = this.props.location.pathname;
 
-    const _sessionToggle = currentUser ? null : pathname == "/login" ? (
-      <div>
-        <Link className="nav-btn" to="/signup">
+    const _sessionToggle = currentUser ? null : pathname == "/login!" ? (
+      <div className="">
+        <Link className="nav-btn" to="/signup!">
           <span className="btn-white">Sign Up</span>
         </Link>
       </div>
     ) : (
-      <div>
-        <Link className="nav-btn" to="/login">
+      <div className="">
+        <Link className="nav-btn" to="/login!">
           <span className="btn-white">Log In</span>
         </Link>
       </div>
     );
 
     const _signedIn = !!currentUser ? (
-      <div>
+      <div className="">
         <Link className="nav-btn-orange" to={`/user/${currentUser.id}`}>
           Edit Profile
         </Link>
         <span className="nav-btn" onClick={logout}>
           Sign Out
         </span>
+        <i className="fas fa-user-alt"></i>
         <i className="fas fa-plus-circle"></i>
       </div>
     ) : null;
@@ -47,30 +98,60 @@ class Nav_items extends React.Component {
         <div className="nav-bar">
           <div className="nav-left">
             <div className="nav-title">
-              <Link className="nav-logo" to="/splash">
+              <Link className="nav-logo" to="/splash!">
                 SCARAB
               </Link>
               {formatHeadline(this.props.location.pathname)}
             </div>
             <i className="fas fa-search"></i>
-            <div className="nav-menu-container">
+            <div
+              className={`nav-menu-container
+${this.state.nav}`}
+            >
               <ul className="nav-menu">
-                <Link className="nav-menu-link">
+                <Link
+                  to="/splash!"
+                  className="nav-menu-link"
+                  onMouseEnter={this.dropdown("dashboard")}
+                  onMouseLeave={this.dropdown("dashboard")}
+                >
                   <li>Dashboard</li>
-                  <i className="fas fa-chevron-down"></i>
+                  <ul
+                    className={`nav-menu-link dropdown ${this.state.dashboard}`}
+                  >
+                    <li>Supply Routes</li>
+                  </ul>
                 </Link>
-                <Link className="nav-menu-link">
+                <i className="fas fa-chevron-down"></i>
+                <Link
+                  className="nav-menu-link"
+                  to="/splash!"
+                  onMouseEnter={this.dropdown("training")}
+                  onMouseLeave={this.dropdown("training")}
+                >
                   <li>Training</li>
-                  <i className="fas fa-chevron-down"></i>
+                  <ul
+                    className={`nav-menu-link dropdown ${this.state.training}`}
+                  >
+                    <li>My Buggouts</li>
+                  </ul>
                 </Link>
-                <Link className="nav-menu-link">
+                <i className="fas fa-chevron-down"></i>
+                <Link
+                  className="nav-menu-link"
+                  to="/splash!"
+                  onMouseEnter={this.dropdown("explore")}
+                  onMouseLeave={this.dropdown("explore")}
+                >
                   <li>Explore</li>
-                  <i className="fas fa-chevron-down"></i>
+                  <ul
+                    className={`nav-menu-link dropdown ${this.state.explore}`}
+                  >
+                    <li>Community Search</li>
+                    <li>Supply Search</li>
+                  </ul>
                 </Link>
-                <Link className="nav-menu-link">
-                  <li>LOCKED</li>
-                  <i className="fas fa-chevron-down"></i>
-                </Link>
+                <i className="fas fa-chevron-down"></i>
               </ul>
             </div>
           </div>
@@ -81,6 +162,7 @@ class Nav_items extends React.Component {
             </ul>
           </div>
         </div>
+        <div className="baseline"></div>
       </div>
     );
   }

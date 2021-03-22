@@ -23,11 +23,11 @@ class App extends React.Component {
       <div>
         <NavContainer />
         <Route exact path="/">
-          <Redirect to="/splash" />
+          <Redirect to="/splash!" />
         </Route>
-        <AuthRoute path="/splash" component={splash_container} />
-        <AuthRoute path="/signup" component={signup_form_container} />
-        <AuthRoute path="/login" component={login_form_container} />
+        <AuthRoute path="/splash!" component={splash_container} />
+        <AuthRoute path="/signup!" component={signup_form_container} />
+        <AuthRoute path="/login!" component={login_form_container} />
         <ProtectedRoute
           path="/onboarding"
           component={onboarding_form_container}

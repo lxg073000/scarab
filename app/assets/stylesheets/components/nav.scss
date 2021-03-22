@@ -1,31 +1,58 @@
-.shell {
-  border-bottom: rgb(226, 226, 226) 1px solid;
+div,
+ul,
+li {
+  border: 1px solid black;
 }
+.shell {
+  display: flex;
+  justify-content: space-between;
+  height: 72px;
+  align-items: center;
+}
+
+.baseline {
+  position: float;
+  border-bottom: rgb(226, 226, 226) 1px solid;
+  display: flex;
+  // align-items: baseline;
+}
+
 .nav-bar {
   display: flex;
-  max-width: 1010px;
+  min-width: 1010px;
   margin: 0 auto;
   padding: 0 48px;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
+  height: inherit;
+}
+.nav-menu-container {
+  display: flex;
+  align-items: center;
+  height: inherit;
 }
 .nav-left {
   display: flex;
   align-items: center;
+  height: inherit;
 }
 .nav-right {
   display: flex;
   align-items: center;
+  height: inherit;
 }
 .nav-menu {
   display: flex;
+  align-items: baseline;
+  height: 72px;
 }
 
 .nav-menu-link {
   text-decoration: none;
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
   border-bottom: 2px solid orangered;
 }
 
@@ -33,14 +60,20 @@
   font-size: 14px;
   color: rgb(56, 56, 56);
   font-family: sans-serif;
-  padding: 16px 0 20px 30px;
+  padding: 26px 0 27px 30px;
+  display: flex;
+  width: 100px;
+  background-color: cadetblue;
 }
-.nav-menu-link:first-child li {
+.nav-menu-link li {
   padding-left: 8px;
+  background-color: red;
+  align-items: center;
 }
-.nav-menu-link:last-child i {
-  padding-right: 8px;
-}
+// .nav-menu-link:last-child i {
+//   padding-right: 8px;
+//   background-color: rgb(9, 255, 0);
+// }
 
 .nav-menu-link > i {
   font-size: 10px;
@@ -67,8 +100,16 @@
   padding: 0 20px 0 15px;
 }
 
-.fa-plus-circle {
+.user-nav {
   font-size: 21px;
+  display: flex;
+  align-items: center;
+}
+
+.user-nav > * {
+  padding-left: 15px;
+}
+.fa-plus-circle {
   color: #fc4d02c9;
 }
 
@@ -152,4 +193,35 @@
   to {
     background: #ff8a1d;
   }
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-left: rgb(226, 226, 226) 1px solid;
+  border-right: rgb(226, 226, 226) 1px solid;
+  position: relative;
+  top: 29px;
+  width: 40px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  position: relative;
+  top: -1px;
+  left: 0px;
+  align-items: baseline;
+}
+
+.reveal-nav {
+  display: inherit;
+}
+
+.nav-menu-link {
+  align-items: center;
 }

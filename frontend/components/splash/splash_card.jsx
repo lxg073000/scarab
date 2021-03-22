@@ -20,10 +20,10 @@ export default class splash_card extends Component {
             <img src={window.splash_0} />
           </div>
           <div className="right-col">
-            <Link className="splash-btn" to="/login">
+            <Link className="splash-btn" to="/login!">
               Log In
             </Link>
-            <Link className="splash-btn" to="/signup">
+            <Link className="splash-btn" to="/signup!">
               Sign Up
             </Link>
             <div className="or-baseline">

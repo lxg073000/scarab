@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Root from "./components/root";
 import configureStore from "./store/store";
 import { fetchWaypoints } from "./actions/waypoint";
+import toggleNav from "./components/nav/nav_items";
 
 document.addEventListener("DOMContentLoaded", () => {
   let preloadedState = {};
@@ -21,5 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(<Root store={store} />, root);
   window.fetchWaypoints = fetchWaypoints;
   window.store = store;
-  window.renderDIR = WaypointManager.renderSupplyRoute;
+
+  // window.addEventListener("locationchange", toggleNav());
 });
