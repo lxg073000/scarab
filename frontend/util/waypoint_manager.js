@@ -35,10 +35,23 @@ export default class WaypointManager {
     });
   }
 
+  clearMap(waypointsOBJ) {
+    let values = Object.values(waypointsOBJ);
+
+    values.forEach((waypoint) =>
+      this.createMarkerFromWaypoint(waypoint).setMap(null)
+    );
+  }
+
   renderSupplyRoute(origin, waypointObjs) {
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
       draggable: true,
+      //** Try to make A appear ontop of Last Label */
+      // markerOptions: {
+      //   zIndex: google.maps.Marker.label === "A" ? 25 : null,
+      //   label: "X",
+      // },
     });
     directionsRenderer.setMap(this.map);
     const normalState = [];
@@ -49,7 +62,7 @@ export default class WaypointManager {
       })
     );
     const request = {
-      origin: { lat: origin.lat, lng: origin.lng },
+      origin: { lat: origin.lat, lng: origin.lng, zindex: 25 },
       destination: { lat: origin.lat, lng: origin.lng },
       travelMode: "WALKING",
       waypoints: normalState,

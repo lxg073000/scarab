@@ -25,16 +25,9 @@ class Nav_items extends React.Component {
     newURLPath ? this.toggleNav() : null;
   }
 
-  // componentDidMount() {
-  //   this.props.location.pathname.includes("!")
-  //     ? this.setState({
-  //         nav: "hide",
-  //       })
-  //     : this.setState({
-  //         nav: "reveal-nav",
-  //       });
-  //   window.addEventListener("click", this.toggleNav());
-  // }
+  componentDidMount() {
+    this.toggleNav();
+  }
   toggleNav() {
     this.props.location.pathname.includes("!")
       ? this.setState({
@@ -115,35 +108,50 @@ ${this.state.nav}`}
                   onMouseEnter={this.dropdown("dashboard")}
                   onMouseLeave={this.dropdown("dashboard")}
                 >
-                  <li>Dashboard</li>
+                  <li>
+                    Dashboard
+                    <span>
+                      <i className="fas fa-chevron-down"></i>
+                    </span>
+                  </li>
                   <ul
                     className={`nav-menu-link dropdown ${this.state.dashboard}`}
                   >
                     <li>Supply Routes</li>
                   </ul>
                 </Link>
-                <i className="fas fa-chevron-down"></i>
+
                 <Link
                   className="nav-menu-link"
                   to="/splash!"
                   onMouseEnter={this.dropdown("training")}
                   onMouseLeave={this.dropdown("training")}
                 >
-                  <li>Training</li>
+                  <li>
+                    Training{" "}
+                    <span>
+                      <i className="fas fa-chevron-down"></i>
+                    </span>
+                  </li>
+
                   <ul
                     className={`nav-menu-link dropdown ${this.state.training}`}
                   >
                     <li>My Buggouts</li>
                   </ul>
                 </Link>
-                <i className="fas fa-chevron-down"></i>
                 <Link
                   className="nav-menu-link"
                   to="/splash!"
                   onMouseEnter={this.dropdown("explore")}
                   onMouseLeave={this.dropdown("explore")}
                 >
-                  <li>Explore</li>
+                  <li>
+                    Explore
+                    <span>
+                      <i className="fas fa-chevron-down"></i>
+                    </span>
+                  </li>
                   <ul
                     className={`nav-menu-link dropdown ${this.state.explore}`}
                   >
@@ -151,7 +159,6 @@ ${this.state.nav}`}
                     <li>Supply Search</li>
                   </ul>
                 </Link>
-                <i className="fas fa-chevron-down"></i>
               </ul>
             </div>
           </div>
