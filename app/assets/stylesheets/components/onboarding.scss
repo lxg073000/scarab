@@ -1,0 +1,63 @@
+.insert-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 240px;
+  border: 2px dashed #d3d3d3;
+  color: gainsboro;
+  padding: 40px;
+  font-size: 17px;
+  text-align: center;
+  line-height: normal;
+}
+
+h3.main-content {
+  padding: 10px 0;
+  font-weight: 100;
+  margin: 0px auto 27px auto;
+}
+
+input.main-form-field {
+  width: 100%;
+  margin: 10px 0px;
+}
+
+// .onboard-modal-form p {
+//     width: fit-content;
+// }
+
+.modal-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-label-container {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.bday-dropdowns.main-form-field select {
+  width: 33%;
+}
+
+.bday {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.ob-dropdowns {
+  display: flex;
+}
+
+.gender {
+  width: 48%;
+}
+
+.submit-footer {
+  display: flex;
+  justify-content: flex-end;
+}

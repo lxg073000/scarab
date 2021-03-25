@@ -18,25 +18,101 @@ export default class onboarding_form extends Component {
   render() {
     const { defaultRoute } = this.props;
     return (
-      <div className="main-container">
-        <h1 className="main-headline">Welcome to onboarding!</h1>
-        <p className="main-content">tell us about you...</p>
-        <form className="main-form">
-          <label className="main-form-label">
-            Name
-            <input className="main-form-field" type="text" />
-          </label>
-          <label className="main-form-label">
-            Profile Picture
-            <input className="main-form-field" type="text" />
-          </label>
-          <button onClick={this.handleSubmit} className="main-form-btn">
-            Update Profile
-          </button>
-          <Link className="main-form-btn" to={`/routes`}>
-            DefaultRoute
-          </Link>
-        </form>
+      <div className="fullscreen-main">
+        <div className="primary-main">
+          <div className="main-sidebar">
+            <div className="profile-container">
+              <div className="insert-box">
+                <h1> Your first route will appear here</h1>
+                <Link className="main-form-btn" to={`/routes`}>
+                  DefaultRoute
+                </Link>
+              </div>
+            </div>
+            <div className="trip-container"></div>
+          </div>
+          <div className="main-primary-content">
+            <div className="onboard-modal-form main-container">
+              <form>
+                <h1 className="main-headline">Create your profile</h1>
+                <h3 className="main-content">
+                  This will give you a place to store your buggouts and help
+                  your colony find you.
+                </h3>
+                <div className="modal-row">
+                  <div className="item-label-container">
+                    <p>First Name</p>
+                    <input className="main-form-field" type="text"></input>
+                  </div>
+                  <div className="item-label-container">
+                    <p>Last Name</p>
+                    <input className="main-form-field" type="text"></input>
+                  </div>
+                </div>
+                <div className="modal-row">
+                  <div className="bday">
+                    <p>Birthday</p>
+                    <div className="ob-dropdowns">
+                      <select className="main-form-field">
+                        <option value="0">MM</option>
+                        <option value="1">JAN</option>
+                        <option value="2">FEB</option>
+                        <option value="3">MARCH</option>
+                        <option value="4">APRIL</option>
+                        <option value="5">MAY</option>
+                        <option value="6">JUNE</option>
+                        <option value="7">JULY</option>
+                        <option value="8">AUG</option>
+                        <option value="9">SEPT</option>
+                        <option value="10">OCT</option>
+                        <option value="11">NOV</option>
+                        <option value="12">DEC</option>
+                      </select>
+                      <select className="main-form-field">
+                        <option value="0">DD</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                      <select className="main-form-field">
+                        <option value="0">YYYY</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="gender">
+                    <p>Gender</p>
+                    <div className="ob-dropdowns">
+                      <select className="main-form-field">
+                        <option value=""></option>
+                        <option value="male">MALE</option>
+                        <option value="female">FEMALE</option>
+                        <option value="queer">OTHER</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div className="submit-footer">
+                  <button className="nav-btn-orange">Continue</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

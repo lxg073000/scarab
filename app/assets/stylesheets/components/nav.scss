@@ -6,9 +6,10 @@
 .shell {
   display: flex;
   justify-content: space-between;
-  height: 54px;
+  height: 56px;
   align-items: center;
-  border-bottom: rgb(226, 226, 226) 1px solid;
+  border-bottom: #e2e2e2 1px solid;
+  padding: 0px 11px;
 }
 
 .map-shell {
@@ -34,15 +35,15 @@
 
 .nav-bar {
   display: flex;
-  margin: auto;
-  max-width: 1010px;
+  max-width: 1270px;
   min-width: 941px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
   height: inherit;
+  width: 1232px;
 }
 .nav-menu-container {
   display: flex;
@@ -54,11 +55,23 @@
   align-items: center;
   height: inherit;
 }
+
+.nav-right div {
+  display: flex;
+  align-items: center;
+}
+
 .nav-right {
   display: flex;
   align-items: center;
   height: inherit;
 }
+
+.nav-right i.fas {
+  padding: 19px;
+  font-size: 24px;
+}
+
 .nav-menu {
   display: flex;
   align-items: baseline;

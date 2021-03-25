@@ -56,7 +56,7 @@ class Nav_items extends React.Component {
 
     const _sessionToggle = currentUser ? null : pathname == "/login!" ? (
       <div className="">
-        <Link className="nav-btn" to="/signup!">
+        <Link className="nav-btn-orange" to="/signup!">
           <span className="btn-white">Sign Up</span>
         </Link>
       </div>
@@ -96,7 +96,10 @@ class Nav_items extends React.Component {
               </Link>
               {formatHeadline(this.props.location.pathname)}
             </div>
-            <i className="fas fa-search"></i>
+            <i
+              className={`fas fa-search
+${this.state.nav}`}
+            ></i>
             <div
               className={`nav-menu-container
 ${this.state.nav}`}

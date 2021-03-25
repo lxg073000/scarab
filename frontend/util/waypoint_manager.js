@@ -3,6 +3,7 @@ export default class WaypointManager {
     this.map = map;
     this.waypoints = {};
     window.map = this.map;
+    // this.myResult = [];
   }
   // updateWaypoints(waypoints) {
   //   let waypointObjs = Object.values(waypoints);
@@ -15,24 +16,47 @@ export default class WaypointManager {
   //         this.renderSupplyRoute(obj)
   //   );
   // }
+  startRoute(waypoints) {
+    debugger;
+    let values = Object.values(waypoints);
+    let origin = values[0];
+    let destination = values[1];
+    const defaultOrigin = origin;
+
+    this.renderDynamicRoute(origin, destination);
+  }
+  continueRoute(waypoint) {
+    debugger;
+    let values = Object.values(waypoints);
+    let origin = defaultOrigin;
+    let destination = waypoint;
+
+    this.renderDynamicRoute(origin, destination);
+  }
   updateWaypoints(waypoints) {
     debugger;
     let values = Object.values(waypoints);
     let origin = values[0];
-    let waypointObjs = values.slice(1, values.length);
+    let destination = values[values.length - 1];
+    let waypointObjs = values.slice(1, values.length - 1);
 
-    this.renderSupplyRoute(origin, waypointObjs);
+    this.renderSupplyRoute(origin, destination, waypointObjs);
   }
 
   createMarkerFromWaypoint({ lat, lng, description }) {
     debugger;
     const myLatLng = { lat, lng };
 
-    new google.maps.Marker({
-      position: myLatLng,
-      map: this.map,
-      title: description,
-    });
+    directionMarker = new google.maps.Marker(
+      {
+        position: myLatLng,
+        map: this.map,
+        title: description,
+      },
+      google.maps.event.addListener(directionMarker, "click", (e) => {
+        this.clearDirectionMarker(e);
+      })
+    );
   }
 
   clearMap(waypointsOBJ) {
@@ -43,41 +67,43 @@ export default class WaypointManager {
     );
   }
 
-  renderSupplyRoute(origin, waypointObjs) {
+  renderSupplyRoute(origin, destination, waypointObjs) {
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
       draggable: true,
-      //** Try to make A appear ontop of Last Label */
-      // markerOptions: {
-      //   zIndex: google.maps.Marker.label === "A" ? 25 : null,
-      //   label: "X",
-      // },
     });
     directionsRenderer.setMap(this.map);
+
     const normalState = [];
-    waypointObjs.forEach((obj) =>
-      normalState.push({
-        location: { lat: obj.lat, lng: obj.lng },
-        stopover: true,
-      })
-    );
+
+    if (waypointObjs)
+      waypointObjs.forEach((obj) =>
+        normalState.push({
+          location: { lat: obj.lat, lng: obj.lng },
+          stopover: true,
+        })
+      );
     const request = {
       origin: { lat: origin.lat, lng: origin.lng, zindex: 25 },
-      destination: { lat: origin.lat, lng: origin.lng },
+      destination: { lat: destination.lat, lng: destination.lng },
       travelMode: "WALKING",
       waypoints: normalState,
     };
     directionsService.route(request, function (result, status) {
       if (status === "OK") {
+        debugger;
         directionsRenderer.setDirections(result);
+        this.myResult = result.routes[0].legs;
       }
     });
   }
-  // testRoute = [
-  //   { lat: 40.73643250966783, lng: -73.99377074412097 },
-  //   { lat: 40.7358926917223, lng: -73.99051847696211 },
-  //   { lat: 40.74920997089295, lng: -73.98556184796365 },
-  //   { lat: 40.74975215884578, lng: -74.00483546264266 },
-  //   { lat: 40.73643250966783, lng: -73.99377074412097 },
-  // ];
+
+  returnProperState() {
+    debugger;
+    return myResult;
+  }
+
+  clearDirectionMarker() {
+    console.log("test");
+  }
 }

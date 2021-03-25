@@ -6,6 +6,10 @@ export default class route_map extends Component {
     super(props);
 
     this.state = {};
+    this.count = [];
+    this.index = this.count.length;
+    this.hasDrawn = false;
+    this.mapData = [];
   }
 
   componentDidMount() {
@@ -17,7 +21,7 @@ export default class route_map extends Component {
     this.WaypointManager = new WaypointManager(this.map);
 
     google.maps.event.addListener(this.map, "click", (e) => {
-      this.addClickMarker(e.latLng, this.map);
+      this.addMarkerToMap(e.latLng, this.map);
     });
   }
 
@@ -25,81 +29,230 @@ export default class route_map extends Component {
     google.maps.event.clearInstanceListeners(this.map);
   }
 
-  // componentDidUpdate() {
-  //   this.WaypointManager.updateWaypoints(this.props.waypoints);
-  // }
-
-  clearClickedMarker(marker) {
+  addMarkerToMap(latLng, map) {
     debugger;
-    const id = marker.latLng.toString();
-    this.state[`${id}`].waypoint.setMap(null);
 
-    this.forceUpdate(this.removeMarkerFromState(id));
-    console.log(this.state);
+    let gMarker = new google.maps.Marker({
+      position: latLng,
+      // label: (this.index + 1).toString(),
+      draggable: true,
+      map: map,
+      zIndex: this.index === 0 ? 25 : null,
+    });
+
+    google.maps.event.addListener(gMarker, "click", (e) => {
+      this.removeMarkerFromMap(e);
+    });
+    google.maps.event.addListener(gMarker, "dragstart", (eStart) => {
+      google.maps.event.addListener(gMarker, "dragstart", (eEnd) => {
+        this.createWaypointForState(eEnd.latlng, gMarker, false, eStart.latlng);
+      });
+    });
+    this.createWaypointForState(latLng, gMarker);
   }
 
-  removeMarkerFromState(id) {
+  createWaypointForState(latLng, gMarker, _original = true, oldLatLng) {
+    let myWaypoint = {
+      [latLng.toString()]: {
+        idx: this.index,
+        lat: latLng.lat(),
+        lng: latLng.lng(),
+        latLng: latLng.toString(),
+        waypoint: gMarker,
+      },
+    };
+
+    _original
+      ? this.addMarkerToState(myWaypoint)
+      : this.updateWaypointInState(myWaypoint, oldLatLng.toString());
+
+    if (this.index > 1) {
+      // this.hasDrawn = true;
+      this.drawRouteDirections();
+    }
+  }
+
+  addMarkerToState(pos) {
+    debugger;
+    this.count.push(pos);
+    this.index = this.count.length;
     this.setState((state) => {
-      let newState = Object.assign({}, state);
-      console.log(newState);
-      delete newState[id];
-      console.log(newState);
+      let newState = Object.assign({}, state, pos);
+      debugger;
       return newState;
     });
   }
 
-  addClickMarker(location, map) {
-    debugger;
-    let index = Object.keys(this.state).length;
-    let clickedWaypoint = new google.maps.Marker({
-      position: location,
-      label: (Object.keys(this.state).length + 1).toString(),
-      draggable: true,
-      map: map,
-      zIndex: index === 0 ? 25 : null,
-    });
-
-    google.maps.event.addListener(clickedWaypoint, "click", (e) => {
-      this.clearClickedMarker(e);
-    });
-
-    let newPos = {
-      lat: location.lat(),
-      lng: location.lng(),
-      waypoint: clickedWaypoint,
-    };
-    const oldState = Object.assign(this.state);
-    const newState = Object.assign(oldState, { [location.toString()]: newPos });
-    this.setState(newState);
-  }
-
   drawRouteDirections() {
-    console.log(this.state);
     this.WaypointManager.updateWaypoints(this.state);
     this.clearAllClicks();
   }
+
   clearAllClicks() {
     debugger;
-    console.log(this.state);
     Object.values(this.state).forEach((value) => value.waypoint.setMap(null));
-
-    this.setState();
-    this.forceUpdate();
-    console.log(this.state);
   }
 
-  undo() {}
-  redo() {}
+  updateGState() {
+    debugger;
+    const gState = this.WaypointManager.returnProperState();
+    this.mapData = gState;
+    this.saveRouteToUser(this.mapData);
+    // this.setState({});
+    console.log(this.mapData);
+  }
 
   render() {
     return (
-      <div>
-        <div id="map-container" ref={(map) => (this.mapNode = map)}></div>
-        <button onClick={() => this.drawRouteDirections()}>Make Route</button>
-        <button onClick={() => this.clearAllClicks()}>CLEAR MAP</button>
-        <button onClick={() => this.clearAllClicks()}>undo</button>
-        <button onClick={() => this.clearAllClicks()}>redo</button>
+      <div className="route-container">
+        <div className="main-map-content">
+          <div className="route-left">
+            <div className="route-preferences">
+              <ul className="pref-dropdown">
+                Transport
+                <li>
+                  <div className="pref-item">
+                    <span>
+                      <i className="fas fa-bicycle"></i>
+                    </span>
+                    <p>Run</p>
+                  </div>
+                  <span>
+                    <i className="fas fa-chevron-down"></i>
+                  </span>
+                </li>
+                <li>
+                  <div className="pref-item">
+                    <span>
+                      <i className="fas fa-bicycle"></i>
+                    </span>
+                    <p>Ride</p>
+                  </div>
+                  <span>
+                    <i className="fas fa-chevron-down"></i>
+                  </span>
+                </li>
+                <li>
+                  <div className="pref-item">
+                    <span>
+                      <i className="fas fa-car"></i>
+                    </span>
+                    <p>Drive</p>
+                  </div>
+                  <span>
+                    <i className="fas fa-chevron-down"></i>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="route-details">
+              <ul className="detail-toggle">
+                Segments
+                {this.mapData.map((datum) => ({
+                  /* <li key={datum.id}>{Object.values(datum)}</li> */
+                }))}
+              </ul>
+            </div>
+          </div>
+          <div className="route-right">
+            <div className="map-tools">
+              <div className="tools-left">
+                <div className="map-search">
+                  <i className="fas fa-search"></i>
+                  <p>search or click map to start</p>
+                </div>
+              </div>
+              <div className="tools-right">
+                <div className="edits">
+                  <i className="fas fa-undo-alt fas-tools"></i>
+                  <i className="fas fa-redo-alt fas-tools"></i>
+                </div>
+                <div className="store">
+                  <i className="fas fa-trash fas-tools"></i>
+                  <button
+                    className="nav-btn"
+                    onClick={() => this.updateGState()}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="map-container" ref={(map) => (this.mapNode = map)}></div>
+          </div>
+        </div>
+        <div className="route-summary">
+          <div className="item-container">
+            <div>
+              <p>Run</p>
+              <p className="fas fa-running"></p>
+            </div>
+            <div></div>
+            <ul className="summary-item">
+              Distance
+              <li className="summary-style">[VALUE]</li>
+            </ul>
+            <ul className="summary-item">
+              Time
+              <li className="summary-style">[VALUE]</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
+
+  //EXTRA WERK?
+  // removeMarkerFromMap(marker) {
+  //   const id = marker.latLng.toString();
+  //   this.state[`${id}`].waypoint.setMap(null);
+  //   debugger;
+  //   this.removeMarkerFromState(id);
+  //   debugger;
+  // }
+
+  // removeMarkerFromCount(id, mySlice = null) {
+  //   debugger;
+  //   // let sliceAt = null;
+  //   for (const element of this.count) {
+  //     if (element[id]) {
+  //       mySlice = element[id].idx;
+  //     }
+  //   }
+  //   const sliceAt = mySlice;
+  //   debugger;
+  //   let newCount = this.count;
+  //   newCount = newCount
+  //     .slice(0, sliceAt)
+  //     .concat(newCount.slice(sliceAt + 1, newCount.length));
+  //   this.count = newCount;
+  //   this.index = this.count.length;
+  // }
+
+  // removeMarkerFromState(id) {
+  //   debugger;
+  //   this.removeMarkerFromCount(id);
+
+  //   this.setState((state) => {
+  //     let newState = Object.assign({}, state);
+  //     delete newState[id];
+  //     debugger;
+  //     return newState;
+  //   });
+  // }
+
+  // updateWaypointInState(markerStart, markerEnd) {
+  //   debugger;
+  //   const oldID = marker.latLng.toString();
+  //   const newID = marker.latLng.toString();
+  //   // this.count.push(pos);
+  //   this.setState((state) => {
+  //     let newState = Object.assign({}, state);
+  //     delete newState[oldID];
+  //     newState = Object.assign({}, newState, newState[newID]);
+
+  //     debugger;
+  //     return newState;
+  //   });
+  // }
 }
