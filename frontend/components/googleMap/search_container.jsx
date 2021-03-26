@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { fetchWaypoints } from "../../actions/waypoint";
+import { createRoute } from "../../actions/gRoute";
 import Search from "./search";
 
 const mapState = (state) => ({
@@ -7,6 +8,7 @@ const mapState = (state) => ({
 });
 const mapDispatch = (dispatch) => ({
   fetchWaypoints: () => dispatch(fetchWaypoints()),
+  createRoute: (route) => dispatch(createRoute(route)),
 });
 
 export default connect(mapState, mapDispatch)(Search);

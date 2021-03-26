@@ -37,7 +37,7 @@ export default class splash_card extends Component {
             </span>
           </div>
         </div>
-        <footer>
+        <footer className="footer">
           <div className="footer-cols">
             <div className="f1">
               <span className="logo">SCARAB</span>

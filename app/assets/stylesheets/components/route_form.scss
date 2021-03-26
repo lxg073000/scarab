@@ -1,0 +1,141 @@
+.hide {
+  display: none;
+}
+.reveal {
+  display: inherit;
+}
+
+.fullscreen-main-modal {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(22, 22, 22, 0.8);
+  font-family: sans-serif;
+  color: rgb(29, 29, 29);
+  z-index: 2;
+}
+
+.rf-main-container {
+  min-width: 430px;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  width: 430px;
+  margin: 100px auto 0 auto;
+}
+
+.rf-sub-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  width: 100%;
+  margin: 0;
+  background-color: white;
+  color: rgb(26, 26, 26);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 20px 2px;
+  padding: 20px;
+}
+
+.rf-content {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  width: 100%;
+}
+.main-headline {
+  margin: 7px auto 35px auto;
+  font-size: 23px;
+}
+
+.rfc-name {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+.rfc-name {
+  color: black;
+  margin: 0 auto 10px auto;
+}
+.rd-name-field {
+  border: 1px solid #b0b0b0;
+  font-size: 15px;
+  padding: 10px;
+  height: 43px;
+  color: rgb(29, 29, 29);
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px auto;
+}
+.rfc-descripton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.rf-description {
+  border: 1px solid #b0b0b0;
+  font-size: 15px;
+  padding: 10px;
+  height: 43px;
+  color: rgb(29, 29, 29);
+  border-radius: 5px;
+  width: 94%;
+  margin: 10px auto;
+  font-family: sans-serif;
+}
+.rfc-selects {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  align-items: flex-end;
+}
+.rf-danger {
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+}
+.rf-privacy {
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+}
+
+.danger-dropdown {
+  width: 100%;
+  border: 1px solid #b0b0b0;
+  font-size: 15px;
+  padding: 10px;
+  height: 43px;
+  border-radius: 5px;
+  width: 94%;
+  margin: 10px auto;
+}
+.privacy-dropdown {
+  width: 100%;
+  border: 1px solid #b0b0b0;
+  font-size: 15px;
+  padding: 10px;
+  height: 43px;
+  border-radius: 5px;
+  width: 94%;
+  margin: 10px auto;
+}
+
+.rf-footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.rf-btn {
+  height: 79px;
+  margin: 0 0 11px 0;
+  color: white;
+}
+
+.rf-fp {
+  font-size: 8px;
+  color: #b0b0b0;
+}

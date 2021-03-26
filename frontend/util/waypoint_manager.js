@@ -98,6 +98,38 @@ export default class WaypointManager {
     });
   }
 
+  renderUserRoutes(myRequest) {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+      draggable: true,
+    });
+    directionsRenderer.setMap(this.map);
+    debugger;
+
+    let myArr = [];
+
+    for (let i = 0; i < myRequest.waypoints.length; i++) {
+      myArr.push({
+        location: myRequest.waypoints[i],
+        stopover: true,
+      });
+    }
+
+    const request = {
+      origin: myRequest.origin,
+      destination: myRequest.destination,
+      travelMode: myRequest.travelMode,
+      waypoints: myArr,
+    };
+    directionsService.route(request, function (result, status) {
+      if (status === "OK") {
+        debugger;
+        directionsRenderer.setDirections(result);
+        this.myResult = result.routes[0].legs;
+      }
+    });
+  }
+
   returnProperState() {
     debugger;
     return myResult;

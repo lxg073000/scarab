@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   root "static_pages#root"
   namespace :api, defaults: {format: :json } do
-    resources :users, only: [:create, :update, :destroy, :show ] do
-      resources :google_routes, only: [:index]
+    resources :users, only: [:index, :create, :update, :destroy, :show ] do
+      resources :google_routes, only: [:index, :show]
       resources :buggouts, only: [:index, :show, :destroy]
       resources :comment, only: [:index, :create, :destroy]
     end

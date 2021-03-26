@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   before_validation :ensure_session_token
 
-  has_many :routes
+  has_many :google_routes
   has_many :buggouts
   has_many :trustees
   has_many :liked_buggouts

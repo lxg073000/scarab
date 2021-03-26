@@ -1,5 +1,6 @@
 class GoogleRoute < ApplicationRecord
-  validates: :userId, :name, :origin, :destination, :waypoints, :travelMode, presence: true
+  validates :user_id, :name, :origin, :destination, :travelMode, presence: true
+  # validates :waypoints, presence: true, allow_nil: true
 
-  has_one :user
+  belongs_to :user
 end

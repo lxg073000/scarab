@@ -10,6 +10,7 @@
 
 User.destroy_all
 Waypoint.destroy_all
+GoogleRoute.destroy_all
 
 guest = User.create!(
   username: "guest",
@@ -42,6 +43,11 @@ highLine = Waypoint.create!(
   lng: -74.00483546264266,
   description: "The High Line"
 )
+
+# morningJog = GoogleRoute.create!(user_id:1, name:'Morning Jog', origin:"(40.7715822, -74.0695107)", destination:"(40.76721870000001, -74.06170780000001)", waypoints:[{location:"(40.7951385, -74.0302399)",
+#   stopover: true, 
+#   location:"(40.7851528, -74.0109653)",
+#   stopover: true}])
 
 
 

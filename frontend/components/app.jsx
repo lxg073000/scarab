@@ -14,8 +14,9 @@ import user_buggout_container from "./user/user_buggout_container";
 import route_form_container from "./route/route_form_container";
 import route_edit_form_container from "./route/route_edit_form_container";
 import search_container from "./googleMap/search_container";
+import route_index_card_container from "./route/route_index_card_container";
+import route_showcard_container from "./route/route_showcard_container";
 import route_buggout_index_container from "./route/route_buggout_index_container";
-import waypoint_index_container from "./route/waypoint_index_container";
 
 class App extends React.Component {
   render() {
@@ -32,6 +33,7 @@ class App extends React.Component {
           path="/onboarding"
           component={onboarding_form_container}
         />
+
         <ProtectedRoute path="/user/:id" component={user_profile_container} />
         <ProtectedRoute path="/user/:id/feed" component={user_feed_container} />
         <ProtectedRoute
@@ -46,19 +48,22 @@ class App extends React.Component {
           path="/user/:id/buggout/:id"
           component={user_buggout_container}
         />
-        <ProtectedRoute path="/route/signup" component={route_form_container} />
         <ProtectedRoute
           path="/route/:id/edit"
           component={route_edit_form_container}
         />
         <ProtectedRoute path="/routes/" component={search_container} />
         <ProtectedRoute
-          path="/route/:id/buggout"
-          component={route_buggout_index_container}
+          path="/routes_index/:user_id"
+          component={route_index_card_container}
         />
         <ProtectedRoute
-          path="/waypoints/"
-          component={waypoint_index_container}
+          path="/route/:id/user/:id"
+          component={route_showcard_container}
+        />
+        <ProtectedRoute
+          path="/route/:id/buggout"
+          component={route_buggout_index_container}
         />
       </div>
     );

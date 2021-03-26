@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
+import { useHistory } from "react-router-dom";
+// import RouteForm from "../route/route_form";
 
 export default class route_map extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class route_map extends Component {
     this.index = this.count.length;
     this.hasDrawn = false;
     this.mapData = [];
+    this.submit = "hide";
   }
 
   componentDidMount() {
@@ -97,9 +100,25 @@ export default class route_map extends Component {
     debugger;
     const gState = this.WaypointManager.returnProperState();
     this.mapData = gState;
-    this.saveRouteToUser(this.mapData);
-    // this.setState({});
+    this.convert(gState);
     console.log(this.mapData);
+  }
+
+  convert(gState) {
+    debugger;
+    let request = {
+      user_id: currentUser.id,
+      name: "My Route",
+      origin: gState[0].start_location.toString(),
+      destination: gState[gState.length - 1].end_location.toString(),
+      travelMode: "DRIVING",
+      waypoints: gState
+        .slice(1, this.mapData.length - 1)
+        .map((waypoint) => waypoint.start_location.toString()),
+    };
+    this.props.createRoute(request);
+    location.assign(`#/routes_index/${currentUser.id}`);
+    // location.assign(`#/splash!`);
   }
 
   render() {
@@ -171,6 +190,7 @@ export default class route_map extends Component {
                   <i className="fas fa-trash fas-tools"></i>
                   <button
                     className="nav-btn"
+                    id="submission"
                     onClick={() => this.updateGState()}
                   >
                     Save
