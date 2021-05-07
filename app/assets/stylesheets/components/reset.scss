@@ -91,6 +91,8 @@ video {
   vertical-align: baseline;
   border-color: none;
   outline: none;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -142,4 +144,8 @@ q {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+link {
+  cursor: pointer;
 }

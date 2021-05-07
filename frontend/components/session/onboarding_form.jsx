@@ -52,6 +52,7 @@ export default class onboarding_form extends Component {
                 <div className="modal-row">
                   <div className="bday">
                     <p>Birthday</p>
+                    <input type="date"></input>
                     <div className="ob-dropdowns">
                       <select className="main-form-field">
                         <option value="0">MM</option>
