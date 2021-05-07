@@ -9,7 +9,7 @@
   height: 56px;
   align-items: center;
   border-bottom: #e2e2e2 1px solid;
-  padding: 0px 1.5em;
+  padding: 0px 2em;
 }
 
 .map-shell {
@@ -43,8 +43,8 @@
   align-items: center;
   text-decoration: none;
   height: inherit;
-  width: 1232px;
   z-index: 100;
+  width: 100%;
 }
 .nav-menu-container {
   display: flex;
@@ -129,8 +129,8 @@
 
 .nav-logo {
   color: #fc4d02;
+  font-family: "Noto Sans SC", sans-serif;
   font-size: 25px;
-  font-family: sans-serif;
   font-weight: 800;
   text-decoration: none;
   letter-spacing: -2px;
@@ -162,15 +162,16 @@
 }
 
 .nav-btn {
-  padding: 6px 16px;
+  padding: 9px 18px;
   margin: 0 2px;
   background-color: white;
-  border: rgb(216, 216, 216) 1px solid;
+  border: #d8d8d8 1px solid;
   border-radius: 4px;
   text-decoration: none;
   font-family: sans-serif;
   color: black;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .nav-btn:hover {
@@ -198,15 +199,16 @@
   }
 }
 .nav-btn-orange {
-  padding: 6px 16px;
-  margin: 0 2px;
   background-color: #fc4d02;
-  border: rgb(216, 216, 216) 1px solid;
+  padding: 9px 18px;
+  margin: 0 2px;
+  border: #d8d8d8 1px solid;
   border-radius: 4px;
   text-decoration: none;
   font-family: sans-serif;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 14px;
+  font-weight: 600;
 }
 
 .nav-btn-orange:hover {

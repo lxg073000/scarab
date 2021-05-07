@@ -57,7 +57,7 @@ class Nav_items extends React.Component {
     const _sessionToggle = currentUser ? null : pathname == "/login!" ? (
       <div className="">
         <Link className="nav-btn-orange" to="/signup!">
-          <span className="btn-white">Sign Up</span>
+          Sign Up
         </Link>
       </div>
     ) : (
