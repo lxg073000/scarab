@@ -3,4 +3,4 @@
 # end
 # json.image_url asset_path()
 
-json.extract! @gRoute, :origin, :destination, :waypoints, :travelMode, :user_id, :name
+json.extract! @gRoute, :id, :origin, :destination, :waypoints, :travelMode, :user_id, :name
