@@ -21,13 +21,6 @@ export default class route_showcard extends Component {
         ),
       },
       waypoints: this.props.route.waypoints,
-      // waypoints2: this.props.route.waypoints.map((latlng) =>
-      //   latlng
-      //     .slice(1, -1)
-      //     .split(",")
-      //     .map((val) => parseFloat(val))
-      //     .join(",")
-      // ),
       travelMode: "WALKING",
     };
     console.log("----------------");
@@ -42,8 +35,27 @@ export default class route_showcard extends Component {
     // console.log(this.props.route);
     this.createMap();
   }
-  componentDidUpdate() {
+  componentDidUpdate(previousProps, previousState) {
+    debugger;
     // console.log(this.props.route);
+    if (previousProps.route !== this.props.route) {
+      this.setState({
+        origin: {
+          lat: parseFloat(this.props.route.origin.slice(1, -1).split(",")[0]),
+          lng: parseFloat(this.props.route.origin.slice(1, -1).split(",")[1]),
+        },
+        destination: {
+          lat: parseFloat(
+            this.props.route.destination.slice(1, -1).split(",")[0]
+          ),
+          lng: parseFloat(
+            this.props.route.destination.slice(1, -1).split(",")[1]
+          ),
+        },
+        waypoints: this.props.route.waypoints,
+        travelMode: "WALKING",
+      });
+    }
     this.createMap();
   }
   createMap() {
@@ -56,10 +68,11 @@ export default class route_showcard extends Component {
       zoom: parseInt(this.props.route.mapOptions[1]),
     };
 
-    this.map = new google.maps.Map(
-      document.getElementById(`map-${this.props.route.id}`),
-      mapOptions
-    );
+    // this.map = new google.maps.Map(
+    //   document.getElementById(`map-${this.props.route.id}`),
+    //   mapOptions
+    // );
+    this.map = new google.maps.Map(this.mapNode, mapOptions);
 
     this.drawRoute(this.map);
   }
@@ -135,6 +148,7 @@ export default class route_showcard extends Component {
               <div
                 className="insert-box"
                 id={`map-${this.props.route.id}`}
+                ref={(map) => (this.mapNode = map)}
                 onLoad={this.createMap}
               >
                 <h1> Route Stats</h1>
