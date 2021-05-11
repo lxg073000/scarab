@@ -101,13 +101,15 @@ export default class route_map extends Component {
     const gState = this.WaypointManager.returnProperState();
     this.mapData = gState;
     this.convert(gState);
+    console.log("----------");
+    console.log(gState);
   }
 
   convert(gState) {
     let waypointList = [];
     debugger;
     let points = gState
-      .slice(1, this.mapData.length - 1)
+      .slice(0, this.mapData.length - 1)
       .map((waypoint) => Object.values(waypoint.end_location.toJSON()));
     for (const arr in points) {
       waypointList = waypointList.concat(points[arr]);
