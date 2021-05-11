@@ -101,22 +101,37 @@ export default class route_map extends Component {
     const gState = this.WaypointManager.returnProperState();
     this.mapData = gState;
     this.convert(gState);
-    console.log(this.mapData);
   }
 
   convert(gState) {
+    let waypointList = [];
+    debugger;
+    let points = gState
+      .slice(1, this.mapData.length - 1)
+      .map((waypoint) => Object.values(waypoint.end_location.toJSON()));
+    for (const arr in points) {
+      waypointList = waypointList.concat(points[arr]);
+    }
+    console.log("waypointList");
+    console.log(waypointList);
+
     debugger;
     let request = {
       user_id: currentUser.id,
       name: "My Route",
       origin: gState[0].start_location.toString(),
       destination: gState[gState.length - 1].end_location.toString(),
-      travelMode: "DRIVING",
-      waypoints: gState
-        .slice(1, this.mapData.length - 1)
-        .map((waypoint) => waypoint.start_location.toString()),
+      travelMode: "WALKING",
+      waypoints: waypointList,
+      mapOptions: [
+        this.WaypointManager.map.getCenter().toString().slice(1, -1),
+        this.WaypointManager.map.getZoom().toString(),
+      ],
     };
+    console.log(request);
     this.props.createRoute(request);
+    debugger;
+    // myhistory.push(`#/routes_index/${currentUser.id}`);
     location.assign(`#/routes_index/${currentUser.id}`);
     // location.assign(`#/splash!`);
   }

@@ -22,12 +22,18 @@ export default class route_index_card extends Component {
     //   this.drawRouteDirections();
     // });
     // this.drawRouteDirections();
+
     debugger;
+    // console.log("routes at mount");
+    // console.log(this);
+    // console.log(this.props.routes);
+    // console.log(this);
+    // console.log(this.props.routes);
+    // console.log(this.props);
   }
 
   componentDidUpdate() {
     debugger;
-    this.drawRoute();
   }
 
   drawRouteDirections() {

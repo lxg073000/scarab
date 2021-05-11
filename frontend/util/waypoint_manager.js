@@ -108,9 +108,9 @@ export default class WaypointManager {
 
     let myArr = [];
 
-    for (let i = 0; i < myRequest.waypoints.length; i++) {
+    for (let i = 0; i < myRequest.waypoints.length; i + 2) {
       myArr.push({
-        location: myRequest.waypoints[i],
+        location: myRequest.waypoints[[(i, i + 1)]],
         stopover: true,
       });
     }
@@ -121,6 +121,8 @@ export default class WaypointManager {
       travelMode: myRequest.travelMode,
       waypoints: myArr,
     };
+    console.log("request");
+    console.log(request);
     directionsService.route(request, function (result, status) {
       if (status === "OK") {
         debugger;
@@ -137,5 +139,9 @@ export default class WaypointManager {
 
   clearDirectionMarker() {
     console.log("test");
+  }
+
+  newLatLng(floatPair) {
+    return new google.maps.LatLng(floatPair[0], floatPair[2]);
   }
 }

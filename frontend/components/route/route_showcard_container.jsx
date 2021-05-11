@@ -18,10 +18,10 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => ({
   fetchRoutes: () => dispatch(fetchRoutes()),
-  fetchRoute: () => dispatch(fetchRoute(route_id)),
-  createRoute: () => dispatch(createRoute(route)),
-  editRoute: () => dispatch(editRoute(route)),
-  deleteRoute: () => dispatch(deleteRoute(route_id)),
+  fetchRoute: (route_id) => dispatch(fetchRoute(route_id)),
+  createRoute: (route) => dispatch(createRoute(route)),
+  editRoute: (route) => dispatch(editRoute(route)),
+  deleteRoute: (route_id) => dispatch(deleteRoute(route_id)),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(RouteShowCard));

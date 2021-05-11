@@ -32,6 +32,7 @@ class Api::GoogleRoutesController < ApplicationController
     @gRoute = GoogleRoute.find(params[:id])
     if @gRoute
       @gRoute.delete
+      render json: @gRoute, status: 200
     else
       render json: @gRoute.errors.full_messages, status: 422
     end
@@ -40,7 +41,7 @@ class Api::GoogleRoutesController < ApplicationController
   private
 
   def routeParams
-    params.require(:google_route).permit(:id, :user_id, :name, :origin, :destination, :travelMode, :waypoints => [])
+    params.require(:google_route).permit(:id, :user_id, :name, :origin, :destination, :travelMode, :mapOptions=> [], :waypoints => [])
   end
 
 end

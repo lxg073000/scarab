@@ -15,13 +15,16 @@ const RoutesReducer = (oldState = {}, action) => {
       nextState = Object.assign({}, nextState, action.routes);
       return nextState;
     case RECEIVE_ROUTE:
-      nextState = Object.assign({}, nextState, action.route);
+      nextState = Object.assign({}, nextState, {
+        [action.route.id]: action.route,
+      });
       return nextState;
     case UPDATE_ROUTE:
       nextState = Object.assign((nextState[action.route.id] = action.route));
       return nextState;
     case REMOVE_ROUTE:
-      nextState = delete nextState[action.route_id];
+      debugger;
+      delete nextState[action.route_id];
       return nextState;
     default:
       return oldState;

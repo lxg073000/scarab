@@ -72,7 +72,7 @@ export const deleteRoute = (route_id) =>
   function (dispatch) {
     debugger;
     return API_deleteRoute(route_id).then(
-      (route) => dispatch(receiveRoute(route))
+      (route) => dispatch(removeRoute(route.id))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };

@@ -12,6 +12,7 @@ import { withRouter } from "react-router-dom";
 const mapState = (state) => {
   return {
     routes: Object.values(state.entities.routes),
+    entities: Object.values(state.entities),
   };
 };
 
