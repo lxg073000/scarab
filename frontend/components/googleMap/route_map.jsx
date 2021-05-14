@@ -273,7 +273,7 @@ export default class route_map extends Component {
     };
 
     this.props.createRoute(request);
-    // location.assign(`#/routes_index/${currentUser.id}`);
+    location.assign(`#/routes_index/${currentUser.id}`);
   }
 
   drawRouteDirections() {

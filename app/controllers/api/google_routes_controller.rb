@@ -46,7 +46,7 @@ class Api::GoogleRoutesController < ApplicationController
   private
 
   def routeParams
-    params.require(:google_route).permit(:id, :user_id, :name, :origin, :destination, :travelMode, :mapOptions=> [], :waypoints => [])
+    params.require(:google_route).permit(:id, :user_id, :name, :description, :duration, :distance, :travelMode, :center, :zoom, :waypoints => [])
   end
 
 end
