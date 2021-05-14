@@ -23,8 +23,6 @@ export default class route_showcard extends Component {
       waypoints: this.props.route.waypoints,
       travelMode: "WALKING",
     };
-    console.log("----------------");
-    console.log(this.state.waypoints);
     debugger;
 
     this.createMap = this.createMap.bind(this);
@@ -34,29 +32,33 @@ export default class route_showcard extends Component {
   componentDidMount() {
     // console.log(this.props.route);
     this.createMap();
+    // setTimeout(this.createMap(), 20000);
   }
   componentDidUpdate(previousProps, previousState) {
     debugger;
     // console.log(this.props.route);
     if (previousProps.route !== this.props.route) {
-      this.setState({
-        origin: {
-          lat: parseFloat(this.props.route.origin.slice(1, -1).split(",")[0]),
-          lng: parseFloat(this.props.route.origin.slice(1, -1).split(",")[1]),
-        },
-        destination: {
-          lat: parseFloat(
-            this.props.route.destination.slice(1, -1).split(",")[0]
-          ),
-          lng: parseFloat(
-            this.props.route.destination.slice(1, -1).split(",")[1]
-          ),
-        },
-        waypoints: this.props.route.waypoints,
-        travelMode: "WALKING",
-      });
+      //   this.setState({
+      //     origin: {
+      //       lat: parseFloat(this.props.route.origin.slice(1, -1).split(",")[0]),
+      //       lng: parseFloat(this.props.route.origin.slice(1, -1).split(",")[1]),
+      //     },
+      //     destination: {
+      //       lat: parseFloat(
+      //         this.props.route.destination.slice(1, -1).split(",")[0]
+      //       ),
+      //       lng: parseFloat(
+      //         this.props.route.destination.slice(1, -1).split(",")[1]
+      //       ),
+      //     },
+      //     waypoints: this.props.route.waypoints,
+      //     travelMode: "WALKING",
+      //   });
+      // }
+      // this.createMap();
+      // setTimeout(this.createMap(), 20000);
+      location.reload();
     }
-    this.createMap();
   }
   createMap() {
     const mapOptions = {
@@ -89,9 +91,6 @@ export default class route_showcard extends Component {
     const waypoints = [];
     if (this.state.waypoints.length > 0) {
       for (let i = 0; i < this.state.waypoints.length; i += 2) {
-        console.log(
-          `${this.state.waypoints[i]},${this.state.waypoints[i + 1]}`
-        );
         waypoints.push({
           location: new google.maps.LatLng(
             parseFloat(this.state.waypoints[i]),
@@ -101,8 +100,6 @@ export default class route_showcard extends Component {
         });
       }
     }
-
-    console.log(waypoints);
 
     this.WaypointManager = new WaypointManager(map);
     debugger;
@@ -121,9 +118,6 @@ export default class route_showcard extends Component {
       travelMode: "WALKING",
       waypoints: waypoints,
     };
-
-    console.log("request");
-    console.log(request);
     debugger;
 
     directionsService.route(request, function (result, status) {
@@ -132,7 +126,6 @@ export default class route_showcard extends Component {
         directionsRenderer.setDirections(result);
       }
     });
-    console.log(this.state.waypoints.length);
   }
 
   render() {
@@ -163,6 +156,14 @@ export default class route_showcard extends Component {
                   onClick={() => this.props.deleteRoute(this.props.route.id)}
                 >
                   DELETE
+                </h1>
+                <h1
+                  className="main-form-btn"
+                  onClick={() =>
+                    location.assign(`#/route/${this.props.route.id}/edit`)
+                  }
+                >
+                  EDIT
                 </h1>
               </div>
             </div>

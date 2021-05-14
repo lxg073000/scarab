@@ -7,20 +7,57 @@ export default class route_map extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      origin: null,
+      destination: null,
+      waypoints: [],
+      undoneWaypoints: [],
+      routeInfo: null,
+      name: null,
+      description: null,
+      travelMode: "WALKING", //DRIVING, BICYCLING, WALKING
+    };
+
+    this.origin = null;
+
     this.count = [];
     this.index = this.count.length;
     this.hasDrawn = false;
     this.mapData = [];
     this.submit = "hide";
+
+    this.undoMarker = this.undoMarker.bind(this);
+    this.redoMarker = this.redoMarker.bind(this);
+    this.update = this.update.bind(this);
+    this.prefToggle = this.prefToggle.bind(this);
+    this.deleteRoute = this.deleteRoute.bind(this);
+    // this.removeMarkerFromMap = this.removeMarkerFromMap.bind(this);
   }
 
   componentDidMount() {
-    const mapOptions = {
+    this.mapOptions = {
       center: { lat: 40.7623, lng: -73.985 },
       zoom: 13,
+      clickableIcons: false,
+      styles: [
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text",
+          stylers: [{ visibility: "on" }],
+        },
+        {
+          featureType: "transit",
+          elementType: "all",
+          stylers: [{ visibility: "off" }],
+        },
+      ],
     };
-    this.map = new google.maps.Map(this.mapNode, mapOptions);
+    this.map = new google.maps.Map(this.mapNode, this.mapOptions);
     this.WaypointManager = new WaypointManager(this.map);
 
     google.maps.event.addListener(this.map, "click", (e) => {
@@ -33,25 +70,150 @@ export default class route_map extends Component {
   }
 
   addMarkerToMap(latLng, map) {
-    debugger;
-
     let gMarker = new google.maps.Marker({
       position: latLng,
-      // label: (this.index + 1).toString(),
-      draggable: true,
-      map: map,
-      zIndex: this.index === 0 ? 25 : null,
+      draggable: false,
+      map: this.state.waypoints.length === 0 ? map : null,
     });
 
-    google.maps.event.addListener(gMarker, "click", (e) => {
-      this.removeMarkerFromMap(e);
-    });
-    google.maps.event.addListener(gMarker, "dragstart", (eStart) => {
-      google.maps.event.addListener(gMarker, "dragstart", (eEnd) => {
-        this.createWaypointForState(eEnd.latlng, gMarker, false, eStart.latlng);
+    if (this.state.waypoints.length === 0) {
+      this.origin = gMarker;
+    }
+
+    debugger;
+    this.setState(
+      {
+        waypoints: this.state.waypoints.concat([
+          gMarker.getPosition().toString().slice(1, -1),
+        ]),
+      },
+      () => this.handleMarkers()
+    );
+  }
+
+  handleMarkers() {
+    if (this.state.waypoints.length > 1) {
+      // this.clearMarkers();
+      this.setState({
+        routeInfo: this.WaypointManager.calcRoute(
+          this.state.waypoints,
+          this.state.travelMode
+        ),
       });
+      this.origin.setMap(null);
+      // gMarker.setMap(null);
+    } else {
+      this.origin.setMap(this.map);
+    }
+    // this.WaypointManager.directionsRenderer
+    //   ? this.WaypointManager.directionsRenderer.setMap(null)
+    //   : null;
+  }
+
+  undoMarker() {
+    if (this.state.waypoints.length === 1) {
+      this.setState(
+        {
+          waypoints: [],
+          undoneWaypoints: this.state.undoneWaypoints.concat(
+            this.state.waypoints.slice(-1)
+          ),
+        },
+        () => {
+          console.log("in undocallback for eq1");
+
+          this.map = new google.maps.Map(this.mapNode, this.mapOptions);
+          this.WaypointManager = new WaypointManager(this.map);
+
+          google.maps.event.addListener(this.map, "click", (e) => {
+            this.addMarkerToMap(e.latLng, this.map);
+          });
+
+          // this.clearMarkers();
+          // this.WaypointManager.emptyRoute();
+          // this.WaypointManager.directionsRenderer = new google.maps.DirectionsRenderer();
+        }
+      );
+    } else if (this.state.waypoints.length === 2) {
+      debugger;
+      const marker = this.WaypointManager.directionMarkers[0].position;
+
+      this.map = new google.maps.Map(this.mapNode, this.mapOptions);
+      this.WaypointManager = new WaypointManager(this.map);
+
+      this.setState(
+        {
+          origin: null,
+          destination: null,
+          waypoints: [],
+          undoneWaypoints: [],
+        },
+        () =>
+          google.maps.event.addListener(this.map, "click", (e) => {
+            this.addMarkerToMap(e.latLng, this.map);
+          })
+      );
+
+      this.addMarkerToMap(marker, this.map);
+    } else if (this.state.waypoints.length > 2) {
+      this.setState(
+        {
+          waypoints: this.state.waypoints.slice(0, -1),
+          undoneWaypoints: this.state.undoneWaypoints.concat(
+            this.state.waypoints.slice(-1)
+          ),
+        },
+        () => this.handleMarkers()
+      );
+    }
+  }
+
+  redoMarker() {
+    if (this.state.undoneWaypoints.length > 0) {
+      this.setState(
+        {
+          waypoints: this.state.waypoints.concat(
+            this.state.undoneWaypoints[this.state.undoneWaypoints.length - 1]
+          ),
+          undoneWaypoints: this.state.waypoints.slice(0, -1),
+        },
+        () => this.handleMarkers()
+      );
+    }
+  }
+
+  clearMarkers() {
+    this.WaypointManager.directionMarkers.forEach((marker) => {
+      this.WaypointManager.directionsRenderer.setMap(null);
+      this.WaypointManager.directionsRenderer.setMap(this.map);
+      // marker.setMap(null);
+      // marker.setVisible(false);
     });
-    this.createWaypointForState(latLng, gMarker);
+  }
+
+  update(field) {
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
+  }
+  updateTravelMode(mode, e) {
+    this.setState({
+      travelMode: mode,
+    });
+
+    debugger;
+    console.log(e);
+    console.log(mode);
+
+    const prevSelection = document.getElementsByClassName(
+      "selected-route-item"
+    )[0];
+    prevSelection
+      ? prevSelection.classList.toggle("selected-route-item")
+      : null;
+
+    e.currentTarget.classList.toggle("selected-route-item");
   }
 
   createWaypointForState(latLng, gMarker, _original = true, oldLatLng) {
@@ -76,12 +238,10 @@ export default class route_map extends Component {
   }
 
   addMarkerToState(pos) {
-    debugger;
     this.count.push(pos);
     this.index = this.count.length;
     this.setState((state) => {
       let newState = Object.assign({}, state, pos);
-      debugger;
       return newState;
     });
   }
@@ -93,31 +253,26 @@ export default class route_map extends Component {
 
   clearAllClicks() {
     debugger;
-    Object.values(this.state).forEach((value) => value.waypoint.setMap(null));
+    this.state.waypoints.forEach((value) =>
+      new google.map.marker(value).setMap(null)
+    );
   }
 
   updateGState() {
-    debugger;
     const gState = this.WaypointManager.returnProperState();
     this.mapData = gState;
     this.convert(gState);
-    console.log("----------");
-    console.log(gState);
   }
 
   convert(gState) {
     let waypointList = [];
-    debugger;
     let points = gState
       .slice(0, this.mapData.length - 1)
       .map((waypoint) => Object.values(waypoint.end_location.toJSON()));
     for (const arr in points) {
       waypointList = waypointList.concat(points[arr]);
     }
-    console.log("waypointList");
-    console.log(waypointList);
 
-    debugger;
     let request = {
       user_id: currentUser.id,
       name: "My Route",
@@ -130,109 +285,106 @@ export default class route_map extends Component {
         this.WaypointManager.map.getZoom().toString(),
       ],
     };
-    console.log(request);
     this.props.createRoute(request);
-    debugger;
     // myhistory.push(`#/routes_index/${currentUser.id}`);
     location.assign(`#/routes_index/${currentUser.id}`);
     // location.assign(`#/splash!`);
   }
 
+  prefToggle() {
+    document.getElementById("route-prefs").classList.toggle("slide-left");
+    document.getElementById("route-main").classList.toggle("resize-route");
+  }
+
+  deleteRoute() {
+    console.log("deleteRoute");
+    debugger;
+    this.WaypointManager.directionsRenderer.setMap(null);
+    this.clearWaypoints();
+    this.WaypointManager.directionsRenderer = new google.maps.DirectionsRenderer();
+
+    debugger;
+    this.WaypointManager.directionsRenderer.setMap(this.map);
+  }
+
+  clearWaypoints() {
+    this.setState({
+      waypoints: [],
+    });
+  }
   render() {
     return (
-      <div className="route-container">
-        <div className="main-map-content">
-          <div className="route-left">
-            <div className="route-preferences">
-              <ul className="pref-dropdown">
-                Transport
-                <li>
-                  <div className="pref-item">
-                    <span>
-                      <i className="fas fa-bicycle"></i>
-                    </span>
-                    <p>Run</p>
-                  </div>
-                  <span>
-                    <i className="fas fa-chevron-down"></i>
-                  </span>
-                </li>
-                <li>
-                  <div className="pref-item">
-                    <span>
-                      <i className="fas fa-bicycle"></i>
-                    </span>
-                    <p>Ride</p>
-                  </div>
-                  <span>
-                    <i className="fas fa-chevron-down"></i>
-                  </span>
-                </li>
-                <li>
-                  <div className="pref-item">
-                    <span>
-                      <i className="fas fa-car"></i>
-                    </span>
-                    <p>Drive</p>
-                  </div>
-                  <span>
-                    <i className="fas fa-chevron-down"></i>
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div className="route-details">
-              <ul className="detail-toggle">
-                Segments
-                {this.mapData.map((datum) => ({
-                  /* <li key={datum.id}>{Object.values(datum)}</li> */
-                }))}
-              </ul>
-            </div>
+      <div className="route-shell">
+        <div className="route-prefs slide-left" id="route-prefs">
+          <h1 id="pref-tag">
+            Routing Preferences
+            <i
+              className="fas fa-arrow-right"
+              onClick={() => this.prefToggle()}
+            ></i>
+          </h1>
+
+          <h1>Route Name</h1>
+          <input type="text" onChange={this.update("name")}></input>
+          <h1>Route description</h1>
+          <input type="text" onChange={this.update("description")}></input>
+          <h1>Travel Mode</h1>
+          <div
+            className="route-item"
+            onClick={(e) => this.updateTravelMode("WALKING", e)}
+          >
+            <i className="fas fa-running"></i>
+            <p>Run</p>
           </div>
-          <div className="route-right">
-            <div className="map-tools">
-              <div className="tools-left">
-                <div className="map-search">
-                  <i className="fas fa-search"></i>
-                  <p>search or click map to start</p>
-                </div>
-              </div>
-              <div className="tools-right">
-                <div className="edits">
-                  <i className="fas fa-undo-alt fas-tools"></i>
-                  <i className="fas fa-redo-alt fas-tools"></i>
-                </div>
-                <div className="store">
-                  <i className="fas fa-trash fas-tools"></i>
-                  <button
-                    className="nav-btn"
-                    id="submission"
-                    onClick={() => this.updateGState()}
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div id="map-container" ref={(map) => (this.mapNode = map)}></div>
+          <div
+            className="route-item"
+            onClick={(e) => this.updateTravelMode("BICYCLING", e)}
+          >
+            <i className="fas fa-bicycle"></i>
+            <p>Bike</p>
+          </div>
+          <div
+            className="route-item"
+            onClick={(e) => this.updateTravelMode("DRIVING", e)}
+          >
+            <i className="fas fa-car"></i>
+            <p>Drive</p>
           </div>
         </div>
-        <div className="route-summary">
-          <div className="item-container">
-            <div>
-              <p>Run</p>
-              <p className="fas fa-running"></p>
+        <div className="route-main" id="route-main">
+          <div className="route-tools">
+            <div className="edits">
+              <i
+                className="fas fa-undo-alt fas-tools"
+                onClick={this.undoMarker}
+              ></i>
+              <i
+                className="fas fa-redo-alt fas-tools"
+                onClick={this.redoMarker}
+              ></i>
             </div>
-            <div></div>
-            <ul className="summary-item">
-              Distance
-              <li className="summary-style">[VALUE]</li>
-            </ul>
-            <ul className="summary-item">
-              Time
-              <li className="summary-style">[VALUE]</li>
-            </ul>
+            <div className="store">
+              <i
+                className="fas fa-trash fas-tools"
+                onClick={this.deleteRoute}
+              ></i>
+              <button
+                className="nav-btn"
+                id="submission"
+                onClick={() => this.updateGState()}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          <div
+            className="route-map"
+            id="map-container"
+            ref={(map) => (this.mapNode = map)}
+          ></div>
+          <div className="route-stats" id="directions-panel">
+            <h1>Distance</h1>
+            <h1>Time</h1>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@
   justify-content: space-between;
   font-family: sans-serif;
   font-size: 20px;
-  padding: 0px 0px 0px 11px;
+  padding: 0px 0px 0px 1em;
   margin: 0;
   height: 86vh;
   width: 100vw;
@@ -29,7 +29,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-left: 11px;
+  padding: 1em 2em 0 0;
 }
 
 .route-left ul {
@@ -162,4 +162,138 @@
 
 .summart-item > * {
   width: 100%;
+}
+
+.selected {
+  background: orangered;
+}
+
+.route-shell {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  h1 {
+    font-size: 1.1em;
+    position: relative;
+
+    font-weight: 500;
+    &:after {
+      content: "";
+      position: absolute;
+      top: calc(100% + 11px);
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #ebe9e5;
+    }
+  }
+}
+.route-main {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  transition: all 300ms ease;
+}
+.resize-route {
+  width: calc(100% - 288px);
+}
+
+.route-tools {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1em;
+}
+
+#pref-tag {
+  position: relative;
+  margin-bottom: 2em;
+  font-weight: 600;
+  &:after {
+    content: "";
+    position: absolute;
+    top: calc(100% + 23px);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ebe9e5;
+  }
+}
+.route-prefs {
+  position: absolute;
+  left: 0;
+  width: 18rem;
+  background: white;
+  height: 100%;
+  padding: 1.2em;
+  transition: all 300ms ease;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 1em;
+    height: 100%;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), #00000014);
+  }
+
+  i.fas.fa-arrow-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transform: rotate(180deg);
+    transition: 300ms all ease;
+    // &:hover,
+    // &:target {
+    //   transform: scale(1.1);
+    // }
+  }
+  input {
+    padding: 1em;
+    margin: 1em 0;
+    width: 100%;
+    border: 1px solid #0000000f;
+    background: #f0f8ff6b;
+  }
+}
+
+.route-item {
+  display: grid;
+  margin-top: 1em;
+  padding: 1em;
+  column-gap: 1em;
+  background: #f0f8ff6b;
+  grid-template-columns: 1em 1fr;
+  cursor: pointer;
+}
+
+.selected-route-item {
+  background: #fc4d02;
+  color: white;
+  cursor: default;
+}
+
+.route-stats {
+  width: calc(100% - 4em);
+  padding: 2em;
+  display: flex;
+  position: absolute;
+  bottom: 4em;
+  left: 0;
+  background: #ffffffcf;
+}
+
+.slide-left {
+  transform: translateX(calc(-100%));
+  background: transparent;
+  i.fas.fa-arrow-right {
+    transform: rotate(0deg);
+    right: -79px;
+    top: -20px;
+    background: #fc4d02;
+    padding: 22px;
+    color: white;
+  }
 }

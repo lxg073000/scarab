@@ -105,8 +105,7 @@ ${this.state.nav}`}
 ${this.state.nav}`}
             >
               <ul className="nav-menu">
-                <Link
-                  to="/splash!"
+                <ul
                   className="nav-menu-link"
                   onMouseEnter={this.dropdown("dashboard")}
                   onMouseLeave={this.dropdown("dashboard")}
@@ -120,9 +119,15 @@ ${this.state.nav}`}
                   <ul
                     className={`nav-menu-link dropdown ${this.state.dashboard}`}
                   >
-                    <li>Supply Routes</li>
+                    <li
+                      onClick={() =>
+                        location.assign(`#/routes_index/${currentUser.id}`)
+                      }
+                    >
+                      Supply Routes
+                    </li>
                   </ul>
-                </Link>
+                </ul>
 
                 <Link
                   className="nav-menu-link"
