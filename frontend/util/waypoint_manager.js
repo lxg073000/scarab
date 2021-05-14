@@ -50,6 +50,7 @@ export default class WaypointManager {
     this.directionsService.route(request, (result, status) => {
       if (status == "OK") {
         this.directionsRenderer.setDirections(result);
+        this.directionsRenderer.setMap(this.map);
         this.handleResult(result);
       }
     });

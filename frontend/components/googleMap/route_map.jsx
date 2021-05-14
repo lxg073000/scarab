@@ -94,16 +94,14 @@ export default class route_map extends Component {
   handleMarkers() {
     if (this.state.waypoints.length > 1) {
       // this.clearMarkers();
-      this.setState({
-        routeInfo: this.WaypointManager.calcRoute(
-          this.state.waypoints,
-          this.state.travelMode
-        ),
-      });
       this.origin.setMap(null);
-      // gMarker.setMap(null);
+      // this.origin = null;
+      this.WaypointManager.calcRoute(
+        this.state.waypoints,
+        this.state.travelMode
+      );
     } else {
-      this.origin.setMap(this.map);
+      // this.origin.setMap(this.map);
     }
     // this.WaypointManager.directionsRenderer
     //   ? this.WaypointManager.directionsRenderer.setMap(null)
@@ -112,6 +110,17 @@ export default class route_map extends Component {
 
   undoMarker() {
     if (this.state.waypoints.length === 1) {
+      this.deleteRoute();
+    } else if (this.state.waypoints.length === 2) {
+      debugger;
+      let myLatLng = [];
+      this.state.waypoints[0]
+        .split(",")
+        .map((num) => myLatLng.push(parseFloat(num)));
+      // const marker = this.WaypointManager.directionMarkers[0].position;
+      console.log(myLatLng);
+      const markerPOS = new google.maps.LatLng(myLatLng[0], myLatLng[1]);
+
       this.setState(
         {
           waypoints: [],
@@ -120,41 +129,11 @@ export default class route_map extends Component {
           ),
         },
         () => {
-          console.log("in undocallback for eq1");
-
-          this.map = new google.maps.Map(this.mapNode, this.mapOptions);
-          this.WaypointManager = new WaypointManager(this.map);
-
-          google.maps.event.addListener(this.map, "click", (e) => {
-            this.addMarkerToMap(e.latLng, this.map);
-          });
-
-          // this.clearMarkers();
-          // this.WaypointManager.emptyRoute();
-          // this.WaypointManager.directionsRenderer = new google.maps.DirectionsRenderer();
+          this.WaypointManager.directionsRenderer.setMap(null);
+          this.addMarkerToMap(markerPOS, this.map);
+          this.map.setZoom(13);
         }
       );
-    } else if (this.state.waypoints.length === 2) {
-      debugger;
-      const marker = this.WaypointManager.directionMarkers[0].position;
-
-      this.map = new google.maps.Map(this.mapNode, this.mapOptions);
-      this.WaypointManager = new WaypointManager(this.map);
-
-      this.setState(
-        {
-          origin: null,
-          destination: null,
-          waypoints: [],
-          undoneWaypoints: [],
-        },
-        () =>
-          google.maps.event.addListener(this.map, "click", (e) => {
-            this.addMarkerToMap(e.latLng, this.map);
-          })
-      );
-
-      this.addMarkerToMap(marker, this.map);
     } else if (this.state.waypoints.length > 2) {
       this.setState(
         {
@@ -308,9 +287,17 @@ export default class route_map extends Component {
   }
 
   clearWaypoints() {
-    this.setState({
-      waypoints: [],
-    });
+    this.setState(
+      {
+        waypoints: [],
+        undoneWaypoints: [],
+      },
+      () => {
+        this.map.setZoom(13);
+        this.map.setCenter({ lat: 40.7623, lng: -73.985 });
+        this.origin.setMap(null);
+      }
+    );
   }
   render() {
     return (
