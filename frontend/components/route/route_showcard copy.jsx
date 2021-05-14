@@ -7,7 +7,22 @@ export default class route_showcard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      origin: {
+        lat: parseFloat(this.props.route.origin.slice(1, -1).split(",")[0]),
+        lng: parseFloat(this.props.route.origin.slice(1, -1).split(",")[1]),
+      },
+      destination: {
+        lat: parseFloat(
+          this.props.route.destination.slice(1, -1).split(",")[0]
+        ),
+        lng: parseFloat(
+          this.props.route.destination.slice(1, -1).split(",")[1]
+        ),
+      },
+      waypoints: this.props.route.waypoints,
+      travelMode: "WALKING",
+    };
     debugger;
 
     this.createMap = this.createMap.bind(this);
@@ -56,6 +71,10 @@ export default class route_showcard extends Component {
       zoom: parseInt(this.props.route.zoom),
     };
 
+    // this.map = new google.maps.Map(
+    //   document.getElementById(`map-${this.props.route.id}`),
+    //   mapOptions
+    // );
     this.map = new google.maps.Map(this.mapNode, mapOptions);
 
     this.drawRoute(this.map);
@@ -63,12 +82,56 @@ export default class route_showcard extends Component {
 
   drawRoute(map) {
     debugger;
-    this.WaypointManager = new WaypointManager(map);
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+      draggable: false,
+    });
+    directionsRenderer.setMap(this.map);
 
     this.WaypointManager.calcRoute(
       this.props.route.waypoints,
-      this.props.route.travelMode
+      this.props.route.waypoints
     );
+
+    const waypoints = [];
+    if (this.state.waypoints.length > 0) {
+      for (let i = 0; i < this.state.waypoints.length; i += 2) {
+        waypoints.push({
+          location: new google.maps.LatLng(
+            parseFloat(this.state.waypoints[i]),
+            parseFloat(this.state.waypoints[i + 1])
+          ),
+          stopover: true,
+        });
+      }
+    }
+
+    this.WaypointManager = new WaypointManager(map);
+    debugger;
+
+    debugger;
+    const request = {
+      origin: {
+        lat: this.state.origin.lat,
+        lng: this.state.origin.lng,
+        zindex: 25,
+      },
+      destination: {
+        lat: this.state.destination.lat,
+        lng: this.state.destination.lng,
+      },
+      travelMode: "WALKING",
+      waypoints: waypoints,
+    };
+    debugger;
+
+    directionsService.route(request, function (result, status) {
+      if (status === "OK") {
+        debugger;
+        directionsRenderer.setDirections(result);
+      }
+    });
   }
 
   render() {
@@ -78,9 +141,9 @@ export default class route_showcard extends Component {
           <div className="">
             <div className="">
               <h1 className="main-headline">
-                {`${this.props.route.name} (#${this.props.route.id})`}
+                Route Name: {`${this.props.route.name} ${this.props.route.id}`}
               </h1>
-              <h3 className="main-content">{this.props.route.description}</h3>
+              <h3 className="main-content">Route description</h3>
               <div
                 className="insert-box"
                 id={`map-${this.props.route.id}`}

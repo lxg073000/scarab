@@ -1,5 +1,5 @@
 @gRoutes.each do |route|
   json.set! route.id do
-     json.extract! route, :id, :origin, :destination, :waypoints, :travelMode, :user_id, :name, :mapOptions
+     json.extract! route, :id, :user_id, :name, :description, :waypoints, :travelMode, :distance, :duration, :center, :zoom 
 end
 end

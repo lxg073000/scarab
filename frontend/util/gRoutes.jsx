@@ -1,5 +1,6 @@
 export const API_saveRoute = function (google_route) {
   debugger;
+  console.log({ google_route });
   // console.log(google_route);
   return $.ajax({
     method: "POST",

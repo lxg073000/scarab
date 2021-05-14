@@ -40,14 +40,13 @@ export default class WaypointManager {
       waypoints,
       travelMode,
     };
+    console.log(request);
 
     // const directionsService = new google.maps.DirectionsService();
     // const directionsRenderer = new google.maps.DirectionsRenderer();
     // directionsRenderer.setMap(null);
     // directionsRenderer.setMap(this.map);
     // directionsRenderer.setPanel(document.getElementById("directions-panel"));
-
-    console.log(request);
 
     this.directionsService.route(request, (result, status) => {
       if (status == "OK") {
@@ -68,27 +67,30 @@ export default class WaypointManager {
       // this.distance += parseFloat(legs[data].distance);
       this.distance += parseFloat(legs[data].distance.text);
       this.distance = Math.round((this.distance + Number.EPSILON) * 100) / 100;
-      console.log(legs[data].distance.text);
     }
     for (const data in legs) {
       // this.duration += parseFloat(legs[data].duration);
       this.duration +=
         (Math.round(legs[data].duration.value / 60 + Number.EPSILON) * 100) /
         100;
-      console.log(legs[data].duration.text);
     }
 
-    if (this.duration >= 60) {
-      let hours = Math.floor(this.duration / 60);
-      let minutes = this.duration % 60;
-      document.getElementById(
-        "duration"
-      ).innerText = `${hours} hr ${minutes} min`;
-    } else {
-      document.getElementById("duration").innerHTML = `${this.duration} min`;
-    }
+    if (
+      document.getElementById("duration") &&
+      document.getElementById("distance")
+    ) {
+      if (this.duration >= 60) {
+        let hours = Math.floor(this.duration / 60);
+        let minutes = this.duration % 60;
+        document.getElementById(
+          "duration"
+        ).innerText = `${hours} hr ${minutes} min`;
+      } else {
+        document.getElementById("duration").innerHTML = `${this.duration} min`;
+      }
 
-    document.getElementById("distance").innerHTML = `${this.distance} mi`;
+      document.getElementById("distance").innerHTML = `${this.distance} mi`;
+    }
 
     // const route = directionsResult.routes[0].legs[0];
 
