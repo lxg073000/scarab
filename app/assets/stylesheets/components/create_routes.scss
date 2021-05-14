@@ -264,6 +264,7 @@
   margin-top: 1em;
   padding: 1em;
   column-gap: 1em;
+  border: 1px solid #0000000f;
   background: #f0f8ff6b;
   grid-template-columns: 1em 1fr;
   cursor: pointer;
@@ -283,6 +284,7 @@
   bottom: 4em;
   left: 0;
   background: #ffffffcf;
+  box-shadow: 0 0 15px 6px #00000021;
 }
 
 .slide-left {

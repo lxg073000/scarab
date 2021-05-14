@@ -31,6 +31,7 @@ export default class route_map extends Component {
     this.update = this.update.bind(this);
     this.prefToggle = this.prefToggle.bind(this);
     this.deleteRoute = this.deleteRoute.bind(this);
+    this.saveRoute = this.saveRoute.bind(this);
     // this.removeMarkerFromMap = this.removeMarkerFromMap.bind(this);
   }
 
@@ -80,7 +81,6 @@ export default class route_map extends Component {
       this.origin = gMarker;
     }
 
-    debugger;
     this.setState(
       {
         waypoints: this.state.waypoints.concat([
@@ -142,22 +142,41 @@ export default class route_map extends Component {
             this.state.waypoints.slice(-1)
           ),
         },
-        () => this.handleMarkers()
+        () => {
+          this.handleMarkers();
+          console.log(`UNDO added === ${this.state.undoneWaypoints}`);
+        }
       );
     }
   }
 
   redoMarker() {
-    if (this.state.undoneWaypoints.length > 0) {
+    if (this.state.undoneWaypoints.length === 1) {
+      debugger;
       this.setState(
         {
           waypoints: this.state.waypoints.concat(
             this.state.undoneWaypoints[this.state.undoneWaypoints.length - 1]
           ),
-          undoneWaypoints: this.state.waypoints.slice(0, -1),
+          undoneWaypoints: [],
         },
         () => this.handleMarkers()
       );
+    } else if (this.state.undoneWaypoints.length > 1) {
+      this.setState(
+        {
+          waypoints: this.state.waypoints.concat(
+            this.state.undoneWaypoints[this.state.undoneWaypoints.length - 1]
+          ),
+          undoneWaypoints: this.state.undoneWaypoints.concat(
+            this.state.undoneWaypoints.slice(0, -1)
+          ),
+        },
+        () => this.handleMarkers()
+      );
+    } else {
+      debugger;
+      console.log(this.state.undoneWaypoints);
     }
   }
 
@@ -177,11 +196,20 @@ export default class route_map extends Component {
       });
   }
   updateTravelMode(mode, e) {
-    this.setState({
-      travelMode: mode,
-    });
+    this.setState(
+      {
+        travelMode: mode,
+      },
+      () => {
+        if (this.state.waypoints.length > 1) {
+          this.WaypointManager.calcRoute(
+            this.state.waypoints,
+            this.state.travelMode
+          );
+        }
+      }
+    );
 
-    debugger;
     console.log(e);
     console.log(mode);
 
@@ -225,13 +253,21 @@ export default class route_map extends Component {
     });
   }
 
+  saveRoute() {
+    debugger;
+    const request = {
+      waypoints: this.state.waypoints,
+      travelMode: this.state.travelMode,
+      center: this.WaypointManager.directionsRenderer.map.center.toUrlValue(),
+    };
+  }
+
   drawRouteDirections() {
     this.WaypointManager.updateWaypoints(this.state);
     this.clearAllClicks();
   }
 
   clearAllClicks() {
-    debugger;
     this.state.waypoints.forEach((value) =>
       new google.map.marker(value).setMap(null)
     );
@@ -277,12 +313,11 @@ export default class route_map extends Component {
 
   deleteRoute() {
     console.log("deleteRoute");
-    debugger;
+
     this.WaypointManager.directionsRenderer.setMap(null);
     this.clearWaypoints();
     this.WaypointManager.directionsRenderer = new google.maps.DirectionsRenderer();
 
-    debugger;
     this.WaypointManager.directionsRenderer.setMap(this.map);
   }
 
@@ -302,7 +337,7 @@ export default class route_map extends Component {
   render() {
     return (
       <div className="route-shell">
-        <div className="route-prefs slide-left" id="route-prefs">
+        <div className="route-prefs" id="route-prefs">
           <h1 id="pref-tag">
             Routing Preferences
             <i
@@ -317,7 +352,7 @@ export default class route_map extends Component {
           <input type="text" onChange={this.update("description")}></input>
           <h1>Travel Mode</h1>
           <div
-            className="route-item"
+            className="route-item selected-route-item"
             onClick={(e) => this.updateTravelMode("WALKING", e)}
           >
             <i className="fas fa-running"></i>
@@ -338,7 +373,7 @@ export default class route_map extends Component {
             <p>Drive</p>
           </div>
         </div>
-        <div className="route-main" id="route-main">
+        <div className="route-main resize-route" id="route-main">
           <div className="route-tools">
             <div className="edits">
               <i
@@ -358,7 +393,7 @@ export default class route_map extends Component {
               <button
                 className="nav-btn"
                 id="submission"
-                onClick={() => this.updateGState()}
+                onClick={() => this.saveRoute()}
               >
                 Save
               </button>
