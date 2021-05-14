@@ -28,6 +28,11 @@ class Api::GoogleRoutesController < ApplicationController
     end
   end
 
+  def staticMap
+     
+     
+  end
+
   def destroy
     @gRoute = GoogleRoute.find(params[:id])
     if @gRoute

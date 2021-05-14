@@ -113,6 +113,8 @@ export default class route_map extends Component {
       this.deleteRoute();
     } else if (this.state.waypoints.length === 2) {
       debugger;
+      document.getElementById("distance").innerText = ``;
+      document.getElementById("duration").innerText = ``;
       let myLatLng = [];
       this.state.waypoints[0]
         .split(",")
@@ -313,6 +315,8 @@ export default class route_map extends Component {
 
   deleteRoute() {
     console.log("deleteRoute");
+    document.getElementById("distance").innerText = ``;
+    document.getElementById("duration").innerText = ``;
 
     this.WaypointManager.directionsRenderer.setMap(null);
     this.clearWaypoints();
@@ -405,8 +409,9 @@ export default class route_map extends Component {
             ref={(map) => (this.mapNode = map)}
           ></div>
           <div className="route-stats" id="directions-panel">
-            <h1>Distance</h1>
-            <h1>Time</h1>
+            <h1 id="distance"></h1>
+            <br></br>
+            <h1 id="duration"></h1>
           </div>
         </div>
       </div>

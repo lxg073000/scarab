@@ -7,6 +7,8 @@ export default class WaypointManager {
     this.directionsRenderer.setMap(this.map);
     this.directionMarkers = [];
     this.render = null;
+    this.distance = null;
+    this.time = null;
 
     // this.mapRequest = null;
     // window.map = this.map;
@@ -58,23 +60,57 @@ export default class WaypointManager {
 
   handleResult(directionsResult) {
     debugger;
-    const route = directionsResult.routes[0].legs[0];
+    this.distance = 0;
+    this.duration = 0;
+    let legs = directionsResult.routes[0].legs;
 
-    const start = directionsResult.routes[0].legs[0].start_location;
-    const end = directionsResult.routes[0].legs[0].end_location;
-    const gmStart = new google.maps.Marker({
-      position: start,
-      map: this.map,
-    });
-    const gmEnd = new google.maps.Marker({
-      position: end,
-      map: this.map,
-    });
+    for (const data in legs) {
+      // this.distance += parseFloat(legs[data].distance);
+      this.distance += parseFloat(legs[data].distance.text);
+      this.distance = Math.round((this.distance + Number.EPSILON) * 100) / 100;
+      console.log(legs[data].distance.text);
+    }
+    for (const data in legs) {
+      // this.duration += parseFloat(legs[data].duration);
+      this.duration +=
+        (Math.round(legs[data].duration.value / 60 + Number.EPSILON) * 100) /
+        100;
+      console.log(legs[data].duration.text);
+    }
 
-    this.directionMarkers.push(gmStart);
-    this.directionMarkers.push(gmEnd);
+    if (this.duration >= 60) {
+      let hours = Math.floor(this.duration / 60);
+      let minutes = this.duration % 60;
+      document.getElementById(
+        "duration"
+      ).innerText = `DURATION: ${hours} hr ${minutes} min`;
+    } else {
+      document.getElementById(
+        "duration"
+      ).innerText = `DURATION: ${this.duration} min`;
+    }
 
-    this.directionMarkers.forEach((marker) => marker.setMap(null));
+    document.getElementById(
+      "distance"
+    ).innerHTML = `DISTANCE: ${this.distance} mi`;
+
+    // const route = directionsResult.routes[0].legs[0];
+
+    // const start = directionsResult.routes[0].legs[0].start_location;
+    // const end = directionsResult.routes[0].legs[0].end_location;
+    // const gmStart = new google.maps.Marker({
+    //   position: start,
+    //   map: this.map,
+    // });
+    // const gmEnd = new google.maps.Marker({
+    //   position: end,
+    //   map: this.map,
+    // });
+
+    // this.directionMarkers.push(gmStart);
+    // this.directionMarkers.push(gmEnd);
+
+    // this.directionMarkers.forEach((marker) => marker.setMap(null));
 
     // for (let i = 0; i < route.steps.length; i++) {
     //   const marker = new google.maps.Marker({
