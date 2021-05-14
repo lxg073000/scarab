@@ -83,16 +83,12 @@ export default class WaypointManager {
       let minutes = this.duration % 60;
       document.getElementById(
         "duration"
-      ).innerText = `DURATION: ${hours} hr ${minutes} min`;
+      ).innerText = `${hours} hr ${minutes} min`;
     } else {
-      document.getElementById(
-        "duration"
-      ).innerText = `DURATION: ${this.duration} min`;
+      document.getElementById("duration").innerText = `${this.duration} min`;
     }
 
-    document.getElementById(
-      "distance"
-    ).innerHTML = `DISTANCE: ${this.distance} mi`;
+    document.getElementById("distance").innerHTML = `${this.distance} mi`;
 
     // const route = directionsResult.routes[0].legs[0];
 

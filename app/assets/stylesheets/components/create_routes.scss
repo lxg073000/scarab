@@ -278,14 +278,34 @@
 
 .route-stats {
   width: calc(100% - 4em);
-  padding: 2em;
+  padding: 1em;
   display: flex;
   position: absolute;
   bottom: 4em;
   left: 0;
   background: #ffffffcf;
   box-shadow: 0 0 15px 6px #00000021;
-  gap: 1em;
+  gap: 4em;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  h1 {
+    font-size: 2em;
+    color: #00000096;
+    font-weight: 800;
+  }
+  h2 {
+    font-size: 0.9em;
+    font-weight: 300;
+  }
+  i {
+    font-size: 2em;
+    color: #00000096;
+    text-align: center;
+  }
 }
 
 .slide-left {

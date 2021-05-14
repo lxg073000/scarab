@@ -16,6 +16,7 @@ export default class route_map extends Component {
       name: null,
       description: null,
       travelMode: "WALKING", //DRIVING, BICYCLING, WALKING
+      travelIcon: "fas fa-running",
     };
 
     this.origin = null;
@@ -113,8 +114,8 @@ export default class route_map extends Component {
       this.deleteRoute();
     } else if (this.state.waypoints.length === 2) {
       debugger;
-      document.getElementById("distance").innerText = ``;
-      document.getElementById("duration").innerText = ``;
+      document.getElementById("distance").innerText = `0 hr 0 min`;
+      document.getElementById("duration").innerText = `0.00 mi`;
       let myLatLng = [];
       this.state.waypoints[0]
         .split(",")
@@ -197,10 +198,11 @@ export default class route_map extends Component {
         [field]: e.currentTarget.value,
       });
   }
-  updateTravelMode(mode, e) {
+  updateTravelMode(mode, icon, e) {
     this.setState(
       {
         travelMode: mode,
+        travelIcon: icon,
       },
       () => {
         if (this.state.waypoints.length > 1) {
@@ -315,8 +317,8 @@ export default class route_map extends Component {
 
   deleteRoute() {
     console.log("deleteRoute");
-    document.getElementById("distance").innerText = ``;
-    document.getElementById("duration").innerText = ``;
+    document.getElementById("distance").innerText = `0 hr 0 min`;
+    document.getElementById("duration").innerText = `0.00 mi`;
 
     this.WaypointManager.directionsRenderer.setMap(null);
     this.clearWaypoints();
@@ -357,21 +359,25 @@ export default class route_map extends Component {
           <h1>Travel Mode</h1>
           <div
             className="route-item selected-route-item"
-            onClick={(e) => this.updateTravelMode("WALKING", e)}
+            onClick={(e) =>
+              this.updateTravelMode("WALKING", "fas fa-running", e)
+            }
           >
             <i className="fas fa-running"></i>
             <p>Run</p>
           </div>
           <div
             className="route-item"
-            onClick={(e) => this.updateTravelMode("BICYCLING", e)}
+            onClick={(e) =>
+              this.updateTravelMode("BICYCLING", "fas fa-bicycle", e)
+            }
           >
             <i className="fas fa-bicycle"></i>
             <p>Bike</p>
           </div>
           <div
             className="route-item"
-            onClick={(e) => this.updateTravelMode("DRIVING", e)}
+            onClick={(e) => this.updateTravelMode("DRIVING", "fas fa-car", e)}
           >
             <i className="fas fa-car"></i>
             <p>Drive</p>
@@ -409,9 +415,18 @@ export default class route_map extends Component {
             ref={(map) => (this.mapNode = map)}
           ></div>
           <div className="route-stats" id="directions-panel">
-            <h1 id="distance"></h1>
-            <br></br>
-            <h1 id="duration"></h1>
+            <div className="stat-item">
+              <h2>{this.state.travelMode}</h2>
+              <i className={this.state.travelIcon}></i>
+            </div>
+            <div className="stat-item">
+              <h2>Distance</h2>
+              <h1 id="distance">0.00 mi</h1>
+            </div>
+            <div className="stat-item">
+              <h2>Duration</h2>
+              <h1 id="duration">0 hr 0 min</h1>
+            </div>
           </div>
         </div>
       </div>
