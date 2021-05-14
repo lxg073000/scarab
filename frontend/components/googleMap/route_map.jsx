@@ -12,7 +12,8 @@ export default class route_map extends Component {
       destination: null,
       waypoints: [],
       undoneWaypoints: [],
-      routeInfo: null,
+      distance: null,
+      duration: null,
       name: null,
       description: null,
       travelMode: "WALKING", //DRIVING, BICYCLING, WALKING
@@ -260,10 +261,19 @@ export default class route_map extends Component {
   saveRoute() {
     debugger;
     const request = {
+      user_id: currentUser.id,
       waypoints: this.state.waypoints,
       travelMode: this.state.travelMode,
       center: this.WaypointManager.directionsRenderer.map.center.toUrlValue(),
+      zoom: this.WaypointManager.map.zoom,
+      name: this.state.name,
+      description: this.state.description,
+      distance: document.getElementById("distance").innerHTML,
+      duration: document.getElementById("duration").innerHTML,
     };
+
+    this.props.createRoute(request);
+    // location.assign(`#/routes_index/${currentUser.id}`);
   }
 
   drawRouteDirections() {

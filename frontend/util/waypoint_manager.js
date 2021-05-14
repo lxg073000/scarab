@@ -85,7 +85,7 @@ export default class WaypointManager {
         "duration"
       ).innerText = `${hours} hr ${minutes} min`;
     } else {
-      document.getElementById("duration").innerText = `${this.duration} min`;
+      document.getElementById("duration").innerHTML = `${this.duration} min`;
     }
 
     document.getElementById("distance").innerHTML = `${this.distance} mi`;
