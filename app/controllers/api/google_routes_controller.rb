@@ -14,7 +14,15 @@ class Api::GoogleRoutesController < ApplicationController
     if @gRoute.save!
       render :show
     else
-      puts @gRoute.errors.full_messages, status: 422
+      render json: @gRoute.errors.full_messages, status: 422
+    end
+  end
+
+  def update
+    @gRoute = GoogleRoute.find(params[:id])
+    if @gRoute.update(routeParams)
+      render :show
+    else
       render json: @gRoute.errors.full_messages, status: 422
     end
   end

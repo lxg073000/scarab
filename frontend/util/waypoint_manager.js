@@ -40,7 +40,6 @@ export default class WaypointManager {
       waypoints,
       travelMode,
     };
-    console.log(request);
 
     // const directionsService = new google.maps.DirectionsService();
     // const directionsRenderer = new google.maps.DirectionsRenderer();

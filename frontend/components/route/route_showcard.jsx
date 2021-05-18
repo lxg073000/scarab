@@ -23,6 +23,8 @@ export default class route_showcard extends Component {
     debugger;
     // console.log(this.props.route);
     if (previousProps.route !== this.props.route) {
+      //   console.log(this.props.route);
+      //   console.log(previousProps.route);
       //   this.setState({
       //     origin: {
       //       lat: parseFloat(this.props.route.origin.slice(1, -1).split(",")[0]),
@@ -40,23 +42,15 @@ export default class route_showcard extends Component {
       //     travelMode: "WALKING",
       //   });
       // }
-      // this.createMap();
+      this.createMap();
       // setTimeout(this.createMap(), 20000);
-      location.reload();
+      // location.reload();
     }
   }
   createMap() {
     debugger;
-    const mapOptions = {
-      center: new google.maps.LatLng(
-        parseFloat(this.props.route.center.split(",")[0]),
-        parseFloat(this.props.route.center.split(",")[1])
-      ),
 
-      zoom: parseInt(this.props.route.zoom),
-    };
-
-    this.map = new google.maps.Map(this.mapNode, mapOptions);
+    this.map = new google.maps.Map(this.mapNode);
 
     this.drawRoute(this.map);
   }
@@ -76,11 +70,10 @@ export default class route_showcard extends Component {
       <div className="onboard-modal-form main-container">
         <div className="">
           <div className="">
-            <div className="">
-              <h1 className="main-headline">
-                {`${this.props.route.name} (#${this.props.route.id})`}
-              </h1>
-              <h3 className="main-content">{this.props.route.description}</h3>
+            <div className="route-title">
+              <h1>{`${this.props.route.name} (#${this.props.route.id})`}</h1>
+              <h2>{`${this.props.route.travelMode}`}</h2>
+              <h3>{this.props.route.description}</h3>
               <div
                 className="insert-box"
                 id={`map-${this.props.route.id}`}
@@ -90,6 +83,10 @@ export default class route_showcard extends Component {
                 <h1> Route Stats</h1>
               </div>
               <div className="trip-container">
+                <i className="far fa-clock"></i>
+                <p>{this.props.route.duration}</p>
+                <i className="far fa-clock"></i>
+                <p>{this.props.route.distance}</p>
                 <h3> Share this Route With Friends</h3>
                 <Link className="main-form-btn" to={`/routes`}>
                   Share

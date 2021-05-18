@@ -192,7 +192,7 @@
 .route-main {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 116px);
   z-index: -1;
   transition: all 300ms ease;
 }
@@ -281,7 +281,7 @@
   padding: 1em;
   display: flex;
   position: absolute;
-  bottom: 4em;
+  bottom: -2.5em;
   left: 0;
   background: #ffffffcf;
   box-shadow: 0 0 15px 6px #00000021;

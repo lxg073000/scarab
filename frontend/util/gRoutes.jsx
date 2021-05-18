@@ -18,12 +18,14 @@ export const API_fetchRoute = (routeID) =>
     method: "GET",
     url: `/api/google_routes/${routeID}`,
   });
-export const API_editRoute = (google_route) =>
-  $.ajax({
+export const API_editRoute = function (google_route) {
+  debugger;
+  return $.ajax({
     method: "PATCH",
-    url: `/api/google_routes/${route.id}`,
+    url: `/api/google_routes/${google_route.id}`,
     data: { google_route },
   });
+};
 export const API_deleteRoute = (routeID) =>
   $.ajax({
     method: "DELETE",

@@ -20,7 +20,11 @@ const RoutesReducer = (oldState = {}, action) => {
       });
       return nextState;
     case UPDATE_ROUTE:
-      nextState = Object.assign((nextState[action.route.id] = action.route));
+      debugger;
+      nextState = Object.assign(
+        nextState,
+        (nextState[action.route.id] = action.route)
+      );
       return nextState;
     case REMOVE_ROUTE:
       debugger;

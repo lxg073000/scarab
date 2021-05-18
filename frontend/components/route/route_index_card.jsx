@@ -12,24 +12,6 @@ export default class route_index_card extends Component {
 
   componentDidMount() {
     this.props.fetchRoutes();
-    // const mapOptions = {
-    //   center: { lat: 40.7623, lng: -73.985 },
-    //   zoom: 13,
-    // };
-    // this.map = new google.maps.Map(this.mapNode, mapOptions);
-    // this.WaypointManager = new WaypointManager(this.map);
-    // google.maps.event.addListener(this.map, "click", (e) => {
-    //   this.drawRouteDirections();
-    // });
-    // this.drawRouteDirections();
-
-    debugger;
-    // console.log("routes at mount");
-    // console.log(this);
-    // console.log(this.props.routes);
-    // console.log(this);
-    // console.log(this.props.routes);
-    // console.log(this.props);
   }
 
   componentDidUpdate() {

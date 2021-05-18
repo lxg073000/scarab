@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 // import RouteForm from "../route/route_form";
 
 export default class route_map extends Component {
@@ -66,6 +66,11 @@ export default class route_map extends Component {
     google.maps.event.addListener(this.map, "click", (e) => {
       this.addMarkerToMap(e.latLng, this.map);
     });
+    console.log(this.props);
+  }
+
+  componentDidUpdate() {
+    // console.log(this.props.routeData.name);
   }
 
   componentWillUnmount() {
@@ -273,7 +278,7 @@ export default class route_map extends Component {
     };
 
     this.props.createRoute(request);
-    // location.assign(`#/routes_index/${currentUser.id}`);
+    location.assign(`#/routes_index/${currentUser.id}`);
   }
 
   drawRouteDirections() {
@@ -442,58 +447,4 @@ export default class route_map extends Component {
       </div>
     );
   }
-
-  //EXTRA WERK?
-  // removeMarkerFromMap(marker) {
-  //   const id = marker.latLng.toString();
-  //   this.state[`${id}`].waypoint.setMap(null);
-  //   debugger;
-  //   this.removeMarkerFromState(id);
-  //   debugger;
-  // }
-
-  // removeMarkerFromCount(id, mySlice = null) {
-  //   debugger;
-  //   // let sliceAt = null;
-  //   for (const element of this.count) {
-  //     if (element[id]) {
-  //       mySlice = element[id].idx;
-  //     }
-  //   }
-  //   const sliceAt = mySlice;
-  //   debugger;
-  //   let newCount = this.count;
-  //   newCount = newCount
-  //     .slice(0, sliceAt)
-  //     .concat(newCount.slice(sliceAt + 1, newCount.length));
-  //   this.count = newCount;
-  //   this.index = this.count.length;
-  // }
-
-  // removeMarkerFromState(id) {
-  //   debugger;
-  //   this.removeMarkerFromCount(id);
-
-  //   this.setState((state) => {
-  //     let newState = Object.assign({}, state);
-  //     delete newState[id];
-  //     debugger;
-  //     return newState;
-  //   });
-  // }
-
-  // updateWaypointInState(markerStart, markerEnd) {
-  //   debugger;
-  //   const oldID = marker.latLng.toString();
-  //   const newID = marker.latLng.toString();
-  //   // this.count.push(pos);
-  //   this.setState((state) => {
-  //     let newState = Object.assign({}, state);
-  //     delete newState[oldID];
-  //     newState = Object.assign({}, newState, newState[newID]);
-
-  //     debugger;
-  //     return newState;
-  //   });
-  // }
 }
