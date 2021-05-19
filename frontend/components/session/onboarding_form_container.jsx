@@ -1,13 +1,22 @@
 import { connect } from "react-redux";
-import { clearSessionErrors } from "../../actions/session";
+import {
+  clearSessionErrors,
+  receiveCurrentUser,
+  fetchUser,
+} from "../../actions/session";
 import OnboardingForm from "./onboarding_form";
 import { fetchWaypoints } from "../../actions/waypoint";
 
-const mapState = (state) => ({
-  currentUser: state.session.currentUser,
-  // defaultRoute: state.routes,
-});
+const mapState = (state) => {
+  debugger;
+  return {
+    currentUser: state.session.currentUser,
+    // defaultRoute: state.routes,
+  };
+};
 const mapDispatch = (dispatch) => ({
+  fetchUser: (userID) => dispatch(fetchUser(userID)),
+  receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),
   clearSessionErrors: () => dispatch(clearSessionErrors()),
   fetchWaypoints: () => dispatch(fetchWaypoints()),
 });

@@ -1,4 +1,5 @@
 import {
+  fetchCurrentUserRoutes,
   fetchRoutes,
   fetchRoute,
   createRoute,
@@ -17,6 +18,7 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
+  fetchCurrentUserRoutes: (id) => dispatch(fetchCurrentUserRoutes(id)),
   fetchRoutes: () => dispatch(fetchRoutes()),
   fetchRoute: () => dispatch(fetchRoute(route_id)),
   createRoute: () => dispatch(createRoute(route)),

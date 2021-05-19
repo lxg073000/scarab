@@ -6,6 +6,7 @@ export const RECEIVE_ROUTE_ERRORS = "RECEIVE_ROUTE_ERRORS";
 export const CLEAR_ROUTE_ERRORS = "CLEAR_ROUTE_ERRORS";
 import {
   API_saveRoute,
+  API_fetchCurrentUserRoutes,
   API_fetchRoutes,
   API_fetchRoute,
   API_editRoute,
@@ -36,6 +37,14 @@ export const clearRouteErrors = () => ({
   type: CLEAR_ROUTE_ERRORS,
 });
 
+export const fetchCurrentUserRoutes = (user_id) =>
+  function (dispatch) {
+    debugger;
+    return API_fetchCurrentUserRoutes(user_id).then(
+      (routes) => dispatch(receiveRoutes(routes))
+      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+    );
+  };
 export const fetchRoutes = () =>
   function (dispatch) {
     debugger;

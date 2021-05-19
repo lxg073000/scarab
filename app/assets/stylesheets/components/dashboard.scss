@@ -1,0 +1,13 @@
+.dashboard-shell {
+  height: 100vh;
+  background: #f7f7fa;
+  padding: 2.5em;
+}
+.dashboard-container {
+  display: flex;
+  gap: 2em;
+}
+
+.dashboard-container section {
+  flex: 1 1 auto;
+}

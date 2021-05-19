@@ -121,7 +121,7 @@ ${this.state.nav}`}
                   >
                     <li
                       onClick={() =>
-                        location.assign(`#/routes_index/${currentUser.id}`)
+                        location.assign(`#/supply_routes/${currentUser.id}`)
                       }
                     >
                       Supply Routes

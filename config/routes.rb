@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     end
     
     resources :google_routes, only: [:create, :update, :destroy, :show, :index] do
-      get :staticMap
       resources :buggouts, only: [:create, :index]
     end
     

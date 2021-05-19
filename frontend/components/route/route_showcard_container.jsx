@@ -12,7 +12,7 @@ import { withRouter } from "react-router-dom";
 const mapState = (state) => {
   debugger;
   return {
-    // routes: Object.values(state.entities.routes),
+    routes: Object.values(state.entities.routes),
   };
 };
 

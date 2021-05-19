@@ -13,6 +13,11 @@ export const API_fetchRoutes = () =>
     method: "GET",
     url: "/api/google_routes/",
   });
+export const API_fetchCurrentUserRoutes = (user_id) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/users/${user_id}/google_routes/`,
+  });
 export const API_fetchRoute = (routeID) =>
   $.ajax({
     method: "GET",

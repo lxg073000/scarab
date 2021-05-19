@@ -278,7 +278,7 @@ export default class route_map extends Component {
     };
 
     this.props.createRoute(request);
-    location.assign(`#/routes_index/${currentUser.id}`);
+    location.assign(`#/supply_routes/${currentUser.id}`);
   }
 
   drawRouteDirections() {
@@ -321,7 +321,7 @@ export default class route_map extends Component {
     };
     this.props.createRoute(request);
     // myhistory.push(`#/routes_index/${currentUser.id}`);
-    location.assign(`#/routes_index/${currentUser.id}`);
+    location.assign(`#/supply_routes/${currentUser.id}`);
     // location.assign(`#/splash!`);
   }
 

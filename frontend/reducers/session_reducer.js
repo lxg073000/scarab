@@ -9,9 +9,11 @@ const session = (oldState = _nullSession, action) => {
   let nextState = Object.assign({}, oldState);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
+      window.currentUser = action.user;
       nextState = merge(nextState, { currentUser: action.user });
       return nextState;
     case LOGOUT_CURRENT_USER:
+      window.currentUser = null;
       return _nullSession;
     default:
       return oldState;

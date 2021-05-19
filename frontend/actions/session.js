@@ -1,4 +1,5 @@
 import {
+  API_fetchUser,
   API_userSignup,
   API_sessionLogin,
   API_sessionLogout,
@@ -31,6 +32,11 @@ export const clearSessionErrors = () => {
   };
 };
 
+export const fetchUser = (userID) => (dispatch) =>
+  API_fetchUser(userID).then(
+    (user) => dispatch(receiveCurrentUser(user)),
+    (errors) => dispatch(receieveSessionErrors(errors.responseJSON))
+  );
 export const signup = (user) => (dispatch) =>
   API_userSignup(user).then(
     (user) => dispatch(receiveCurrentUser(user)),

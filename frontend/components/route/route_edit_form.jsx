@@ -19,10 +19,10 @@ export default class edit_form extends Component {
       description: "",
       travelMode: "WALKING", //DRIVING, BICYCLING, WALKING
       travelIcon: "fas fa-running",
+      route: {},
     };
 
     this.routeData = this.props.routes[this.props.match.params.id];
-    console.log(this.routeData);
 
     this.origin = null;
 
@@ -41,9 +41,9 @@ export default class edit_form extends Component {
   }
 
   componentDidMount() {
+    this.props.fetchRoutes();
+
     this.mapOptions = {
-      center: { lat: 40.7623, lng: -73.985 },
-      zoom: 13,
       clickableIcons: false,
       styles: [
         {
@@ -69,41 +69,119 @@ export default class edit_form extends Component {
     google.maps.event.addListener(this.map, "click", (e) => {
       this.addMarkerToMap(e.latLng, this.map);
     });
-    console.log(this.props);
-
-    debugger;
-    this.props.fetchRoute(this.props.match.params.id);
   }
 
-  componentDidUpdate(previousProps, previousState) {
+  componentDidUpdate(previousProps) {
     debugger;
-
-    if (previousProps !== this.props && previousState === this.state) {
-      const waypointData = this.props.routes[this.props.match.params.id];
-      const markerPOS = new google.maps.LatLng(
-        waypointData.waypoints[0].split(",")[0],
-        waypointData.waypoints[0].split(",")[1]
-      );
-      let gMarker = new google.maps.Marker({
-        position: markerPOS,
-        draggable: false,
-        map: null,
-      });
-      this.origin = gMarker;
-
+    if (previousProps !== this.props) {
       this.setState(
         {
-          id: waypointData.id,
-          name: waypointData.name,
-          description: waypointData.description,
-          origin: gMarker,
-          travelMode: waypointData.travelMode,
-          waypoints: waypointData.waypoints,
+          ...this.props.routes.find(
+            (route) => route["id"] === parseInt(this.props.match.params.id)
+          ),
         },
-        () => this.handleMarkers()
+        () => this.setupMap()
       );
     }
   }
+
+  setupMap() {
+    const markerPOS = new google.maps.LatLng(
+      this.state.waypoints[0].split(",")[0],
+      this.state.waypoints[0].split(",")[1]
+    );
+    let gMarker = new google.maps.Marker({
+      position: markerPOS,
+      draggable: false,
+      map: null,
+    });
+    this.origin = gMarker;
+
+    let icon = "";
+    switch (this.state.travelMode) {
+      case "WALKING":
+        icon = "fas fa-running";
+        document
+          .getElementsByClassName("running")[0]
+          .classList.add("selected-route-item");
+        break;
+      case "BICYCLING":
+        icon = "fas fa-bicycle";
+        document
+          .getElementsByClassName("bicycle")[0]
+          .classList.add("selected-route-item");
+        break;
+      case "DRIVING":
+        icon = "fas fa-car";
+        document
+          .getElementsByClassName("car")[0]
+          .classList.add("selected-route-item");
+        break;
+      default:
+    }
+
+    this.setState(
+      {
+        origin: gMarker,
+        travelIcon: icon,
+      },
+      () => this.handleMarkers()
+    );
+  }
+
+  // componentDidUpdate(previousProps, previousState, snapshot) {
+  //   debugger;
+
+  //   if (previousState !== snapshot) {
+  //     const waypointData = this.state.routes[this.props.match.params.id];
+  //     const markerPOS = new google.maps.LatLng(
+  //       waypointData.waypoints[0].split(",")[0],
+  //       waypointData.waypoints[0].split(",")[1]
+  //     );
+  //     let gMarker = new google.maps.Marker({
+  //       position: markerPOS,
+  //       draggable: false,
+  //       map: null,
+  //     });
+  //     this.origin = gMarker;
+
+  //     let icon = "";
+  //     switch (waypointData.travelMode) {
+  //       case "WALKING":
+  //         icon = "fas fa-running";
+  //         document
+  //           .getElementsByClassName("running")[0]
+  //           .classList.toggle("selected-route-item");
+  //         break;
+  //       case "BICYCLING":
+  //         icon = "fas fa-bicycle";
+  //         document
+  //           .getElementsByClassName("bicycle")[0]
+  //           .classList.toggle("selected-route-item");
+  //         break;
+  //       case "DRIVING":
+  //         icon = "fas fa-car";
+  //         document
+  //           .getElementsByClassName("car")[0]
+  //           .classList.toggle("selected-route-item");
+  //         break;
+  //       default:
+  //     }
+
+  //     this.setState(
+  //       {
+  //         id: waypointData.id,
+  //         name: waypointData.name,
+  //         description: waypointData.description,
+  //         origin: gMarker,
+  //         travelMode: waypointData.travelMode,
+  //         travelIcon: icon,
+  //         waypoints: waypointData.waypoints,
+  //       },
+  //       () => this.handleMarkers()
+  //     );
+  //   }
+  // }
 
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(this.map);
@@ -158,8 +236,6 @@ export default class edit_form extends Component {
       this.state.waypoints[0]
         .split(",")
         .map((num) => myLatLng.push(parseFloat(num)));
-      // const marker = this.WaypointManager.directionMarkers[0].position;
-      console.log(myLatLng);
       const markerPOS = new google.maps.LatLng(myLatLng[0], myLatLng[1]);
 
       this.setState(
@@ -185,7 +261,6 @@ export default class edit_form extends Component {
         },
         () => {
           this.handleMarkers();
-          console.log(`UNDO added === ${this.state.undoneWaypoints}`);
         }
       );
     }
@@ -217,7 +292,6 @@ export default class edit_form extends Component {
       );
     } else {
       debugger;
-      console.log(this.state.undoneWaypoints);
     }
   }
 
@@ -251,9 +325,6 @@ export default class edit_form extends Component {
         }
       }
     );
-
-    console.log(e);
-    console.log(mode);
 
     const prevSelection = document.getElementsByClassName(
       "selected-route-item"
@@ -311,7 +382,7 @@ export default class edit_form extends Component {
     };
 
     this.props.updateRoute(request);
-    // location.assign(`#/routes_index/${currentUser.id}`);
+    location.assign(`#/supply_routes/${currentUser.id}`);
   }
 
   drawRouteDirections() {
@@ -353,8 +424,9 @@ export default class edit_form extends Component {
       ],
     };
     this.props.createRoute(request);
+    debugger;
     // myhistory.push(`#/routes_index/${currentUser.id}`);
-    location.assign(`#/routes_index/${currentUser.id}`);
+    location.assign(`#/supply_routes/${currentUser.id}`);
     // location.assign(`#/splash!`);
   }
 
@@ -364,7 +436,6 @@ export default class edit_form extends Component {
   }
 
   deleteRoute() {
-    console.log("deleteRoute");
     document.getElementById("distance").innerText = `0 hr 0 min`;
     document.getElementById("duration").innerText = `0.00 mi`;
 
@@ -415,7 +486,7 @@ export default class edit_form extends Component {
             ></input>
             <h1>Travel Mode</h1>
             <div
-              className="route-item selected-route-item"
+              className="route-item running"
               onClick={(e) =>
                 this.updateTravelMode("WALKING", "fas fa-running", e)
               }
@@ -424,7 +495,7 @@ export default class edit_form extends Component {
               <p>Run</p>
             </div>
             <div
-              className="route-item"
+              className="route-item bicycle"
               onClick={(e) =>
                 this.updateTravelMode("BICYCLING", "fas fa-bicycle", e)
               }
@@ -433,7 +504,7 @@ export default class edit_form extends Component {
               <p>Bike</p>
             </div>
             <div
-              className="route-item"
+              className="route-item car"
               onClick={(e) => this.updateTravelMode("DRIVING", "fas fa-car", e)}
             >
               <i className="fas fa-car"></i>

@@ -54,7 +54,7 @@ class App extends React.Component {
         />
         <ProtectedRoute path="/routes/" component={search_container} />
         <ProtectedRoute
-          path="/routes_index/:user_id"
+          path="/supply_routes/:user_id"
           component={route_index_card_container}
         />
         <ProtectedRoute

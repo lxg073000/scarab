@@ -1,11 +1,29 @@
 class Api::GoogleRoutesController < ApplicationController
+  # def index
+  #   @gRoutes = GoogleRoute.all
+  #   if @gRoutes
+  #     render "api/google_routes/index"
+  #   else
+  #     render json: @gRoutes.errors.full_messages, status: 422
+  #   end
+  # end
+
   def index
-    @gRoutes = GoogleRoute.all
-    if @gRoutes
-      render "api/google_routes/index"
-    else
-      render json: @gRoutes.errors.full_messages, status: 422
-    end
+    if params[:user_id]
+      @gRoutes = GoogleRoute.where({user_id: params[:user_id]})
+        if @gRoutes
+          render "api/google_routes/index"
+        else
+          render json: @gRoutes.errors.full_messages, status: 422
+        end
+    else 
+      @gRoutes = GoogleRoute.all
+      if @gRoutes
+        render "api/google_routes/index"
+      else
+        render json: @gRoutes.errors.full_messages, status: 422
+      end
+    end 
   end
   
   def create
@@ -20,7 +38,7 @@ class Api::GoogleRoutesController < ApplicationController
 
   def update
     @gRoute = GoogleRoute.find(params[:id])
-    if @gRoute.update(routeParams)
+    if (@gRoute.user_id === current_user.id && @gRoute.update(routeParams))
       render :show
     else
       render json: @gRoute.errors.full_messages, status: 422
@@ -43,7 +61,7 @@ class Api::GoogleRoutesController < ApplicationController
 
   def destroy
     @gRoute = GoogleRoute.find(params[:id])
-    if @gRoute
+    if (@gRoute.user_id === current_user.id && @gRoute)
       @gRoute.delete
       render json: @gRoute, status: 200
     else

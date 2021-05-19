@@ -7,24 +7,18 @@ import Route from "./route_showcard_container";
 export default class route_index_card extends Component {
   constructor(props) {
     super(props);
-    this.drawRoute = this.drawRoute.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchRoutes();
+    this.props.fetchCurrentUserRoutes(this.props.match.params.user_id);
   }
 
-  componentDidUpdate() {
-    debugger;
-  }
-
-  drawRouteDirections() {
-    console.log(this.props.routes[0]);
-    this.WaypointManager.renderUserRoutes(this.props.routes[0]);
-  }
-
-  drawRoute() {
-    debugger;
+  componentDidUpdate(prevProps) {
+    // console.log(prevProps);
+    // console.log(this.props);
+    if (prevProps.match.params.user_id !== this.props.match.params.user_id) {
+      this.props.fetchCurrentUserRoutes(this.props.match.params.user_id);
+    }
   }
 
   render() {
