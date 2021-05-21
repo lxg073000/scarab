@@ -50,7 +50,7 @@ export default class route_showcard extends Component {
   createMap() {
     debugger;
 
-    this.map = new google.maps.Map(this.mapNode);
+    this.map = new google.maps.Map(this.mapNode, { fullscreenControl: false });
 
     this.drawRoute(this.map);
   }
@@ -65,50 +65,62 @@ export default class route_showcard extends Component {
     );
   }
 
+  toggleOptions() {
+    document.getElementById("route-options").classList.toggle("hide");
+  }
+
   render() {
     return (
-      <div className="onboard-modal-form main-container">
-        <div className="">
-          <div className="">
-            <div className="route-title">
-              <h1>{`${this.props.route.name} (#${this.props.route.id})`}</h1>
-              <h2>{`${this.props.route.travelMode}`}</h2>
-              <h3>{this.props.route.description}</h3>
-              <div
-                className="insert-box"
-                id={`map-${this.props.route.id}`}
-                ref={(map) => (this.mapNode = map)}
-                onLoad={this.createMap}
-              >
-                <h1> Route Stats</h1>
-              </div>
-              <div className="trip-container">
-                <i className="far fa-clock"></i>
-                <p>{this.props.route.duration}</p>
-                <i className="far fa-clock"></i>
-                <p>{this.props.route.distance}</p>
-                <h3> Share this Route With Friends</h3>
-                <Link className="main-form-btn" to={`/routes`}>
-                  Share
-                </Link>
-                <h1
-                  className="main-form-btn"
-                  onClick={() => this.props.deleteRoute(this.props.route.id)}
-                >
-                  DELETE
-                </h1>
-                <h1
-                  className="main-form-btn"
-                  onClick={() =>
-                    location.assign(`#/route/${this.props.route.id}/edit`)
-                  }
-                >
-                  EDIT
-                </h1>
-              </div>
-            </div>
+      <div className="route-card">
+        <div className="route-tools-mini">
+          <i className="fas fa-wrench" onClick={() => this.toggleOptions()}></i>
+          <div id="route-options" className="route-options hide">
+            <p
+              className="option-item"
+              onClick={() =>
+                location.assign(`#/route/${this.props.route.id}/edit`)
+              }
+            >
+              Edit Route
+            </p>
+            <p className="option-item">Duplicate Route</p>
+            <p
+              className="option-item"
+              onClick={() => this.props.deleteRoute(this.props.route.id)}
+            >
+              Delete Route
+            </p>
+            <div
+              className="close-layer"
+              onClick={() => this.toggleOptions()}
+            ></div>
           </div>
         </div>
+        <section
+          className="thumbnail-map"
+          id={`map-${this.props.route.id}`}
+          ref={(map) => (this.mapNode = map)}
+          onLoad={this.createMap}
+        ></section>
+
+        <section className="route-details-mini">
+          <h1 className="link title accent3 bold">{`${this.props.route.name}`}</h1>
+          <h2 className="description">{`${this.props.route.description}`}</h2>
+          <div className="route-stats-mini">
+            <h1 className="values">
+              {parseFloat(this.props.route.distance)}
+              <span>mi</span>
+            </h1>
+            <h2>Distance</h2>
+          </div>
+          <h2>
+            Est. Moving Time{" "}
+            <span className="bold">{this.props.route.duration}</span>
+          </h2>
+        </section>
+        <h2 className="created-at">{`Created ${new Date(
+          this.props.route.created_at
+        ).toDateString()}`}</h2>
       </div>
     );
   }

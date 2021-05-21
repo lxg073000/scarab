@@ -32,7 +32,6 @@ const RoutesReducer = (oldState = {}, action) => {
       delete nextState[action.route_id];
       return nextState;
     case RECEIVE_CURRENT_USER:
-      console.log(action.user.google_routes);
       debugger;
       for (const route of action.user.google_routes) {
         nextState[route.id] = route;

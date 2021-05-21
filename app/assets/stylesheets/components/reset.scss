@@ -95,6 +95,7 @@ video {
   outline: none;
   text-decoration: none;
   color: inherit;
+  color: #242428;
   font-family: sans-serif;
   font-weight: 300;
 }
@@ -152,4 +153,8 @@ table {
 
 link {
   cursor: pointer;
+}
+
+h1 {
+  font-size: 34px;
 }

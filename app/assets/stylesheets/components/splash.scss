@@ -127,6 +127,26 @@
   }
 }
 
+.footer.white {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1em;
+  background: white;
+  color: #242428;
+  * {
+    color: #242428;
+  }
+  .footer-link:after {
+    background: rgba(0, 0, 0, 0.33);
+  }
+  li i,
+  .logo {
+    color: rgba(0, 0, 0, 0.33);
+  }
+}
+
 .splash-container {
   margin: 3.5em auto;
   padding-top: 1em;

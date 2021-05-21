@@ -22,7 +22,6 @@ export default class onboarding_form extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { defaultRoute, currentUser } = this.props;
     return (
       <div className="fullscreen-main">

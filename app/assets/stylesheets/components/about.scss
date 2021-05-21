@@ -1,0 +1,42 @@
+.about-shell {
+  width: 280px;
+  margin: auto;
+}
+
+.about-mvps {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+article.mvp-item {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  gap: 1em;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  i {
+    background: white;
+    padding: 1em;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 50%);
+  }
+  &:not(.mvp-item:first-child) {
+    padding: 1em 0;
+  }
+}
+.mvp-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  line-height: 2ch;
+}

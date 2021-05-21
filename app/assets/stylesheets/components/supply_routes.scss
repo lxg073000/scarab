@@ -1,0 +1,203 @@
+.route-index-shell {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2em 0;
+  gap: 4em;
+}
+
+.route-index-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.route-card {
+  width: fit-content;
+  position: relative;
+}
+
+.route-index-header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #e2e2e2;
+    top: calc(100% + 2em);
+  }
+}
+
+.route-index-header div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.route-index-header div:nth-child(2) {
+  display: flex;
+  gap: 4em;
+  p {
+    width: 280px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5em;
+  }
+}
+
+.route-filters {
+  display: flex;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 0, 0, 10%);
+  width: fit-content;
+  border-radius: 3px;
+  overflow: hidden;
+  .button {
+    padding: 10px 18px;
+    position: relative;
+    font-size: 14px;
+  }
+  :not(.button:last-child) {
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(0, 0, 0, 10%);
+    }
+  }
+}
+
+.thumbnail-map {
+  position: relative;
+  overflow: hidden;
+  width: 304px;
+  height: 184px;
+  &:after {
+    content: "";
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.route-details-mini {
+  padding: 1.5em;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  h1 {
+    font-size: 20px;
+  }
+}
+.route-tools-mini {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 7;
+}
+.fa-wrench {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  color: hsl(0deg, 0%, 80%);
+  z-index: 5;
+  font-size: 19px;
+  transform: scaleX(-1);
+  background: hsl(0deg, 0%, 99%);
+  padding: 6px;
+  cursor: pointer;
+  &:hover {
+    color: #585658;
+  }
+}
+.route-options {
+  position: absolute;
+  top: 12px;
+  left: 4px;
+  box-shadow: 0 0 0 1px #ededed;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: -6px;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 2px #ededed;
+    z-index: 6;
+  }
+  p {
+    font-size: 14px;
+    padding: 15px 9px;
+    background: white;
+    z-index: 6;
+    &:hover {
+      background: #ededed;
+    }
+  }
+}
+
+.route-stats-mini {
+  gap: 1ch;
+  margin-top: 1em;
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 12px;
+  }
+  span {
+    font-size: 18px;
+    padding-left: 4px;
+  }
+}
+
+.created-at {
+  background: hsl(0deg, 0%, 93%);
+  padding: 5px 1.5em;
+  font-size: 12px;
+}
+
+// :not(.button:last-child) {
+//   background: green;
+// }
+.close-layer {
+  background: transparent;
+  width: 100vw;
+  height: calc(100vh + 13em);
+  position: absolute;
+  bottom: calc(100% - 86vh);
+  left: calc(100% - 39vw);
+  z-index: 4;
+}
+.hide {
+  display: none;
+}
+
+.gmnoprint a,
+.gmnoprint span {
+  display: none;
+}
+.gmnoprint div {
+  background: none !important;
+}
+#GMapsID div div a div img {
+  display: none;
+}

@@ -120,14 +120,14 @@ export default class route_map extends Component {
       this.deleteRoute();
     } else if (this.state.waypoints.length === 2) {
       debugger;
-      document.getElementById("distance").innerText = `0 hr 0 min`;
-      document.getElementById("duration").innerText = `0.00 mi`;
+      document.getElementById("duration").innerText = `0 hr 0 min`;
+      document.getElementById("distance").innerText = `0.00 mi`;
       let myLatLng = [];
       this.state.waypoints[0]
         .split(",")
         .map((num) => myLatLng.push(parseFloat(num)));
       // const marker = this.WaypointManager.directionMarkers[0].position;
-      console.log(myLatLng);
+
       const markerPOS = new google.maps.LatLng(myLatLng[0], myLatLng[1]);
 
       this.setState(
@@ -153,7 +153,6 @@ export default class route_map extends Component {
         },
         () => {
           this.handleMarkers();
-          console.log(`UNDO added === ${this.state.undoneWaypoints}`);
         }
       );
     }
@@ -185,7 +184,6 @@ export default class route_map extends Component {
       );
     } else {
       debugger;
-      console.log(this.state.undoneWaypoints);
     }
   }
 
@@ -219,9 +217,6 @@ export default class route_map extends Component {
         }
       }
     );
-
-    console.log(e);
-    console.log(mode);
 
     const prevSelection = document.getElementsByClassName(
       "selected-route-item"
@@ -331,13 +326,13 @@ export default class route_map extends Component {
   }
 
   deleteRoute() {
-    console.log("deleteRoute");
-    document.getElementById("distance").innerText = `0 hr 0 min`;
-    document.getElementById("duration").innerText = `0.00 mi`;
+    document.getElementById("duration").innerText = `0 hr 0 min`;
+    document.getElementById("distance").innerText = `0.00 mi`;
 
     this.WaypointManager.directionsRenderer.setMap(null);
     this.clearWaypoints();
-    this.WaypointManager.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.WaypointManager.directionsRenderer =
+      new google.maps.DirectionsRenderer();
 
     this.WaypointManager.directionsRenderer.setMap(this.map);
   }

@@ -79,7 +79,7 @@ class SignUpForm extends React.Component {
                   Or simply Log In with the{" "}
                   <span
                     onClick={() => this.props.login(this.props.demoUser)}
-                    className="guest-link"
+                    className="guest-link link"
                   >
                     Guest Account
                   </span>

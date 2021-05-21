@@ -1,13 +1,42 @@
 .dashboard-shell {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   background: #f7f7fa;
   padding: 2.5em;
+  padding-top: 4em;
 }
 .dashboard-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 2em;
+  justify-content: center;
+
+  h1 {
+    font-size: 1.25em;
+    text-align: center;
+  }
+  h2 {
+    font-size: 0.9em;
+  }
+  h3 {
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 75%);
+  }
+  a {
+    font-size: 0.77em;
+  }
 }
 
-.dashboard-container section {
-  flex: 1 1 auto;
+.dashboard-container {
+  section:nth-child(1) {
+    flex: 0 1 auto;
+    // display: grid;
+    // place-content: center;
+  }
+  section:nth-child(2) {
+    flex: 0 1 auto;
+  }
+  section:nth-child(3) {
+    flex: 0 1 auto;
+  }
 }

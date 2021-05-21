@@ -230,8 +230,8 @@ export default class edit_form extends Component {
       this.deleteRoute();
     } else if (this.state.waypoints.length === 2) {
       debugger;
-      document.getElementById("distance").innerText = `0 hr 0 min`;
-      document.getElementById("duration").innerText = `0.00 mi`;
+      document.getElementById("duration").innerText = `0 hr 0 min`;
+      document.getElementById("distance").innerText = `0.00 mi`;
       let myLatLng = [];
       this.state.waypoints[0]
         .split(",")
@@ -436,12 +436,13 @@ export default class edit_form extends Component {
   }
 
   deleteRoute() {
-    document.getElementById("distance").innerText = `0 hr 0 min`;
-    document.getElementById("duration").innerText = `0.00 mi`;
+    document.getElementById("duration").innerText = `0 hr 0 min`;
+    document.getElementById("distance").innerText = `0.00 mi`;
 
     this.WaypointManager.directionsRenderer.setMap(null);
     this.clearWaypoints();
-    this.WaypointManager.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.WaypointManager.directionsRenderer =
+      new google.maps.DirectionsRenderer();
 
     this.WaypointManager.directionsRenderer.setMap(this.map);
   }

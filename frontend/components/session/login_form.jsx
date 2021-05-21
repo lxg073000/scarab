@@ -68,7 +68,7 @@ class LoginForm extends React.Component {
                   Log In with the{" "}
                   <span
                     onClick={() => this.props.login(this.props.demoUser)}
-                    className="guest-link"
+                    className="guest-link link"
                   >
                     Guest Account
                   </span>

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 // import {} from "../../actions/route";
-import RouteBuggoutIndexCard from "./route_buggout_index_card";
+import RouteBuggoutIndexCard from "./buggout_index_container";
 
 const mapState = (state) => ({});
 const mapDispatch = (dispatch) => ({});

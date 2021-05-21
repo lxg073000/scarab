@@ -1,22 +1,11 @@
 .profile-shell {
-  margin: 3em auto 0;
   position: relative;
-  padding-top: 3.5em;
+  padding-top: 3.25em;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  width: 19em;
-  h1 {
-    font-size: 1.25em;
-    text-align: center;
-  }
-  h2 {
-    font-size: 0.9em;
-  }
-  h3 {
-    font-size: 0.8em;
-    color: rgba(0, 0, 0, 75%);
-  }
+  width: 280px;
+  margin: auto;
   div:not(.training-stats) {
     margin-bottom: 1em;
   }
@@ -24,11 +13,23 @@
 
 .profile-shell img {
   position: absolute;
-  top: -43px;
-  left: calc(50% - 40px);
-  background: #f7f8fa;
+  top: -35px;
+  left: calc(50% - 35px);
+  background: #79d7bd;
   border-radius: 50%;
-  height: 80px;
+  height: 70px;
+  box-shadow: 0px 8px 24px #99999980;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 110%;
+    width: 110%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 33%);
+  }
 }
 
 .profile-stats {
@@ -88,6 +89,7 @@
       color: #79d7bd;
       i {
         padding-right: 0;
+        color: rgba(0, 0, 0, 50%);
       }
     }
   }

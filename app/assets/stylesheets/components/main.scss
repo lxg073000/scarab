@@ -4,6 +4,13 @@
 //   width: 436px;
 //   margin: 30px auto 0px auto;
 // }
+
+#root {
+  background: white;
+}
+body {
+  background: #f7f7fa;
+}
 .main-headline {
   font-family: sans-serif;
   font-size: 30px;
@@ -85,27 +92,9 @@
   }
 }
 
-.bold {
-  font-weight: 600;
-}
-.accent {
-  color: #fc5200;
-}
-.accent2 {
-  color: #79d7bd;
-}
-
-.link {
-  cursor: pointer;
-  transition: 200ms ease;
-  * {
-    transition: 200ms ease;
-  }
-}
-
 .float-card {
   background: white;
   border-radius: 4px;
-  box-shadow: 0 0 20px 0px #00000029;
+  box-shadow: 0 0 11px 0px rgba(0, 0, 0, 5%);
   padding: 1em;
 }

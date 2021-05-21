@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserInfo from "../user/user_profile_card";
+import Buggouts from "../buggouts/buggout_index_container";
+import About from "../nav/about";
+// import Footer from "../nav/footer_white";
 
 export default class onboarding_form extends Component {
   constructor(props) {
@@ -14,7 +17,6 @@ export default class onboarding_form extends Component {
   }
   componentDidUpdate() {
     // this.props.receiveCurrentUser(this.props.currentUser.id);
-    console.log(this.state.currentUser);
   }
 
   handleSubmit(e) {
@@ -22,7 +24,6 @@ export default class onboarding_form extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { defaultRoute, currentUser } = this.props;
     return (
       <div className="dashboard-shell">
@@ -31,16 +32,13 @@ export default class onboarding_form extends Component {
             <UserInfo />
           </section>
           <section className="activity-pane">
-            <p>No activities...</p>
-            <h1>Make Your First Supply Route!</h1>
+            <Buggouts />
           </section>
           <section className="about-pane">
-            <h1>CONTACT ME HERE</h1>
-            <h1>CONTACT ME HERE</h1>
-            <h1>CONTACT ME HERE</h1>
-            <h1>CONTACT ME HERE</h1>
+            <About />
           </section>
         </div>
+        {/* <Footer /> */}
       </div>
     );
   }

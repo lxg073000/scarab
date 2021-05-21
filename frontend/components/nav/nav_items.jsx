@@ -28,6 +28,7 @@ class Nav_items extends React.Component {
   componentDidMount() {
     this.toggleNav();
   }
+
   toggleNav() {
     this.props.location.pathname.includes("!")
       ? this.setState({
@@ -50,6 +51,13 @@ class Nav_items extends React.Component {
     };
   }
 
+  logout() {
+    let shown = document.getElementsByClassName("show")[0];
+    shown.classList.add("hide");
+    shown.classList.remove("show");
+    this.props.logout();
+  }
+
   render() {
     const { currentUser, currentPage, logout } = this.props;
     let pathname = this.props.location.pathname;
@@ -69,15 +77,21 @@ class Nav_items extends React.Component {
     );
 
     const _signedIn = !!currentUser ? (
-      <div className="">
-        <Link className="nav-btn-orange" to={`/user/${currentUser.id}`}>
-          Edit Profile
-        </Link>
-        <span className="nav-btn" onClick={logout}>
-          Sign Out
-        </span>
-        <i className="fas fa-user-alt"></i>
-        <i className="fas fa-plus-circle"></i>
+      <div>
+        <div
+          className="nav-menu-link"
+          onMouseEnter={this.dropdown("profile")}
+          onMouseLeave={this.dropdown("profile")}
+        >
+          <img src={window.user_pic} alt="user_pic" />
+          <i className="fas fa-chevron-down"></i>
+          <ul className={`nav-menu-item dropdown end ${this.state.profile}`}>
+            <li onClick={() => this.logout()}>Log Out</li>
+          </ul>
+        </div>
+        <div className="nav-menu-link">
+          <i className="fas fa-plus"></i>
+        </div>
       </div>
     ) : null;
     function formatHeadline(pathname) {
@@ -96,10 +110,7 @@ class Nav_items extends React.Component {
               </Link>
               {formatHeadline(this.props.location.pathname)}
             </div>
-            <i
-              className={`fas fa-search
-${this.state.nav}`}
-            ></i>
+
             <div
               className={`nav-menu-container
 ${this.state.nav}`}
@@ -110,14 +121,12 @@ ${this.state.nav}`}
                   onMouseEnter={this.dropdown("dashboard")}
                   onMouseLeave={this.dropdown("dashboard")}
                 >
-                  <li>
+                  <li onClick={() => location.assign(`#/onboarding/`)}>
                     Dashboard
-                    <span>
-                      <i className="fas fa-chevron-down"></i>
-                    </span>
+                    <i className="fas fa-chevron-down"></i>
                   </li>
                   <ul
-                    className={`nav-menu-link dropdown ${this.state.dashboard}`}
+                    className={`nav-menu-item dropdown ${this.state.dashboard}`}
                   >
                     <li
                       onClick={() =>
@@ -129,9 +138,8 @@ ${this.state.nav}`}
                   </ul>
                 </ul>
 
-                <Link
+                <ul
                   className="nav-menu-link"
-                  to="/splash!"
                   onMouseEnter={this.dropdown("training")}
                   onMouseLeave={this.dropdown("training")}
                 >
@@ -143,38 +151,17 @@ ${this.state.nav}`}
                   </li>
 
                   <ul
-                    className={`nav-menu-link dropdown ${this.state.training}`}
+                    className={`nav-menu-item dropdown ${this.state.training}`}
                   >
                     <li>My Buggouts</li>
                   </ul>
-                </Link>
-                <Link
-                  className="nav-menu-link"
-                  to="/splash!"
-                  onMouseEnter={this.dropdown("explore")}
-                  onMouseLeave={this.dropdown("explore")}
-                >
-                  <li>
-                    Explore
-                    <span>
-                      <i className="fas fa-chevron-down"></i>
-                    </span>
-                  </li>
-                  <ul
-                    className={`nav-menu-link dropdown ${this.state.explore}`}
-                  >
-                    <li>Community Search</li>
-                    <li>Supply Search</li>
-                  </ul>
-                </Link>
+                </ul>
               </ul>
             </div>
           </div>
           <div className="nav-right">
-            <ul>
-              {_signedIn}
-              {_sessionToggle}
-            </ul>
+            {_signedIn}
+            {_sessionToggle}
           </div>
         </div>
         <div className="baseline"></div>

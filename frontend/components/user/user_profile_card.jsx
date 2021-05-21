@@ -1,7 +1,6 @@
 import React from "react";
 
 const user_profile_card = ({ user }) => {
-  console.log(user);
   return (
     <div className="profile-shell float-card">
       <img src={window.user_pic} alt="user_pic" />
