@@ -80,6 +80,7 @@ export default class route_map extends Component {
   addMarkerToMap(latLng, map) {
     let gMarker = new google.maps.Marker({
       position: latLng,
+      // icon: { url: window.sPoint },
       draggable: false,
       map: this.state.waypoints.length === 0 ? map : null,
     });

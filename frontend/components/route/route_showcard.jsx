@@ -66,7 +66,9 @@ export default class route_showcard extends Component {
   }
 
   toggleOptions() {
-    document.getElementById("route-options").classList.toggle("hide");
+    document
+      .getElementById(`route-options-${this.props.route.id}`)
+      .classList.toggle("hide");
   }
 
   render() {
@@ -74,7 +76,10 @@ export default class route_showcard extends Component {
       <div className="route-card">
         <div className="route-tools-mini">
           <i className="fas fa-wrench" onClick={() => this.toggleOptions()}></i>
-          <div id="route-options" className="route-options hide">
+          <div
+            id={`route-options-${this.props.route.id}`}
+            className="route-options hide"
+          >
             <p
               className="option-item"
               onClick={() =>
@@ -91,7 +96,7 @@ export default class route_showcard extends Component {
               Delete Route
             </p>
             <div
-              className="close-layer"
+              // className="close-layer"
               onClick={() => this.toggleOptions()}
             ></div>
           </div>

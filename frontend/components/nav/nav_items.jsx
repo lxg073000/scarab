@@ -11,6 +11,7 @@ class Nav_items extends React.Component {
       explore: "hide",
       locked: "hide",
       profile: "hide",
+      plus: "hide",
       add: "hide",
       nav: "hide",
     };
@@ -43,7 +44,7 @@ class Nav_items extends React.Component {
     return (e) => {
       this.state[control] === "hide"
         ? this.setState({
-            [control]: "show",
+            [control]: "",
           })
         : this.setState({
             [control]: "hide",
@@ -52,9 +53,8 @@ class Nav_items extends React.Component {
   }
 
   logout() {
-    let shown = document.getElementsByClassName("show")[0];
-    shown.classList.add("hide");
-    shown.classList.remove("show");
+    let loggoutBtn = document.getElementsByClassName("lob")[0];
+    loggoutBtn.classList.add("hide");
     this.props.logout();
   }
 
@@ -85,18 +85,29 @@ class Nav_items extends React.Component {
         >
           <img src={window.user_pic} alt="user_pic" />
           <i className="fas fa-chevron-down"></i>
-          <ul className={`nav-menu-item dropdown end ${this.state.profile}`}>
+          <ul className={`lob dropdown-menu-right ${this.state.profile}`}>
             <li onClick={() => this.logout()}>Log Out</li>
           </ul>
         </div>
-        <div className="nav-menu-link">
+        <div
+          className="nav-menu-link"
+          onMouseEnter={this.dropdown("plus")}
+          onMouseLeave={this.dropdown("plus")}
+        >
           <i className="fas fa-plus"></i>
+          <ul className={`dropdown-menu-right ${this.state.plus}`}>
+            <li onClick={() => location.assign(`#/buggout/new`)}>
+              New Buggout
+            </li>
+            <li onClick={() => location.assign(`#/routes`)}>
+              New Supply Route
+            </li>
+          </ul>
         </div>
       </div>
     ) : null;
     function formatHeadline(pathname) {
       if (pathname.includes("splash", "login", "signup")) return null;
-      if (pathname.includes("route")) return <p className="nav-head">Route</p>;
       // return <p className="nav-head">{pathname}</p>;
     }
 
@@ -121,13 +132,14 @@ ${this.state.nav}`}
                   onMouseEnter={this.dropdown("dashboard")}
                   onMouseLeave={this.dropdown("dashboard")}
                 >
-                  <li onClick={() => location.assign(`#/onboarding/`)}>
+                  <li onClick={() => location.assign(`#/dashboard/`)}>
                     Dashboard
                     <i className="fas fa-chevron-down"></i>
                   </li>
-                  <ul
-                    className={`nav-menu-item dropdown ${this.state.dashboard}`}
-                  >
+                  <ul className={`dropdown-menu-left ${this.state.dashboard}`}>
+                    <li onClick={() => location.assign(`#/dashboard`)}>
+                      My Activity
+                    </li>
                     <li
                       onClick={() =>
                         location.assign(`#/supply_routes/${currentUser.id}`)
@@ -150,9 +162,7 @@ ${this.state.nav}`}
                     </span>
                   </li>
 
-                  <ul
-                    className={`nav-menu-item dropdown ${this.state.training}`}
-                  >
+                  <ul className={`dropdown-menu-left ${this.state.training}`}>
                     <li>My Buggouts</li>
                   </ul>
                 </ul>

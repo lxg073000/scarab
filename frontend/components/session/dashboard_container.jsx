@@ -4,7 +4,7 @@ import {
   receiveCurrentUser,
   fetchUser,
 } from "../../actions/session";
-import OnboardingForm from "./onboarding_form";
+import Dashboard from "./dashboard";
 import { fetchWaypoints } from "../../actions/waypoint";
 
 const mapState = (state) => {
@@ -21,4 +21,4 @@ const mapDispatch = (dispatch) => ({
   fetchWaypoints: () => dispatch(fetchWaypoints()),
 });
 
-export default connect(mapState, mapDispatch)(OnboardingForm);
+export default connect(mapState, mapDispatch)(Dashboard);

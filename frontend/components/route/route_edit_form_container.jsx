@@ -2,6 +2,9 @@ import { connect } from "react-redux";
 import { fetchRoutes, fetchRoute, editRoute } from "../../actions/gRoute";
 import RouteEditForm from "./route_edit_form";
 
+const filteredRoute = (routes) => {
+  routes.filter((route) => route.id === 1);
+};
 const mapState = (state) => ({
   routes: Object.values(state.entities.routes),
 });

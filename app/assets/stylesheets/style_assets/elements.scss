@@ -47,6 +47,22 @@
   }
 }
 
+input {
+  padding: 1em;
+  margin: 1em 0;
+  width: 100%;
+  border: 1px solid #0000000f;
+  background: #f0f8ff6b;
+  &:focus {
+    outline: 2px solid hsl(206deg, 90%, 38%);
+    outline-style: auto;
+    outline-offset: -2px;
+  }
+}
+.session input:focus {
+  outline: none;
+}
+
 .neutral {
   &:hover {
     background: #f7f7fa;

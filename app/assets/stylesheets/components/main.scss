@@ -11,6 +11,15 @@
 body {
   background: #f7f7fa;
 }
+.component-container-main {
+  padding: 0 2em;
+  min-height: calc(83vh - 56px);
+}
+.component-container-feed {
+  padding: 0 2em;
+  min-height: calc(83vh - 56px);
+  background: #f7f7fa;
+}
 .main-headline {
   font-family: sans-serif;
   font-size: 30px;

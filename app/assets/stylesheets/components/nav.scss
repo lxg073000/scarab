@@ -376,3 +376,37 @@ div.nav-menu-link {
   right: 0;
   left: -100%;
 }
+
+.dropdown-menu-left li,
+.dropdown-menu-right li {
+  padding: 1em;
+  display: flex;
+  white-space: nowrap;
+  margin: 0;
+  &:hover,
+  &:target {
+    background: #f2f2f3;
+  }
+}
+
+.dropdown-menu-left li {
+  justify-content: flex-start;
+}
+.dropdown-menu-right li {
+  justify-content: flex-end;
+}
+
+.dropdown-menu-right {
+  background: white;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  box-shadow: 0px 0px 0 1px #e2e2e2;
+}
+.dropdown-menu-left {
+  background: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  box-shadow: 0px 0px 0 1px #e2e2e2;
+}

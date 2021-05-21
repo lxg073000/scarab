@@ -5,7 +5,7 @@ import Buggouts from "../buggouts/buggout_index_container";
 import About from "../nav/about";
 // import Footer from "../nav/footer_white";
 
-export default class onboarding_form extends Component {
+export default class dashboard extends Component {
   constructor(props) {
     super(props);
 
@@ -26,19 +26,20 @@ export default class onboarding_form extends Component {
   render() {
     const { defaultRoute, currentUser } = this.props;
     return (
-      <div className="dashboard-shell">
-        <div className="dashboard-container">
-          <section className="user-pane">
-            <UserInfo />
-          </section>
-          <section className="activity-pane">
-            <Buggouts />
-          </section>
-          <section className="about-pane">
-            <About />
-          </section>
+      <div className="component-container-feed">
+        <div className="dashboard-shell">
+          <div className="dashboard-container">
+            <section className="user-pane">
+              <UserInfo />
+            </section>
+            <section className="activity-pane">
+              <Buggouts />
+            </section>
+            <section className="about-pane">
+              <About />
+            </section>
+          </div>
         </div>
-        {/* <Footer /> */}
       </div>
     );
   }

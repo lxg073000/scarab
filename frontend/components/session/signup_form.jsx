@@ -39,7 +39,7 @@ class SignUpForm extends React.Component {
   render() {
     return (
       <div
-        className="background-pic"
+        className="background-pic session"
         style={{ backgroundImage: `url(${window.login_0})` }}
       >
         <div className="form-container">

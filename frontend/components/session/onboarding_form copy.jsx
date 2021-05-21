@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserInfo from "../user/user_profile_card";
 
-export default class onboarding_form extends Component {
+export default class dashboard extends Component {
   constructor(props) {
     super(props);
 

@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div
-        className="background-pic"
+        className="background-pic session"
         style={{ backgroundImage: `url(${window.login_2})` }}
       >
         <div className="form-container">

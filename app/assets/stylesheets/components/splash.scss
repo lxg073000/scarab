@@ -15,7 +15,7 @@
   height: fit-content;
   padding: 3em 2em;
   color: #242428;
-  background-color: white;
+  background-color: #e2e2e2;
   box-shadow: 0px 0px 22px -11px #0000004a;
   flex-direction: column;
 }
@@ -133,7 +133,7 @@
   left: 0;
   width: 100%;
   padding: 1em;
-  background: white;
+  background-color: #e2e2e2;
   color: #242428;
   * {
     color: #242428;
@@ -141,9 +141,11 @@
   .footer-link:after {
     background: rgba(0, 0, 0, 0.33);
   }
-  li i,
-  .logo {
+  li i {
     color: rgba(0, 0, 0, 0.33);
+  }
+  .logo {
+    color: white;
   }
 }
 
