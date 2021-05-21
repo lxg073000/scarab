@@ -9,8 +9,7 @@ import dashboard_container from "./session/dashboard_container";
 import user_profile_container from "./user/user_profile_container";
 import user_feed_container from "./user/user_feed_container";
 import user_routes_container from "./user/user_routes_container";
-import user_buggout_index_container from "./buggouts/buggout_index_container";
-import user_buggout_container from "./buggouts/buggout_showcard_container";
+
 import route_form_container from "./route/route_form_container";
 import route_edit_form_container from "./route/route_edit_form_container";
 import search_container from "./googleMap/search_container";
@@ -18,6 +17,7 @@ import route_index_card_container from "./route/route_index_card_container";
 import route_showcard_container from "./route/route_showcard_container";
 import Footer from "./nav/footer_white";
 import buggout_form_new from "./buggouts/buggout_form_new";
+import buggout_index_container from "./buggouts/buggout_index_container";
 
 class App extends React.Component {
   render() {
@@ -33,9 +33,15 @@ class App extends React.Component {
 
         <Switch>
           <Route path="/dashboard">
+            <ProtectedRoute path="/dashboard" component={dashboard_container} />
+            <Footer />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/buggouts">
             <ProtectedRoute
-              // path="/dashboard"
-              component={dashboard_container}
+              path="/buggouts"
+              component={buggout_index_container}
             />
             <Footer />
           </Route>
@@ -47,14 +53,7 @@ class App extends React.Component {
           path="/user/:id/routes"
           component={user_routes_container}
         />
-        <ProtectedRoute
-          path="/user/buggouts"
-          component={user_buggout_index_container}
-        />
-        <ProtectedRoute
-          path="/user/buggout/:id"
-          component={user_buggout_container}
-        />
+
         <ProtectedRoute
           path="/route/:id/edit"
           component={route_edit_form_container}

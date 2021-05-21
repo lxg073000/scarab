@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import UserInfo from "../user/user_profile_card";
-import Buggouts from "../buggouts/buggout_index_container";
+import Activity from "../activity/activity_feed_container";
 import About from "../nav/about";
-// import Footer from "../nav/footer_white";
 
 export default class dashboard extends Component {
   constructor(props) {
@@ -33,7 +31,7 @@ export default class dashboard extends Component {
               <UserInfo />
             </section>
             <section className="activity-pane">
-              <Buggouts />
+              <Activity />
             </section>
             <section className="about-pane">
               <About />

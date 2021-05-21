@@ -163,7 +163,9 @@ ${this.state.nav}`}
                   </li>
 
                   <ul className={`dropdown-menu-left ${this.state.training}`}>
-                    <li>My Buggouts</li>
+                    <li onClick={() => location.assign(`#/buggouts`)}>
+                      My Buggouts
+                    </li>
                   </ul>
                 </ul>
               </ul>
