@@ -10,7 +10,6 @@ import RouteShowCard from "./route_showcard";
 import { withRouter } from "react-router-dom";
 
 const mapState = (state) => {
-  debugger;
   return {
     routes: Object.values(state.entities.routes),
   };

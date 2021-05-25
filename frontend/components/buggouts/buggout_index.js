@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 
 export default class buggout_index_card extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.fetchBuggouts();
+  }
+
   render() {
     return (
       <div className="component-container-main">
@@ -10,9 +18,9 @@ export default class buggout_index_card extends Component {
               <h1 className="bold">My Buggouts</h1>
               <h2
                 className="button-orange"
-                onClick={() => location.assign(`#/routes/`)}
+                onClick={() => location.assign(`#/buggout/new/`)}
               >
-                Create New Route
+                Create New Buggout
               </h2>
             </div>
             <div>
@@ -25,10 +33,45 @@ export default class buggout_index_card extends Component {
             </div>
           </section>
           <section className="route-index-routes">
-            <div className="route-filters">
-              <h2 className="button bold neutral">Cycling</h2>
-              <h2 className="button bold neutral">Running</h2>
-              <h2 className="button bold neutral">Walking</h2>
+            <h2>{this.props.buggouts.length} Activities</h2>
+            <div className="float-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date Completed</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                  </tr>
+                </thead>
+                {this.props.buggouts.map((buggout) => (
+                  <tbody key={`${buggout.id}-tbody`}>
+                    <tr key={`${buggout.id}-tr`}>
+                      <td key={`${buggout.id}-title`}>{buggout.title}</td>
+                      <td key={`${buggout.id}-description`}>
+                        {buggout.description}
+                      </td>
+                      <td key={`${buggout.id}-date_completed`}>
+                        {buggout.date_completed}
+                      </td>
+                      <td key={`${buggout.id}-start_time`}>
+                        {buggout.start_time}
+                      </td>
+                      <td key={`${buggout.id}-end_time`}>{buggout.end_time}</td>
+                      <td className="accent link" key={`${buggout.id}-edit`}>
+                        Edit
+                      </td>
+                      <td className="accent link" key={`${buggout.id}-delete`}>
+                        Delete
+                      </td>
+                      <td className="accent link" key={`${buggout.id}-share`}>
+                        Share
+                      </td>
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
             </div>
           </section>
         </div>

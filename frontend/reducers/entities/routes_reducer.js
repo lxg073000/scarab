@@ -11,7 +11,6 @@ import {
 import { merge } from "lodash.merge";
 
 const RoutesReducer = (oldState = {}, action) => {
-  debugger;
   Object.freeze(oldState);
   let nextState = Object.assign({}, oldState);
   switch (action.type) {
@@ -24,21 +23,17 @@ const RoutesReducer = (oldState = {}, action) => {
       });
       return nextState;
     case UPDATE_ROUTE:
-      debugger;
       nextState[action.route.id] = action.route;
       return nextState;
     case REMOVE_ROUTE:
-      debugger;
       delete nextState[action.route_id];
       return nextState;
     case RECEIVE_CURRENT_USER:
-      debugger;
       for (const route of action.user.google_routes) {
         nextState[route.id] = route;
       }
       return nextState;
     case LOGOUT_CURRENT_USER:
-      debugger;
       return {};
     default:
       return oldState;

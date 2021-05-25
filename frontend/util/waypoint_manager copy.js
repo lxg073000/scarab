@@ -8,7 +8,7 @@ export default class WaypointManager {
   }
   // updateWaypoints(waypoints) {
   //   let waypointObjs = Object.values(waypoints);
-  //   debugger;
+  //
 
   //   waypointObjs.forEach((obj) =>
   //     Object.keys(this.waypoints).includes(obj.id)
@@ -18,7 +18,6 @@ export default class WaypointManager {
   //   );
   // }
   startRoute(waypoints) {
-    debugger;
     let values = Object.values(waypoints);
     let origin = values[0];
     let destination = values[1];
@@ -27,7 +26,6 @@ export default class WaypointManager {
     this.renderDynamicRoute(origin, destination);
   }
   continueRoute(waypoint) {
-    debugger;
     let values = Object.values(waypoints);
     let origin = defaultOrigin;
     let destination = waypoint;
@@ -35,7 +33,6 @@ export default class WaypointManager {
     this.renderDynamicRoute(origin, destination);
   }
   updateWaypoints(waypoints) {
-    debugger;
     let values = Object.values(waypoints);
     let origin = values[0];
     let destination = values[values.length - 1];
@@ -45,7 +42,6 @@ export default class WaypointManager {
   }
 
   createMarkerFromWaypoint({ lat, lng, description }) {
-    debugger;
     const myLatLng = { lat, lng };
 
     directionMarker = new google.maps.Marker(
@@ -92,7 +88,6 @@ export default class WaypointManager {
     };
     directionsService.route(request, function (result, status) {
       if (status === "OK") {
-        debugger;
         directionsRenderer.setDirections(result);
         this.myResult = result.routes[0].legs;
       }
@@ -105,7 +100,6 @@ export default class WaypointManager {
       draggable: true,
     });
     directionsRenderer.setMap(this.map);
-    debugger;
 
     let myArr = [];
 
@@ -125,7 +119,6 @@ export default class WaypointManager {
     this.mapRequest = request;
     directionsService.route(request, function (result, status) {
       if (status === "OK") {
-        debugger;
         directionsRenderer.setDirections(result);
         this.myResult = result.routes[0].legs;
       }
@@ -133,13 +126,10 @@ export default class WaypointManager {
   }
 
   returnProperState() {
-    debugger;
     return myResult;
   }
 
-  clearDirectionMarker() {
-    debugger;
-  }
+  clearDirectionMarker() {}
 
   newLatLng(floatPair) {
     return new google.maps.LatLng(floatPair[0], floatPair[2]);

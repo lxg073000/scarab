@@ -8,7 +8,6 @@ import Dashboard from "./dashboard";
 import { fetchWaypoints } from "../../actions/waypoint";
 
 const mapState = (state) => {
-  debugger;
   return {
     currentUser: state.session.currentUser,
     // defaultRoute: state.routes,

@@ -120,7 +120,6 @@ export default class route_map extends Component {
     if (this.state.waypoints.length === 1) {
       this.deleteRoute();
     } else if (this.state.waypoints.length === 2) {
-      debugger;
       document.getElementById("duration").innerText = `0 hr 0 min`;
       document.getElementById("distance").innerText = `0.00 mi`;
       let myLatLng = [];
@@ -161,7 +160,6 @@ export default class route_map extends Component {
 
   redoMarker() {
     if (this.state.undoneWaypoints.length === 1) {
-      debugger;
       this.setState(
         {
           waypoints: this.state.waypoints.concat(
@@ -184,7 +182,6 @@ export default class route_map extends Component {
         () => this.handleMarkers()
       );
     } else {
-      debugger;
     }
   }
 
@@ -260,7 +257,6 @@ export default class route_map extends Component {
   }
 
   saveRoute() {
-    debugger;
     const request = {
       user_id: currentUser.id,
       waypoints: this.state.waypoints,

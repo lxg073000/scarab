@@ -25,5 +25,5 @@ const mapDispatch = (dispatch) => ({
   editRoute: () => dispatch(editRoute(route)),
   deleteRoute: () => dispatch(deleteRoute(route_id)),
 });
-debugger;
+
 export default withRouter(connect(mapState, mapDispatch)(RouteIndexCard));

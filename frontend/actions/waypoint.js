@@ -18,7 +18,6 @@ export const clearWaypointErrors = (errors) => ({
 
 export const fetchWaypoints = () =>
   function (dispatch) {
-    debugger;
     return API_fetchWaypoints().then(
       (waypoints) => dispatch(receiveWaypoints(waypoints)),
       (errors) => dispatch(receiveWaypointErrors(errors.responseJSON))

@@ -35,8 +35,6 @@ export default class route_map extends Component {
   }
 
   addMarkerToMap(latLng, map) {
-    debugger;
-
     let gMarker = new google.maps.Marker({
       position: latLng,
       // label: (this.index + 1).toString(),
@@ -78,12 +76,11 @@ export default class route_map extends Component {
   }
 
   addMarkerToState(pos) {
-    debugger;
     this.count.push(pos);
     this.index = this.count.length;
     this.setState((state) => {
       let newState = Object.assign({}, state, pos);
-      debugger;
+
       return newState;
     });
   }
@@ -94,12 +91,10 @@ export default class route_map extends Component {
   }
 
   clearAllClicks() {
-    debugger;
     Object.values(this.state).forEach((value) => value.waypoint.setMap(null));
   }
 
   updateGState() {
-    debugger;
     const gState = this.WaypointManager.returnProperState();
     this.mapData = gState;
     this.convert(gState);
@@ -107,7 +102,7 @@ export default class route_map extends Component {
 
   convert(gState) {
     let waypointList = [];
-    debugger;
+
     let points = gState
       .slice(0, this.mapData.length - 1)
       .map((waypoint) => Object.values(waypoint.end_location.toJSON()));
@@ -115,7 +110,6 @@ export default class route_map extends Component {
       waypointList = waypointList.concat(points[arr]);
     }
 
-    debugger;
     let request = {
       user_id: currentUser.id,
       name: "My Route",
@@ -129,7 +123,7 @@ export default class route_map extends Component {
       ],
     };
     this.props.createRoute(request);
-    debugger;
+
     // myhistory.push(`#/routes_index/${currentUser.id}`);
     location.assign(`#/routes_index/${currentUser.id}`);
     // location.assign(`#/splash!`);
@@ -240,13 +234,13 @@ export default class route_map extends Component {
   // removeMarkerFromMap(marker) {
   //   const id = marker.latLng.toString();
   //   this.state[`${id}`].waypoint.setMap(null);
-  //   debugger;
+  //
   //   this.removeMarkerFromState(id);
-  //   debugger;
+  //
   // }
 
   // removeMarkerFromCount(id, mySlice = null) {
-  //   debugger;
+  //
   //   // let sliceAt = null;
   //   for (const element of this.count) {
   //     if (element[id]) {
@@ -254,7 +248,7 @@ export default class route_map extends Component {
   //     }
   //   }
   //   const sliceAt = mySlice;
-  //   debugger;
+  //
   //   let newCount = this.count;
   //   newCount = newCount
   //     .slice(0, sliceAt)
@@ -264,19 +258,19 @@ export default class route_map extends Component {
   // }
 
   // removeMarkerFromState(id) {
-  //   debugger;
+  //
   //   this.removeMarkerFromCount(id);
 
   //   this.setState((state) => {
   //     let newState = Object.assign({}, state);
   //     delete newState[id];
-  //     debugger;
+  //
   //     return newState;
   //   });
   // }
 
   // updateWaypointInState(markerStart, markerEnd) {
-  //   debugger;
+  //
   //   const oldID = marker.latLng.toString();
   //   const newID = marker.latLng.toString();
   //   // this.count.push(pos);
@@ -285,7 +279,7 @@ export default class route_map extends Component {
   //     delete newState[oldID];
   //     newState = Object.assign({}, newState, newState[newID]);
 
-  //     debugger;
+  //
   //     return newState;
   //   });
   // }

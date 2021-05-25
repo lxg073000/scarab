@@ -4,7 +4,6 @@ import { createRoute } from "../../actions/gRoute";
 import Search from "./search";
 
 const mapState = (state) => {
-  debugger;
   return {
     map: Object.values(state.entities.waypoints),
     waypoints: Object.values(state.entities.waypoints),

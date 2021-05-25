@@ -39,7 +39,6 @@ export const clearRouteErrors = () => ({
 
 export const fetchCurrentUserRoutes = (user_id) =>
   function (dispatch) {
-    debugger;
     return API_fetchCurrentUserRoutes(user_id).then(
       (routes) => dispatch(receiveRoutes(routes))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
@@ -47,7 +46,6 @@ export const fetchCurrentUserRoutes = (user_id) =>
   };
 export const fetchRoutes = () =>
   function (dispatch) {
-    debugger;
     return API_fetchRoutes().then(
       (routes) => dispatch(receiveRoutes(routes))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
@@ -55,7 +53,6 @@ export const fetchRoutes = () =>
   };
 export const fetchRoute = (route_id) =>
   function (dispatch) {
-    debugger;
     return API_fetchRoute(route_id).then(
       (route) => dispatch(receiveRoute(route))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
@@ -63,7 +60,6 @@ export const fetchRoute = (route_id) =>
   };
 export const createRoute = (route) =>
   function (dispatch) {
-    debugger;
     return API_saveRoute(route).then(
       (route) => dispatch(receiveRoute(route))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
@@ -71,7 +67,6 @@ export const createRoute = (route) =>
   };
 export const editRoute = (route) =>
   function (dispatch) {
-    debugger;
     return API_editRoute(route).then(
       (route) => dispatch(updateRoute(route))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
@@ -79,7 +74,6 @@ export const editRoute = (route) =>
   };
 export const deleteRoute = (route_id) =>
   function (dispatch) {
-    debugger;
     return API_deleteRoute(route_id).then(
       (route) => dispatch(removeRoute(route.id))
       // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))

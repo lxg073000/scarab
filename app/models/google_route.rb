@@ -3,4 +3,5 @@ class GoogleRoute < ApplicationRecord
   # validates :waypoints, presence: true, allow_nil: true
 
   belongs_to :user
+  has_many :buggouts
 end

@@ -1,8 +1,15 @@
 import { connect } from "react-redux";
-// import {} from "../../actions/route";
+import { fetchBuggouts } from "../../actions/buggouts";
 import BuggoutIndex from "./buggout_index";
 
-const mapState = (state) => ({});
-const mapDispatch = (dispatch) => ({});
+const mapState = (state) => {
+  debugger;
+  return {
+    buggouts: Object.values(state.entities.buggouts),
+  };
+};
+const mapDispatch = (dispatch) => ({
+  fetchBuggouts: () => dispatch(fetchBuggouts()),
+});
 
 export default connect(mapState, mapDispatch)(BuggoutIndex);

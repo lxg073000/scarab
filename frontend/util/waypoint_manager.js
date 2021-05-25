@@ -14,9 +14,6 @@ export default class WaypointManager {
   }
 
   calcRoute(waypointMarkers, travelMode) {
-    debugger;
-
-    debugger;
     let start = waypointMarkers[0];
     let end = waypointMarkers[waypointMarkers.length - 1];
     let waypoints = [];
@@ -33,22 +30,21 @@ export default class WaypointManager {
       waypoints,
       travelMode,
     };
-    console.log(request);
+    // console.log(request);
 
     this.directionsService.route(request, (result, status) => {
       if (status == "OK") {
         this.directionsRenderer.setDirections(result);
         this.directionsRenderer.setMap(this.map);
         this.handleResult(result);
-        console.log(`request-${request}`);
-        console.log(`result-${result}`);
-        console.log(`status-${status}`);
+        // console.log(`request-${request}`);
+        // console.log(`result-${result}`);
+        // console.log(`status-${status}`);
       }
     });
   }
 
   handleResult(directionsResult) {
-    debugger;
     this.distance = 0;
     this.duration = 0;
     let legs = directionsResult.routes[0].legs;
@@ -84,7 +80,6 @@ export default class WaypointManager {
   }
 
   emptyRoute() {
-    debugger;
     let request = {
       origin: null,
       destination: null,

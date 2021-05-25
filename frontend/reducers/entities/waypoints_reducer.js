@@ -2,7 +2,6 @@ import { RECEIVE_WAYPOINTS } from "../../actions/waypoint";
 import { merge } from "lodash.merge";
 
 const WaypointsReducer = (oldState = {}, action) => {
-  debugger;
   Object.freeze(oldState);
   let nextState = Object.assign({}, oldState);
   switch (action.type) {

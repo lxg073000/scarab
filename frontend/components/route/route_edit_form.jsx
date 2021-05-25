@@ -41,7 +41,7 @@ export default class edit_form extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchRoutes();
+    this.props.fetchRoute(this.props.match.params.id);
 
     this.mapOptions = {
       clickableIcons: false,
@@ -72,7 +72,6 @@ export default class edit_form extends Component {
   }
 
   componentDidUpdate(previousProps) {
-    debugger;
     if (previousProps !== this.props) {
       this.setState(
         {
@@ -130,7 +129,7 @@ export default class edit_form extends Component {
   }
 
   // componentDidUpdate(previousProps, previousState, snapshot) {
-  //   debugger;
+  //
 
   //   if (previousState !== snapshot) {
   //     const waypointData = this.state.routes[this.props.match.params.id];
@@ -229,7 +228,6 @@ export default class edit_form extends Component {
     if (this.state.waypoints.length === 1) {
       this.deleteRoute();
     } else if (this.state.waypoints.length === 2) {
-      debugger;
       document.getElementById("duration").innerText = `0 hr 0 min`;
       document.getElementById("distance").innerText = `0.00 mi`;
       let myLatLng = [];
@@ -268,7 +266,6 @@ export default class edit_form extends Component {
 
   redoMarker() {
     if (this.state.undoneWaypoints.length === 1) {
-      debugger;
       this.setState(
         {
           waypoints: this.state.waypoints.concat(
@@ -291,7 +288,6 @@ export default class edit_form extends Component {
         () => this.handleMarkers()
       );
     } else {
-      debugger;
     }
   }
 
@@ -367,7 +363,6 @@ export default class edit_form extends Component {
   }
 
   updateRoute() {
-    debugger;
     const request = {
       id: this.state.id,
       user_id: currentUser.id,
@@ -424,7 +419,7 @@ export default class edit_form extends Component {
       ],
     };
     this.props.createRoute(request);
-    debugger;
+
     // myhistory.push(`#/routes_index/${currentUser.id}`);
     location.assign(`#/supply_routes/${currentUser.id}`);
     // location.assign(`#/splash!`);

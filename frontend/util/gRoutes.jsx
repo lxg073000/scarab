@@ -1,5 +1,4 @@
 export const API_saveRoute = function (google_route) {
-  debugger;
   // console.log(google_route);
   return $.ajax({
     method: "POST",
@@ -23,7 +22,6 @@ export const API_fetchRoute = (routeID) =>
     url: `/api/google_routes/${routeID}`,
   });
 export const API_editRoute = function (google_route) {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: `/api/google_routes/${google_route.id}`,

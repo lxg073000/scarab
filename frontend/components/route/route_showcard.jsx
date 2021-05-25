@@ -8,7 +8,6 @@ export default class route_showcard extends Component {
     super(props);
 
     this.state = {};
-    debugger;
 
     this.createMap = this.createMap.bind(this);
     this.drawRoute = this.drawRoute.bind(this);
@@ -20,7 +19,6 @@ export default class route_showcard extends Component {
     // setTimeout(this.createMap(), 20000);
   }
   componentDidUpdate(previousProps, previousState) {
-    debugger;
     // console.log(this.props.route);
     if (previousProps.route !== this.props.route) {
       //   console.log(this.props.route);
@@ -48,15 +46,12 @@ export default class route_showcard extends Component {
     }
   }
   createMap() {
-    debugger;
-
     this.map = new google.maps.Map(this.mapNode, { fullscreenControl: false });
 
     this.drawRoute(this.map);
   }
 
   drawRoute(map) {
-    debugger;
     this.WaypointManager = new WaypointManager(map);
 
     this.WaypointManager.calcRoute(

@@ -23,7 +23,6 @@ export default class route_showcard extends Component {
       waypoints: this.props.route.waypoints,
       travelMode: "WALKING",
     };
-    debugger;
 
     this.createMap = this.createMap.bind(this);
     this.drawRoute = this.drawRoute.bind(this);
@@ -35,7 +34,6 @@ export default class route_showcard extends Component {
     // setTimeout(this.createMap(), 20000);
   }
   componentDidUpdate(previousProps, previousState) {
-    debugger;
     // console.log(this.props.route);
     if (previousProps.route !== this.props.route) {
       //   this.setState({
@@ -61,7 +59,6 @@ export default class route_showcard extends Component {
     }
   }
   createMap() {
-    debugger;
     const mapOptions = {
       center: new google.maps.LatLng(
         parseFloat(this.props.route.center.split(",")[0]),
@@ -81,8 +78,6 @@ export default class route_showcard extends Component {
   }
 
   drawRoute(map) {
-    debugger;
-
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
       draggable: false,
@@ -108,9 +103,7 @@ export default class route_showcard extends Component {
     }
 
     this.WaypointManager = new WaypointManager(map);
-    debugger;
 
-    debugger;
     const request = {
       origin: {
         lat: this.state.origin.lat,
@@ -124,11 +117,9 @@ export default class route_showcard extends Component {
       travelMode: "WALKING",
       waypoints: waypoints,
     };
-    debugger;
 
     directionsService.route(request, function (result, status) {
       if (status === "OK") {
-        debugger;
         directionsRenderer.setDirections(result);
       }
     });

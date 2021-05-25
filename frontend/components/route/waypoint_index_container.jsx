@@ -4,7 +4,6 @@ import WaypointIndexCard from "./waypoint_index_card";
 import { withRouter } from "react-router-dom";
 
 const mapState = (state) => {
-  debugger;
   return {
     waypoints: Object.values(state.entities.waypoints),
   };
