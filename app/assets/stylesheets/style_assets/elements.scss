@@ -47,8 +47,23 @@
     background-color: #e34a00;
   }
 }
+.button-white {
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 0 0 1px #eaedf0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  width: fit-content;
+  transition: 300ms ease;
+  &:hover {
+    background-color: #ebebeb;
+  }
+}
 
-input {
+input,
+textarea {
   padding: 1em;
   margin: 1em 0;
   width: 100%;
