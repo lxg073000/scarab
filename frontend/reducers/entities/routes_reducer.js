@@ -31,7 +31,7 @@ const RoutesReducer = (oldState = {}, action) => {
     //   for (const route of action.user.google_routes) {
     //     nextState[route.id] = route;
     //   }
-    // return nextState;
+    //   return nextState;
     case LOGOUT_CURRENT_USER:
       return {};
     default:

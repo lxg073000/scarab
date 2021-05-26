@@ -19,7 +19,7 @@ export const receiveBuggout = (buggout) => ({
   type: RECEIVE_BUGGOUT,
   buggout,
 });
-export const removebuggout = (buggout_id) => ({
+export const removeBuggout = (buggout_id) => ({
   type: REMOVE_BUGGOUT,
   buggout_id,
 });

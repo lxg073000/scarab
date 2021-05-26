@@ -20,6 +20,10 @@ import buggout_form_new from "./buggouts/buggout_form_new_container";
 import buggout_form_edit from "./buggouts/buggout_form_edit_container";
 import buggout_index_container from "./buggouts/buggout_index_container";
 
+import post_form_new from "./posts/post_form_new_container";
+import post_form_edit from "./posts/post_form_edit_container";
+import post_index_container from "./posts/post_index_container";
+
 class App extends React.Component {
   render() {
     return (
@@ -87,6 +91,31 @@ class App extends React.Component {
             <ProtectedRoute
               path="/buggout/:buggout_id"
               component={buggout_form_edit}
+            />
+            <Footer />
+          </Route>
+        </Switch>
+
+<Switch>
+          <Route path="/posts">
+            <ProtectedRoute
+              path="/posts"
+              component={post_index_container}
+            />
+            <Footer />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/post/new">
+            <ProtectedRoute path="/post/new" component={post_form_new} />
+            <Footer />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/post/:post_id">
+            <ProtectedRoute
+              path="/post/:post_id"
+              component={post_form_edit}
             />
             <Footer />
           </Route>

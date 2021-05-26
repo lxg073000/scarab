@@ -102,6 +102,9 @@ class Nav_items extends React.Component {
             <li onClick={() => location.assign(`#/routes`)}>
               New Supply Route
             </li>
+            <li onClick={() => location.assign(`#/post/new`)}>
+              New Post
+            </li>
           </ul>
         </div>
       </div>

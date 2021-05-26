@@ -3,8 +3,9 @@ import {
   RECEIVE_BUGGOUT,
   REMOVE_BUGGOUT,
 } from "../../actions/buggouts";
+import { LOGOUT_CURRENT_USER } from "../../actions/session";
 
-const RoutesReducer = (oldState = {}, action) => {
+const BuggoutsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   let nextState = Object.assign({}, oldState);
   switch (action.type) {
@@ -19,9 +20,11 @@ const RoutesReducer = (oldState = {}, action) => {
     case REMOVE_BUGGOUT:
       delete nextState[action.buggout_id.id];
       return nextState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return oldState;
   }
 };
 
-export default RoutesReducer;
+export default BuggoutsReducer;
