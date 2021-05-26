@@ -8,6 +8,15 @@ export default class buggout_index_card extends Component {
   componentDidMount() {
     this.props.fetchBuggouts();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      // this.props.fetchBuggouts();
+    }
+  }
+
+  deleteBuggout(buggoutID) {
+    this.props.deleteBuggout(buggoutID);
+  }
 
   render() {
     return (
@@ -34,43 +43,68 @@ export default class buggout_index_card extends Component {
           </section>
           <section className="route-index-routes">
             <h2>{this.props.buggouts.length} Activities</h2>
-            <div className="float-card">
+            <div className="float-card buggout-index-card">
               <table>
                 <thead>
                   <tr>
+                    <th>Transportation</th>
+                    <th>Date</th>
                     <th>Title</th>
                     <th>Description</th>
-                    <th>Date Completed</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
-                {this.props.buggouts.map((buggout) => (
-                  <tbody key={`${buggout.id}-tbody`}>
+                <tbody>
+                  {this.props.buggouts.map((buggout) => (
                     <tr key={`${buggout.id}-tr`}>
-                      <td key={`${buggout.id}-title`}>{buggout.title}</td>
-                      <td key={`${buggout.id}-description`}>
-                        {buggout.description}
+                      <td key={`${buggout.id}-travelMode`}>
+                        {buggout.travelMode}
                       </td>
                       <td key={`${buggout.id}-date_completed`}>
                         {buggout.date_completed}
+                      </td>
+                      <td
+                        className="accent3 link"
+                        key={`${buggout.id}-title`}
+                        onClick={() =>
+                          location.assign(`#/buggout/${buggout.id}`)
+                        }
+                      >
+                        {buggout.title}
+                      </td>
+                      <td key={`${buggout.id}-description`}>
+                        {buggout.description}
                       </td>
                       <td key={`${buggout.id}-start_time`}>
                         {buggout.start_time}
                       </td>
                       <td key={`${buggout.id}-end_time`}>{buggout.end_time}</td>
-                      <td className="accent link" key={`${buggout.id}-edit`}>
+                      <td
+                        className="accent3 link"
+                        key={`${buggout.id}-edit`}
+                        onClick={() =>
+                          location.assign(`#/buggout/${buggout.id}`)
+                        }
+                      >
                         Edit
                       </td>
-                      <td className="accent link" key={`${buggout.id}-delete`}>
+                      <td
+                        className="accent3 link"
+                        key={`${buggout.id}-delete`}
+                        onClick={() => this.deleteBuggout(buggout.id)}
+                      >
                         Delete
                       </td>
-                      <td className="accent link" key={`${buggout.id}-share`}>
+                      <td className="accent3 link" key={`${buggout.id}-share`}>
                         Share
                       </td>
                     </tr>
-                  </tbody>
-                ))}
+                  ))}
+                </tbody>
               </table>
             </div>
           </section>

@@ -71,3 +71,24 @@ section.right {
   width: 100%;
   background: rgb(249, 252, 255);
 }
+
+//BUGGOUT INDEX
+
+.buggout-index-card {
+  display: grid;
+  text-align: left;
+  td,
+  th {
+    padding: 0.5em;
+  }
+  th {
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background: #e2e2e257;
+  }
+  thead {
+    background: #e2e2e257;
+    border-bottom: 2px solid #6d6d7824;
+  }
+}

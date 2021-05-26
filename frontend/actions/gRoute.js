@@ -40,42 +40,42 @@ export const clearRouteErrors = () => ({
 export const fetchCurrentUserRoutes = (user_id) =>
   function (dispatch) {
     return API_fetchCurrentUserRoutes(user_id).then(
-      (routes) => dispatch(receiveRoutes(routes))
-      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (routes) => dispatch(receiveRoutes(routes)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
 export const fetchRoutes = () =>
   function (dispatch) {
     return API_fetchRoutes().then(
-      (routes) => dispatch(receiveRoutes(routes))
-      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (routes) => dispatch(receiveRoutes(routes)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
 export const fetchRoute = (route_id) =>
   function (dispatch) {
     return API_fetchRoute(route_id).then(
-      (route) => dispatch(receiveRoute(route))
-      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (route) => dispatch(receiveRoute(route)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
 export const createRoute = (route) =>
   function (dispatch) {
     return API_saveRoute(route).then(
-      (route) => dispatch(receiveRoute(route))
-      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (route) => dispatch(receiveRoute(route)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
 export const editRoute = (route) =>
   function (dispatch) {
     return API_editRoute(route).then(
-      (route) => dispatch(updateRoute(route))
-      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (route) => dispatch(updateRoute(route)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
 export const deleteRoute = (route_id) =>
   function (dispatch) {
     return API_deleteRoute(route_id).then(
-      (route) => dispatch(removeRoute(route.id))
-      // (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (route) => dispatch(removeRoute(route.id)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };

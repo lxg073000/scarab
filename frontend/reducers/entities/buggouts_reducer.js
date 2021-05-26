@@ -17,7 +17,7 @@ const RoutesReducer = (oldState = {}, action) => {
       });
       return nextState;
     case REMOVE_BUGGOUT:
-      delete nextState[action.buggout_id];
+      delete nextState[action.buggout_id.id];
       return nextState;
     default:
       return oldState;

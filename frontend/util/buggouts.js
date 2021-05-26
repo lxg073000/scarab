@@ -9,15 +9,17 @@ export const API_createBuggout = (buggout) =>
     url: `/api/buggouts`,
     data: buggout,
   });
-export const API_updateBuggout = (buggout) =>
-  $.ajax({
+export const API_updateBuggout = function (buggout) {
+  debugger;
+  return $.ajax({
     method: "PATCH",
-    url: `/api/buggouts/${buggout.id}`,
+    url: `/api/buggouts/${buggout.buggout.id}`,
     data: buggout,
   });
+};
 export const API_deleteBuggout = function (buggout_id) {
   return $.ajax({
     method: "DELETE",
-    url: `/api/google_routes/${buggout_id}`,
+    url: `/api/buggouts/${buggout_id}`,
   });
 };

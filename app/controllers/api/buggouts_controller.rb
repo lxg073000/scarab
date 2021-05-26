@@ -38,7 +38,7 @@ class Api::BuggoutsController < ApplicationController
 
   def destroy
      @buggout = Buggout.find(params[:id])
-    if (@buggout.user_id === current_user.id && @gRoute)
+    if (@buggout.user_id === current_user.id && @buggout)
       @buggout.delete
       render json: @buggout, status: 200
     else
@@ -47,6 +47,6 @@ class Api::BuggoutsController < ApplicationController
   end
 
   def buggoutParams
-    params.require(:buggout).permit(:google_route_id, :user_id, :title, :description, :date_completed, :start_time, :end_time)
+    params.require(:buggout).permit(:google_route_id, :user_id, :title, :description, :travelMode, :date_completed, :start_time, :end_time)
   end
 end

@@ -53,10 +53,10 @@ export const updateBuggout = (buggout) =>
       (errors) => dispatch(receiveBuggoutErrors(errors.responseJSON))
     );
   };
-export const deleteBuggout = (buggout) =>
+export const deleteBuggout = (buggout_id) =>
   function (dispatch) {
-    return API_deleteBuggout(buggout).then(
-      (buggout) => dispatch(removeBuggout(buggout)),
+    return API_deleteBuggout(buggout_id).then(
+      (buggout) => dispatch(removebuggout(buggout)),
       (errors) => dispatch(receiveBuggoutErrors(errors.responseJSON))
     );
   };

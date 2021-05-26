@@ -12,10 +12,6 @@ export default class dashboard extends Component {
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser);
   }
-  componentDidUpdate() {
-    // this.props.receiveCurrentUser(this.props.currentUser.id);
-    console.log(this.state.currentUser);
-  }
 
   handleSubmit(e) {
     e.preventDefault();

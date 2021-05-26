@@ -16,7 +16,8 @@ import search_container from "./googleMap/search_container";
 import route_index_card_container from "./route/route_index_card_container";
 import route_showcard_container from "./route/route_showcard_container";
 import Footer from "./nav/footer_white";
-import buggout_form_new from "./buggouts/buggout_form_new";
+import buggout_form_new from "./buggouts/buggout_form_new_container";
+import buggout_form_edit from "./buggouts/buggout_form_edit_container";
 import buggout_index_container from "./buggouts/buggout_index_container";
 
 class App extends React.Component {
@@ -78,6 +79,15 @@ class App extends React.Component {
         <Switch>
           <Route path="/buggout/new">
             <ProtectedRoute path="/buggout/new" component={buggout_form_new} />
+            <Footer />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/buggout/:buggout_id">
+            <ProtectedRoute
+              path="/buggout/:buggout_id"
+              component={buggout_form_edit}
+            />
             <Footer />
           </Route>
         </Switch>

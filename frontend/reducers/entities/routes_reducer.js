@@ -8,7 +8,6 @@ import {
   LOGOUT_CURRENT_USER,
   RECEIVE_CURRENT_USER,
 } from "../../actions/session";
-import { merge } from "lodash.merge";
 
 const RoutesReducer = (oldState = {}, action) => {
   Object.freeze(oldState);

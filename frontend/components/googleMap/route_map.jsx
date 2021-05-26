@@ -66,7 +66,6 @@ export default class route_map extends Component {
     google.maps.event.addListener(this.map, "click", (e) => {
       this.addMarkerToMap(e.latLng, this.map);
     });
-    console.log(this.props);
   }
 
   componentDidUpdate() {
