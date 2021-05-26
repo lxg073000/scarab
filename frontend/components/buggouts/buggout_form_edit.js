@@ -44,7 +44,7 @@ class buggout_form_edit extends Component {
       },
     };
     this.props.updateBuggout(buggout);
-    location.assign("#/buggouts/");
+    this.setState({}, location.assign("#/buggouts/"));
   }
 
   updateSelected(e) {

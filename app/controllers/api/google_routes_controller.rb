@@ -1,15 +1,16 @@
 class Api::GoogleRoutesController < ApplicationController
 
   def index
-    if params[:user_id]
-      @gRoutes = GoogleRoute.where({user_id: current_user.id})
+    
+    if params[:google_route]
+      @gRoutes = GoogleRoute.where({user_id: current_user.id, travelMode:[routeParams[:filter]] })
         if @gRoutes
           render "api/google_routes/index"
         else
           render json: @gRoutes.errors.full_messages, status: 422
         end
     else 
-      @gRoutes = GoogleRoute.all
+      @gRoutes = GoogleRoute.where({user_id: current_user.id })
       if @gRoutes
         render "api/google_routes/index"
       else
@@ -64,7 +65,7 @@ class Api::GoogleRoutesController < ApplicationController
   private
 
   def routeParams
-    params.require(:google_route).permit(:id, :user_id, :name, :description, :duration, :distance, :travelMode, :center, :zoom, :waypoints => [])
+    params.require(:google_route).permit(:id, :filter, :user_id, :name, :description, :duration, :distance, :travelMode, :center, :zoom, :waypoints => [])
   end
 
 end

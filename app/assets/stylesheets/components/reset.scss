@@ -158,3 +158,13 @@ link {
 h1 {
   font-size: 34px;
 }
+
+.null::selection,
+.selected::selection,
+img::selection,
+.nav-bar *::selection,
+.logo::selection,
+.footer *::selection {
+  background: inherit;
+  color: inherit;
+}

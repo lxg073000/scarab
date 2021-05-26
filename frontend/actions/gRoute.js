@@ -11,6 +11,9 @@ import {
   API_fetchRoute,
   API_editRoute,
   API_deleteRoute,
+  API_fetchCurrentUserRoutes_walking,
+  API_fetchCurrentUserRoutes_driving,
+  API_fetchCurrentUserRoutes_bicycling,
 } from "../util/gRoutes";
 
 export const receiveRoutes = (routes) => ({
@@ -29,7 +32,7 @@ export const removeRoute = (route_id) => ({
   type: REMOVE_ROUTE,
   route_id,
 });
-export const receiveWaypointErrors = (errors) => ({
+export const receiveRouteErrors = (errors) => ({
   type: RECEIVE_ROUTE_ERRORS,
   errors,
 });
@@ -37,10 +40,36 @@ export const clearRouteErrors = () => ({
   type: CLEAR_ROUTE_ERRORS,
 });
 
+export const filterRoutes = (routes) => ({
+  type: RECEIVE_ROUTES,
+  routes,
+});
+
 export const fetchCurrentUserRoutes = (user_id) =>
   function (dispatch) {
     return API_fetchCurrentUserRoutes(user_id).then(
       (routes) => dispatch(receiveRoutes(routes)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+    );
+  };
+export const fetchCurrentUserRoutes_walking = (user_id) =>
+  function (dispatch) {
+    return API_fetchCurrentUserRoutes_walking(user_id).then(
+      (routes) => dispatch(filterRoutes(routes)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+    );
+  };
+export const fetchCurrentUserRoutes_driving = (user_id) =>
+  function (dispatch) {
+    return API_fetchCurrentUserRoutes_driving(user_id).then(
+      (routes) => dispatch(filterRoutes(routes)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+    );
+  };
+export const fetchCurrentUserRoutes_bicycling = (user_id) =>
+  function (dispatch) {
+    return API_fetchCurrentUserRoutes_bicycling(user_id).then(
+      (routes) => dispatch(filterRoutes(routes)),
       (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
@@ -68,7 +97,7 @@ export const createRoute = (route) =>
 export const editRoute = (route) =>
   function (dispatch) {
     return API_editRoute(route).then(
-      (route) => dispatch(updateRoute(route)),
+      (route) => dispatch(receiveRoute(route)),
       (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };

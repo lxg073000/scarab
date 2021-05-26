@@ -16,6 +16,21 @@ export const API_fetchCurrentUserRoutes = (user_id) =>
     method: "GET",
     url: `/api/users/${user_id}/google_routes/`,
   });
+export const API_fetchCurrentUserRoutes_driving = (user_id) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/users/${user_id}/google_routes/?google_route[filter]=DRIVING`,
+  });
+export const API_fetchCurrentUserRoutes_bicycling = (user_id) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/users/${user_id}/google_routes/?google_route[filter]=BICYCLING`,
+  });
+export const API_fetchCurrentUserRoutes_walking = (user_id) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/users/${user_id}/google_routes/?google_route[filter]=WALKING`,
+  });
 export const API_fetchRoute = (routeID) =>
   $.ajax({
     method: "GET",

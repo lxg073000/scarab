@@ -165,7 +165,13 @@
 }
 
 .selected {
-  background: orangered;
+  background: #017fb6;
+  color: white;
+  &:hover {
+    background: #017fb6 !important;
+    color: white !important;
+    cursor: default !important;
+  }
 }
 
 .route-shell {

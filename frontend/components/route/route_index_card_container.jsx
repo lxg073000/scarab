@@ -1,5 +1,8 @@
 import {
   fetchCurrentUserRoutes,
+  fetchCurrentUserRoutes_walking,
+  fetchCurrentUserRoutes_driving,
+  fetchCurrentUserRoutes_bicycling,
   fetchRoutes,
   fetchRoute,
   createRoute,
@@ -14,11 +17,26 @@ const mapState = (state) => {
   return {
     routes: Object.values(state.entities.routes),
     entities: Object.values(state.entities),
+    walking: Object.values(state.entities.routes).filter(
+      (route) => route.travelMode === "WALKING"
+    ),
+    driving: Object.values(state.entities.routes).filter(
+      (route) => route.travelMode === "DRIVING"
+    ),
+    bicycling: Object.values(state.entities.routes).filter(
+      (route) => route.travelMode === "BICYCLING"
+    ),
   };
 };
 
 const mapDispatch = (dispatch) => ({
   fetchCurrentUserRoutes: (id) => dispatch(fetchCurrentUserRoutes(id)),
+  fetchCurrentUserRoutes_walking: (id) =>
+    dispatch(fetchCurrentUserRoutes_walking(id)),
+  fetchCurrentUserRoutes_driving: (id) =>
+    dispatch(fetchCurrentUserRoutes_driving(id)),
+  fetchCurrentUserRoutes_bicycling: (id) =>
+    dispatch(fetchCurrentUserRoutes_bicycling(id)),
   fetchRoutes: () => dispatch(fetchRoutes()),
   fetchRoute: () => dispatch(fetchRoute(route_id)),
   createRoute: () => dispatch(createRoute(route)),
