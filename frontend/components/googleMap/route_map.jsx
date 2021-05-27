@@ -68,10 +68,6 @@ export default class route_map extends Component {
     });
   }
 
-  componentDidUpdate() {
-    // console.log(this.props.routeData.name);
-  }
-
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(this.map);
   }

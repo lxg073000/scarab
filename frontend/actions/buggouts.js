@@ -35,7 +35,7 @@ export const fetchBuggouts = () =>
   function (dispatch) {
     return API_fetchBuggouts().then(
       (buggouts) => dispatch(receiveBuggouts(buggouts)),
-      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (errors) => dispatch(receiveBuggoutErrors(errors.responseJSON))
     );
   };
 

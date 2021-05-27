@@ -14,15 +14,11 @@ export default class route_showcard extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.route);
     this.createMap();
     // setTimeout(this.createMap(), 20000);
   }
   componentDidUpdate(previousProps, previousState) {
-    // console.log(this.props.route);
     if (previousProps.route !== this.props.route) {
-      //   console.log(this.props.route);
-      //   console.log(previousProps.route);
       //   this.setState({
       //     origin: {
       //       lat: parseFloat(this.props.route.origin.slice(1, -1).split(",")[0]),

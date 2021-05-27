@@ -35,7 +35,7 @@ export const fetchPosts = () =>
   function (dispatch) {
     return API_fetchPosts().then(
       (posts) => dispatch(receivePosts(posts)),
-      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+      (errors) => dispatch(receivePostErrors(errors.responseJSON))
     );
   };
 

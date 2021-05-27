@@ -29,12 +29,10 @@ export default class route_showcard extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.route);
     this.createMap();
     // setTimeout(this.createMap(), 20000);
   }
   componentDidUpdate(previousProps, previousState) {
-    // console.log(this.props.route);
     if (previousProps.route !== this.props.route) {
       //   this.setState({
       //     origin: {

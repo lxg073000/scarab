@@ -14,6 +14,7 @@ export default class dashboard extends Component {
     this.props.fetchUser(this.props.currentUser);
     this.props.fetchRoutes();
     this.props.fetchBuggouts();
+    this.props.fetchPosts();
   }
   componentDidUpdate() {
     // this.props.receiveCurrentUser(this.props.currentUser.id);
@@ -35,7 +36,7 @@ export default class dashboard extends Component {
               />
             </section>
             <section className="activity-pane">
-              <Activity />
+              <Activity posts={this.props.posts} />
             </section>
             <section className="about-pane">
               <About />

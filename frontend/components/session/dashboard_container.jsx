@@ -7,6 +7,7 @@ import {
 import Dashboard from "./dashboard";
 import { fetchRoutes } from "../../actions/gRoute";
 import { fetchBuggouts } from "../../actions/buggouts";
+import { fetchPosts } from "../../actions/posts";
 
 const mapState = (state) => {
   return {
@@ -17,11 +18,11 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => ({
   fetchUser: (userID) => dispatch(fetchUser(userID)),
+  fetchPosts: () => dispatch(fetchPosts()),
   fetchRoutes: () => dispatch(fetchRoutes()),
   fetchBuggouts: () => dispatch(fetchBuggouts()),
   receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),
   clearSessionErrors: () => dispatch(clearSessionErrors()),
-  fetchWaypoints: () => dispatch(fetchWaypoints()),
 });
 
 export default connect(mapState, mapDispatch)(Dashboard);
