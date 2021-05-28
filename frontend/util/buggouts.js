@@ -17,9 +17,9 @@ export const API_updateBuggout = function (buggout) {
     data: buggout,
   });
 };
-export const API_deleteBuggout = function (buggout_id) {
+export const API_deleteBuggout = function (activity_id) {
   return $.ajax({
     method: "DELETE",
-    url: `/api/buggouts/${buggout_id}`,
+    url: `/api/buggouts/${activity_id}`,
   });
 };

@@ -96,14 +96,14 @@ class Nav_items extends React.Component {
         >
           <i className="fas fa-plus"></i>
           <ul className={`dropdown-menu-right ${this.state.plus}`}>
-            <li onClick={() => location.assign(`#/buggout/new`)}>
-              New Buggout
+            <li onClick={() => this.props.history.push(`/activity`)}>
+              Upload Activity
             </li>
-            <li onClick={() => location.assign(`#/routes`)}>
-              New Supply Route
+            <li onClick={() => this.props.history.push(`/routes`)}>
+              Create a Route
             </li>
-            <li onClick={() => location.assign(`#/post/new`)}>
-              New Post
+            <li onClick={() => this.props.history.push(`/post`)}>
+              Create a Post
             </li>
           </ul>
         </div>
@@ -135,17 +135,19 @@ ${this.state.nav}`}
                   onMouseEnter={this.dropdown("dashboard")}
                   onMouseLeave={this.dropdown("dashboard")}
                 >
-                  <li onClick={() => location.assign(`#/dashboard/`)}>
+                  <li onClick={() => this.props.history.push(`/dashboard`)}>
                     Dashboard
                     <i className="fas fa-chevron-down"></i>
                   </li>
                   <ul className={`dropdown-menu-left ${this.state.dashboard}`}>
-                    <li onClick={() => location.assign(`#/dashboard`)}>
-                      My Activity
+                    <li onClick={() => this.props.history.push(`/dashboard`)}>
+                      Activity Feed
                     </li>
                     <li
                       onClick={() =>
-                        location.assign(`#/supply_routes/${currentUser.id}`)
+                        this.props.history.push(
+                          `/supply_routes/${currentUser.id}`
+                        )
                       }
                     >
                       Supply Routes
@@ -166,8 +168,8 @@ ${this.state.nav}`}
                   </li>
 
                   <ul className={`dropdown-menu-left ${this.state.training}`}>
-                    <li onClick={() => location.assign(`#/buggouts`)}>
-                      My Buggouts
+                    <li onClick={() => this.props.history.push(`/activities`)}>
+                      My Activities
                     </li>
                   </ul>
                 </ul>

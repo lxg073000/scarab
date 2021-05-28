@@ -1,7 +1,7 @@
 class Api::BuggoutsController < ApplicationController
 
   def index
-    @buggouts = Buggout.where({user_id: current_user.id})
+    @buggouts = Buggout.where({user_id: current_user.id}).order(description: :asc)
         if @buggouts
           render :index
         else

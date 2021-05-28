@@ -26,15 +26,15 @@
 }
 
 .dashboard-container {
-  section:nth-child(1) {
+  & > section:nth-child(1) {
     flex: 0 1 auto;
     // display: grid;
     // place-content: center;
   }
-  section:nth-child(2) {
-    flex: 0 1 auto;
+  & > section:nth-child(2) {
+    flex: 0 1 41em;
   }
-  section:nth-child(3) {
+  & > section:nth-child(3) {
     flex: 0 1 auto;
   }
 }

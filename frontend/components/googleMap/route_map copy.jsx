@@ -124,9 +124,7 @@ export default class route_map extends Component {
     };
     this.props.createRoute(request);
 
-    // myhistory.push(`#/routes_index/${currentUser.id}`);
-    location.assign(`#/routes_index/${currentUser.id}`);
-    // location.assign(`#/splash!`);
+    this.props.history.push(`/routes_index/${currentUser.id}`);
   }
 
   render() {

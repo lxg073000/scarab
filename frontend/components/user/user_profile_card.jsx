@@ -1,6 +1,6 @@
 import React from "react";
 
-const user_profile_card = ({ buggouts, routes }) => {
+const user_profile_card = ({ buggouts, routes, to_activities }) => {
   debugger;
   return (
     <div className="profile-shell float-card">
@@ -17,12 +17,14 @@ const user_profile_card = ({ buggouts, routes }) => {
         </div>
         <div className="profile-stat-item">
           <h3>Activities</h3>
-          <h1>{buggouts ? buggouts.length : 0}</h1>
+          <h1 className="link accent4" onClick={to_activities}>
+            {buggouts ? buggouts.length : 0}
+          </h1>
         </div>
       </div>
       <div className="training-stats">
         <section>
-          <h3>Latest Activity</h3>
+          <h3>Latest Training</h3>
           <h3 className="bold">
             {buggouts.length > 0
               ? `${
@@ -36,8 +38,8 @@ const user_profile_card = ({ buggouts, routes }) => {
           </h3>
         </section>
         <section>
-          <h2 className="link">
-            Your Activity Log<i className="fas fa-chevron-right"></i>
+          <h2 className="link" onClick={to_activities}>
+            Your Training Log<i className="fas fa-chevron-right"></i>
           </h2>
         </section>
       </div>

@@ -33,10 +33,23 @@ export default class dashboard extends Component {
               <UserInfo
                 buggouts={this.props.buggouts}
                 routes={this.props.routes}
+                to_activities={() => this.props.history.push("/activities")}
               />
             </section>
             <section className="activity-pane">
-              <Activity posts={this.props.posts} />
+              {Object.entries(this.props.posts).length > 0 ? (
+                this.props.posts.map((post) => (
+                  <Activity
+                    key={post.id}
+                    post={post}
+                    deletePost={this.props.deletePost}
+                  />
+                ))
+              ) : (
+                <p className="float-card post-item">
+                  Welcome, get started by...
+                </p>
+              )}
             </section>
             <section className="about-pane">
               <About />

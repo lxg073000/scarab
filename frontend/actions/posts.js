@@ -56,7 +56,7 @@ export const updatePost = (post) =>
 export const deletePost = (post_id) =>
   function (dispatch) {
     return API_deletePost(post_id).then(
-      (post) => dispatch(removepost(post)),
+      (post) => dispatch(removePost(post)),
       (errors) => dispatch(receivePostErrors(errors.responseJSON))
     );
   };

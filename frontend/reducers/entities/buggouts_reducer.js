@@ -18,7 +18,7 @@ const BuggoutsReducer = (oldState = {}, action) => {
       });
       return nextState;
     case REMOVE_BUGGOUT:
-      delete nextState[action.buggout_id.id];
+      delete nextState[action.activity_id.id];
       return nextState;
     case LOGOUT_CURRENT_USER:
       return {};

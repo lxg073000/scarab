@@ -377,7 +377,7 @@ export default class edit_form extends Component {
     };
 
     this.props.updateRoute(request);
-    location.assign(`#/supply_routes/${currentUser.id}`);
+    this.props.history.push(`/supply_routes/${currentUser.id}`);
   }
 
   drawRouteDirections() {
@@ -420,9 +420,7 @@ export default class edit_form extends Component {
     };
     this.props.createRoute(request);
 
-    // myhistory.push(`#/routes_index/${currentUser.id}`);
-    location.assign(`#/supply_routes/${currentUser.id}`);
-    // location.assign(`#/splash!`);
+    this.props.history.push(`/supply_routes/${currentUser.id}`);
   }
 
   prefToggle() {

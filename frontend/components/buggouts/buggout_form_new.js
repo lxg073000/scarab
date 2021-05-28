@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RouteThumbnail from "../googleMap/route_thumbnail_container";
 
 class buggout_form_new extends Component {
   constructor(props) {
@@ -18,11 +19,11 @@ class buggout_form_new extends Component {
       buggout: {
         user_id: currentUser.id,
         google_route_id: document
-          .getElementById("supply-routes")
+          .getElementById("new-supply-routes")
           .value.split(",")[1],
         date_completed: document.getElementById("date-val").value,
         travelMode: document
-          .getElementById("supply-routes")
+          .getElementById("new-supply-routes")
           .value.split(",")[0],
         title: document.getElementById("title-val").value,
         description: document.getElementById("description-val").value,
@@ -31,6 +32,7 @@ class buggout_form_new extends Component {
       },
     };
     this.props.createBuggout(buggout);
+    this.props.history.push(`/activities`);
   }
 
   render() {
@@ -43,7 +45,7 @@ class buggout_form_new extends Component {
       <div className="component-container-main">
         <div className="new-buggout-shell">
           <header className="buggout-new">
-            <h1 className="bold">Upload Buggout</h1>
+            <h1 className="bold">Upload Activity</h1>
           </header>
           <main className="buggout-details">
             <section className="left">
@@ -69,12 +71,12 @@ class buggout_form_new extends Component {
                 className="button-orange"
                 onClick={() => this.submitBuggout()}
               >
-                Save Buggout
+                Save Activity
               </h2>
             </section>
             <section className="right">
               <div className="supply-route-select">
-                <select id="supply-routes" name="supply-routes">
+                <select id="new-supply-routes" name="new-supply-routes">
                   <option value="SELECT ROUTE">SELECT ROUTE</option>
                   {routeNames.map((route, idx) => (
                     <option key={idx} value={`${route.travelMode},${route.id}`}>
@@ -82,18 +84,27 @@ class buggout_form_new extends Component {
                     </option>
                   ))}
                 </select>
-                {document.getElementById("supply-routes") ? (
+                {document.getElementById("new-supply-routes") ? (
                   <i
                     className={
                       document
-                        .getElementById("supply-routes")
+                        .getElementById("new-supply-routes")
                         .value.split(",")[1]
                     }
                   ></i>
                 ) : null}
               </div>
 
-              <div className="supply-route-map"></div>
+              {document.getElementById("new-supply-routes") &&
+              document.getElementById("new-supply-routes").value ? (
+                <RouteThumbnail
+                  route={
+                    this.props.routes[
+                      document.getElementById("new-supply-routes").value
+                    ]
+                  }
+                />
+              ) : null}
             </section>
           </main>
         </div>

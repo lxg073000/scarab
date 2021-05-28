@@ -42,7 +42,10 @@ export default class route_showcard extends Component {
     }
   }
   createMap() {
-    this.map = new google.maps.Map(this.mapNode, { fullscreenControl: false });
+    this.map = new google.maps.Map(this.mapNode, {
+      fullscreenControl: false,
+      disableDefaultUI: true,
+    });
 
     this.drawRoute(this.map);
   }
@@ -74,7 +77,7 @@ export default class route_showcard extends Component {
             <p
               className="option-item"
               onClick={() =>
-                location.assign(`#/route/${this.props.route.id}/edit`)
+                this.props.history.push(`/route/${this.props.route.id}/edit`)
               }
             >
               Edit Route

@@ -88,7 +88,7 @@ export default class route_index_card extends Component {
               <h1 className="bold">My Routes</h1>
               <h2
                 className="button-orange"
-                onClick={() => location.assign(`#/routes/`)}
+                onClick={() => this.props.history.push(`/routes/`)}
               >
                 Create New Route
               </h2>

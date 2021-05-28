@@ -265,7 +265,7 @@ export default class route_map extends Component {
     };
 
     this.props.createRoute(request);
-    location.assign(`#/supply_routes/${currentUser.id}`);
+    this.props.history.push(`/supply_routes/${currentUser.id}`);
   }
 
   drawRouteDirections() {
@@ -307,9 +307,7 @@ export default class route_map extends Component {
       ],
     };
     this.props.createRoute(request);
-    // myhistory.push(`#/routes_index/${currentUser.id}`);
-    location.assign(`#/supply_routes/${currentUser.id}`);
-    // location.assign(`#/splash!`);
+    this.props.history.push(`/supply_routes/${currentUser.id}`);
   }
 
   prefToggle() {

@@ -19,9 +19,9 @@ export const receiveBuggout = (buggout) => ({
   type: RECEIVE_BUGGOUT,
   buggout,
 });
-export const removeBuggout = (buggout_id) => ({
+export const removeBuggout = (activity_id) => ({
   type: REMOVE_BUGGOUT,
-  buggout_id,
+  activity_id,
 });
 export const receiveBuggoutErrors = (errors) => ({
   type: RECEIVE_BUGGOUT_ERRORS,
@@ -53,10 +53,10 @@ export const updateBuggout = (buggout) =>
       (errors) => dispatch(receiveBuggoutErrors(errors.responseJSON))
     );
   };
-export const deleteBuggout = (buggout_id) =>
+export const deleteBuggout = (activity_id) =>
   function (dispatch) {
-    return API_deleteBuggout(buggout_id).then(
-      (buggout) => dispatch(removebuggout(buggout)),
+    return API_deleteBuggout(activity_id).then(
+      (buggout) => dispatch(removeBuggout(buggout)),
       (errors) => dispatch(receiveBuggoutErrors(errors.responseJSON))
     );
   };

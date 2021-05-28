@@ -155,7 +155,9 @@ export default class route_showcard extends Component {
                 <h1
                   className="main-form-btn"
                   onClick={() =>
-                    location.assign(`#/route/${this.props.route.id}/edit`)
+                    this.props.history.push(
+                      `/route/${this.props.route.id}/edit`
+                    )
                   }
                 >
                   EDIT

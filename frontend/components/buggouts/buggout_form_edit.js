@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RouteThumbnail from "../googleMap/route_thumbnail_container";
 
 class buggout_form_edit extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class buggout_form_edit extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
-        ...this.props.buggouts[this.props.match.params.buggout_id],
+        ...this.props.buggouts[this.props.match.params.activity_id],
       });
     }
   }
@@ -35,16 +36,16 @@ class buggout_form_edit extends Component {
         id: this.state.id,
         user_id: this.state.user_id,
         google_route_id: this.state.google_route_id,
-        date_completed: document.getElementById("date-val").value,
+        date_completed: document.getElementById("edit-date-val").value,
         travelMode: this.props.routes[this.state.google_route_id].travelMode,
-        title: document.getElementById("title-val").value,
-        description: document.getElementById("description-val").value,
-        start_time: document.getElementById("start-val").value,
-        end_time: document.getElementById("end-val").value,
+        title: document.getElementById("edit-title-val").value,
+        description: document.getElementById("edit-description-val").value,
+        start_time: document.getElementById("edit-start-val").value,
+        end_time: document.getElementById("edit-end-val").value,
       },
     };
     this.props.updateBuggout(buggout);
-    this.setState({}, location.assign("#/buggouts/"));
+    this.setState({}, this.props.history.push("/activities/"));
   }
 
   updateSelected(e) {
@@ -63,20 +64,20 @@ class buggout_form_edit extends Component {
       <div className="component-container-main">
         <div className="new-buggout-shell">
           <header className="buggout-new">
-            <h1 className="bold">Edit Buggout</h1>
+            <h1 className="bold">Edit Activity</h1>
           </header>
           <main className="buggout-details">
             <section className="left">
               <h2 className="bold">Title</h2>
               <input
-                id="title-val"
+                id="edit-title-val"
                 type="text"
                 className="text"
                 defaultValue={this.state.title}
               />
               <h2 className="bold">Description</h2>
               <input
-                id="description-val"
+                id="edit-description-val"
                 type="text"
                 className="text"
                 defaultValue={this.state.description}
@@ -85,7 +86,7 @@ class buggout_form_edit extends Component {
                 <div className="time-item">
                   <h2 className="bold">Date Completed</h2>
                   <input
-                    id="date-val"
+                    id="edit-date-val"
                     type="date"
                     defaultValue={this.state.date_completed}
                   />
@@ -93,7 +94,7 @@ class buggout_form_edit extends Component {
                 <div className="time-item">
                   <h2 className="bold">Start Time</h2>
                   <input
-                    id="start-val"
+                    id="edit-start-val"
                     type="time"
                     defaultValue={this.state.start_time}
                   />
@@ -101,28 +102,36 @@ class buggout_form_edit extends Component {
                 <div className="time-item">
                   <h2 className="bold">End Time</h2>
                   <input
-                    id="end-val"
+                    id="edit-end-val"
                     type="time"
                     defaultValue={this.state.end_time}
                   />
                 </div>
               </div>
-              <h2
-                className="button-orange"
-                onClick={() => this.updateBuggout()}
-              >
-                Update Buggout
-              </h2>
+              <div className="buttons-div">
+                <h2
+                  className="button-orange"
+                  onClick={() => this.updateBuggout()}
+                >
+                  Update Activity
+                </h2>
+                <h2
+                  className="button-white"
+                  onClick={() => this.props.history.push("/activities")}
+                >
+                  Discard Changes
+                </h2>
+              </div>
             </section>
             <section className="right">
               <div className="supply-route-select">
                 <select
-                  id="supply-routes"
+                  id="edit-supply-routes"
                   name="supply-routes"
                   value={this.state.google_route_id.toString()}
                   onChange={(e) => this.updateSelected(e)}
                 >
-                  <option value="SELECT ROUTE">SELECT ROUTE</option>
+                  <option value={undefined}>SELECT ROUTE</option>
                   {routeNames.map((route, idx) => (
                     <option key={idx} value={route.id}>
                       {route.name}
@@ -140,7 +149,16 @@ class buggout_form_edit extends Component {
                 ) : null}
               </div>
 
-              <div className="supply-route-map"></div>
+              {document.getElementById("edit-supply-routes") &&
+              document.getElementById("edit-supply-routes").value ? (
+                <RouteThumbnail
+                  route={
+                    this.props.routes[
+                      document.getElementById("edit-supply-routes").value
+                    ]
+                  }
+                />
+              ) : null}
             </section>
           </main>
         </div>

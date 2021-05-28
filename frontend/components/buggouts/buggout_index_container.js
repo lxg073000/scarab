@@ -4,6 +4,7 @@ import {
   fetchBuggouts,
   updateBuggout,
 } from "../../actions/buggouts";
+import { createPost } from "../../actions/posts";
 import BuggoutIndex from "./buggout_index";
 
 const mapState = (state) => {
@@ -13,6 +14,7 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => ({
   fetchBuggouts: () => dispatch(fetchBuggouts()),
+  createPost: (post) => dispatch(createPost(post)),
   deleteBuggout: (buggoutID) => dispatch(deleteBuggout(buggoutID)),
   updateBuggout: (buggout) => dispatch(updateBuggout(buggout)),
 });

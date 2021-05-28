@@ -27,7 +27,7 @@ export default class post_index_card extends Component {
               <h1 className="bold">My Posts</h1>
               <h2
                 className="button-orange"
-                onClick={() => location.assign(`#/post/new/`)}
+                onClick={() => this.props.history.push(`/post`)}
               >
                 Create New Post
               </h2>
@@ -61,9 +61,7 @@ export default class post_index_card extends Component {
                 <tbody>
                   {this.props.posts.map((post) => (
                     <tr key={`${post.id}-tr`}>
-                      <td key={`${post.id}-travelMode`}>
-                        {post.travelMode}
-                      </td>
+                      <td key={`${post.id}-travelMode`}>{post.travelMode}</td>
                       <td key={`${post.id}-date_completed`}>
                         {post.date_completed}
                       </td>
@@ -71,23 +69,19 @@ export default class post_index_card extends Component {
                         className="accent3 link"
                         key={`${post.id}-title`}
                         onClick={() =>
-                          location.assign(`#/post/${post.id}`)
+                          this.props.history.push(`/post/${post.id}`)
                         }
                       >
                         {post.title}
                       </td>
-                      <td key={`${post.id}-description`}>
-                        {post.description}
-                      </td>
-                      <td key={`${post.id}-start_time`}>
-                        {post.start_time}
-                      </td>
+                      <td key={`${post.id}-description`}>{post.description}</td>
+                      <td key={`${post.id}-start_time`}>{post.start_time}</td>
                       <td key={`${post.id}-end_time`}>{post.end_time}</td>
                       <td
                         className="accent3 link"
                         key={`${post.id}-edit`}
                         onClick={() =>
-                          location.assign(`#/post/${post.id}`)
+                          this.props.history.push(`/post/${post.id}`)
                         }
                       >
                         Edit
