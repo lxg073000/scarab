@@ -35,6 +35,11 @@ export const API_fetchRoute = (routeID) =>
     method: "GET",
     url: `/api/google_routes/${routeID}`,
   });
+export const API_fetchStaticMap = (map) =>
+  $.ajax({
+    method: "GET",
+    url: `https://maps.googleapis.com/maps/api/staticmap?${map}`,
+  });
 export const API_editRoute = function (google_route) {
   return $.ajax({
     method: "PATCH",

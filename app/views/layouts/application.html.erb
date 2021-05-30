@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"></link>
     
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:api_key]}" %>
+    
     <%= stylesheet_link_tag 'application', media: 'all' %> <%= csrf_meta_tags %>
 
     <%= javascript_include_tag 'application' %>
@@ -23,7 +24,7 @@
     </script>
     <% end %>
     <script type="text/javascript">
-      window.googleAPIKey = "<%= Rails.application.credentials.google[:api_key] %>"
+      // window.googleAPIKey = "<%= Rails.application.credentials.google[:api_key] %>"
       window.splash_0 = "<%= image_url('splash_0.jpg') %>";
       window.login_0 = "<%= image_url('login_0.jpg') %>";
       window.login_1 = "<%= image_url('login_1.jpg') %>";

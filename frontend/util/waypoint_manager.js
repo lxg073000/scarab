@@ -1,12 +1,14 @@
 export default class WaypointManager {
   constructor(map) {
     this.map = map;
-    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsRenderer = new google.maps.DirectionsRenderer({
+      polylineOptions: {
+        strokeColor: "#fc5200",
+      },
+      markerOptions: { url: window.sPoint.svg },
+    });
     this.directionsService = new google.maps.DirectionsService();
     this.directionsRenderer.setMap(this.map);
-    this.directionsRenderer.setOptions({
-      icon: { url: window.point },
-    });
     this.directionMarkers = [];
     this.render = null;
     this.distance = null;

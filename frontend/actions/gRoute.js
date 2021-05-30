@@ -9,6 +9,7 @@ import {
   API_fetchCurrentUserRoutes,
   API_fetchRoutes,
   API_fetchRoute,
+  API_fetchStaticMap,
   API_editRoute,
   API_deleteRoute,
   API_fetchCurrentUserRoutes_walking,
@@ -105,6 +106,14 @@ export const deleteRoute = (route_id) =>
   function (dispatch) {
     return API_deleteRoute(route_id).then(
       (route) => dispatch(removeRoute(route.id)),
+      (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
+    );
+  };
+
+export const fetchStaticMap = (map) =>
+  function (dispatch) {
+    return API_fetchStaticMap(map).then(
+      (route) => dispatch(receiveRoute(route)),
       (errors) => dispatch(receiveRouteErrors(errors.responseJSON))
     );
   };
