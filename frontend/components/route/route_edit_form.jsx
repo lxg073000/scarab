@@ -61,23 +61,6 @@ export default class edit_form extends Component {
           elementType: "all",
           stylers: [{ visibility: "off" }],
         },
-      ],
-      styles: [
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text",
-          stylers: [{ visibility: "on" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
         {
           featureType: "landscape.natural",
           elementType: "geometry",
