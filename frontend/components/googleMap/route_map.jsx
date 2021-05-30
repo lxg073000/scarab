@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
-// import { useHistory } from "react-router-dom";
 // import RouteForm from "../route/route_form";
 
 export default class route_map extends Component {
