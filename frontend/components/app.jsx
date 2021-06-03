@@ -14,8 +14,7 @@ import route_edit_form_container from "./route/route_edit_form_container";
 import search_container from "./googleMap/search_container";
 import route_index_card_container from "./route/route_index_card_container";
 import route_showcard_container from "./route/route_showcard_container";
-import Footer from "./nav/footer_white";
-
+import Footer from "./nav/footer_container";
 import buggout_form_new from "./buggouts/buggout_form_new_container";
 import buggout_form_edit from "./buggouts/buggout_form_edit_container";
 import buggout_showcard from "./buggouts/buggout_showcard_container";

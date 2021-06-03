@@ -208,13 +208,15 @@ class route_thumbnail extends Component {
   }
 
   drawRoute(map) {
+    this.WaypointManager = new WaypointManager(map);
     if (this.props.route) {
-      this.WaypointManager = new WaypointManager(map);
-
       this.WaypointManager.calcRoute(
         this.props.route.waypoints,
         this.props.route.travelMode
       );
+    } else {
+      debugger;
+      this.WaypointManager.calcRoute();
     }
   }
 
@@ -226,7 +228,7 @@ class route_thumbnail extends Component {
             className="supply-route-map"
             id={`map-${this.props.route.id}`}
             ref={(map) => (this.mapNode = map)}
-            // onLoad={this.createMap}
+            onLoad={this.createMap}
           ></div>
         ) : (
           <div

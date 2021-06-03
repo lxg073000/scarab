@@ -10,7 +10,6 @@ export const API_createBuggout = (buggout) =>
     data: buggout,
   });
 export const API_updateBuggout = function (buggout) {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: `/api/buggouts/${buggout.buggout.id}`,

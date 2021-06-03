@@ -1,7 +1,6 @@
 import React from "react";
 
 const user_profile_card = ({ buggouts, routes, to_activities }) => {
-  debugger;
   return (
     <div className="profile-shell float-card">
       <img src={window.user_pic} alt="user_pic" />

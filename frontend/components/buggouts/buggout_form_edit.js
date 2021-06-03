@@ -138,11 +138,11 @@ class buggout_form_edit extends Component {
                     </option>
                   ))}
                 </select>
-                {document.getElementById("supply-routes") ? (
+                {document.getElementById("edit-supply-routes") ? (
                   <i
                     className={
                       document
-                        .getElementById("supply-routes")
+                        .getElementById("edit-supply-routes")
                         .value.split(",")[1]
                     }
                   ></i>

@@ -18,13 +18,9 @@ class buggout_form_new extends Component {
     const buggout = {
       buggout: {
         user_id: currentUser.id,
-        google_route_id: document
-          .getElementById("new-supply-routes")
-          .value.split(",")[1],
+        google_route_id: this.state.google_route_id,
         date_completed: document.getElementById("date-val").value,
-        travelMode: document
-          .getElementById("new-supply-routes")
-          .value.split(",")[0],
+        travelMode: this.props.routes[this.state.google_route_id].travelMode,
         title: document.getElementById("title-val").value,
         description: document.getElementById("description-val").value,
         start_time: document.getElementById("start-val").value,
@@ -33,6 +29,11 @@ class buggout_form_new extends Component {
     };
     this.props.createBuggout(buggout);
     this.props.history.push(`/activities`);
+  }
+  updateSelected(e) {
+    this.setState({
+      google_route_id: e.target.value,
+    });
   }
 
   render() {
@@ -76,10 +77,14 @@ class buggout_form_new extends Component {
             </section>
             <section className="right">
               <div className="supply-route-select">
-                <select id="new-supply-routes" name="new-supply-routes">
-                  <option value="SELECT ROUTE">SELECT ROUTE</option>
+                <select
+                  id="new-supply-routes"
+                  name="new-supply-routes"
+                  onChange={(e) => this.updateSelected(e)}
+                >
+                  <option value={undefined}>SELECT ROUTE</option>
                   {routeNames.map((route, idx) => (
-                    <option key={idx} value={`${route.travelMode},${route.id}`}>
+                    <option key={idx} value={route.id}>
                       {route.name}
                     </option>
                   ))}

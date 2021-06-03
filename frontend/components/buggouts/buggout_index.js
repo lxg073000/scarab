@@ -3,6 +3,13 @@ import React, { Component } from "react";
 export default class buggout_index_card extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      byTitle: [],
+      byDescription: [],
+    };
+
+    this.sortActivities = this.sortActivities.bind(this);
   }
 
   componentDidMount() {
@@ -11,6 +18,7 @@ export default class buggout_index_card extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       // this.props.fetchBuggouts();
+      this.sortActivities();
     }
   }
 
@@ -19,7 +27,6 @@ export default class buggout_index_card extends Component {
   }
 
   shareBuggout(id) {
-    debugger;
     const post = {
       post: {
         user_id: currentUser.id,
@@ -34,6 +41,24 @@ export default class buggout_index_card extends Component {
     this.props.history.push(`/dashboard`);
   }
 
+  sortActivities() {
+    const sortByTitle = this.props.buggouts.sort(function (a, b) {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+      if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+      return 0;
+    });
+    const sortByDescription = this.props.buggouts.sort(function (a, b) {
+      if (a.description.toLowerCase() < b.description.toLowerCase()) return -1;
+      if (a.description.toLowerCase() > b.description.toLowerCase()) return 1;
+      return 0;
+    });
+
+    this.setState({
+      byTitle: sortByTitle,
+      byDescription: sortByDescription,
+    });
+  }
+
   render() {
     return (
       <div className="component-container-main">
@@ -43,7 +68,7 @@ export default class buggout_index_card extends Component {
               <h1 className="bold">My Activities</h1>
               <h2
                 className="button-orange"
-                onClick={() => this.props.history.push(`/activities`)}
+                onClick={() => this.props.history.push(`/activity`)}
               >
                 Create an Activity
               </h2>
@@ -81,7 +106,7 @@ export default class buggout_index_card extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.buggouts.map((buggout) => (
+                  {this.state.byTitle.map((buggout) => (
                     <tr key={`${buggout.id}-tr`}>
                       <td
                         key={`${buggout.id}-travelMode`}

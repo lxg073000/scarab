@@ -10,7 +10,6 @@ export const API_createPost = (post) =>
     data: post,
   });
 export const API_updatePost = function (post) {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: `/api/posts/${post.post.id}`,
