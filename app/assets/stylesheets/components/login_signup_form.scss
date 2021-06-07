@@ -155,15 +155,17 @@
 }
 
 .signup-errors {
-  background-color: #ff310247;
+  background-color: #fe260c;
   padding: 20px 0px;
-  color: #ffffff;
   line-height: 17px;
   border-top: 1px solid #ffffff2b;
   border-bottom: 1px solid #ffffff2b;
   letter-spacing: 1.2px;
   font-variant: all-petite-caps;
   font-size: 17px;
+  li {
+    color: #ffffff;
+  }
 }
 
 .hide {

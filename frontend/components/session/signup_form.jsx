@@ -72,11 +72,7 @@ class SignUpForm extends React.Component {
               <div className="form-border" />
               <div className="signup-footer">
                 <p>
-                  By signing up for Scarab, you agree to the Terms of Service.
-                  View our Privacy Policy.
-                </p>
-                <p>
-                  Or simply Log In with the{" "}
+                  Log In with the{" "}
                   <span
                     onClick={() => this.props.login(this.props.demoUser)}
                     className="guest-link link"

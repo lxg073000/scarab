@@ -89,14 +89,20 @@ class buggout_form_new extends Component {
                     </option>
                   ))}
                 </select>
-                {document.getElementById("new-supply-routes") ? (
-                  <i
+                {document.getElementById("new-supply-routes") &&
+                document.getElementById("new-supply-routes").value !==
+                  "SELECT ROUTE" ? (
+                  <p
                     className={
-                      document
-                        .getElementById("new-supply-routes")
-                        .value.split(",")[1]
+                      document.getElementById("new-supply-routes").value
                     }
-                  ></i>
+                  >
+                    {
+                      this.props.routes[
+                        document.getElementById("new-supply-routes").value
+                      ].travelMode
+                    }
+                  </p>
                 ) : null}
               </div>
 

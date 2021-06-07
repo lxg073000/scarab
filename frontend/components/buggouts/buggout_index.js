@@ -5,11 +5,10 @@ export default class buggout_index_card extends Component {
     super(props);
 
     this.state = {
-      byTitle: [],
-      byDescription: [],
+      activities: this.props.buggouts,
     };
 
-    this.sortActivities = this.sortActivities.bind(this);
+    // this.sortActivities = this.sortActivities.bind(this);
   }
 
   componentDidMount() {
@@ -18,7 +17,10 @@ export default class buggout_index_card extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       // this.props.fetchBuggouts();
-      this.sortActivities();
+      // this.sortActivities();
+      this.setState({
+        activities: this.props.buggouts,
+      });
     }
   }
 
@@ -41,12 +43,29 @@ export default class buggout_index_card extends Component {
     this.props.history.push(`/dashboard`);
   }
 
-  sortActivities() {
+  sortActivities_id() {
+    const sortById = this.props.buggouts.sort(function (a, b) {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortById,
+    });
+  }
+  sortActivities_title() {
     const sortByTitle = this.props.buggouts.sort(function (a, b) {
       if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
       if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
       return 0;
     });
+
+    this.setState({
+      activities: sortByTitle,
+    });
+  }
+  sortActivities_description() {
     const sortByDescription = this.props.buggouts.sort(function (a, b) {
       if (a.description.toLowerCase() < b.description.toLowerCase()) return -1;
       if (a.description.toLowerCase() > b.description.toLowerCase()) return 1;
@@ -54,8 +73,29 @@ export default class buggout_index_card extends Component {
     });
 
     this.setState({
-      byTitle: sortByTitle,
-      byDescription: sortByDescription,
+      activities: sortByDescription,
+    });
+  }
+  sortActivities_date_completed() {
+    const sortByDate = this.props.buggouts.sort(function (a, b) {
+      if (new Date(a.date_completed) < new Date(b.date_completed)) return -1;
+      if (new Date(a.date_completed) > new Date(b.date_completed)) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortByDate,
+    });
+  }
+  sortActivities_travel_mode() {
+    const sortByTravelMode = this.props.buggouts.sort(function (a, b) {
+      if (a.travelMode < b.travelMode) return -1;
+      if (a.travelMode > b.travelMode) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortByTravelMode,
     });
   }
 
@@ -85,28 +125,62 @@ export default class buggout_index_card extends Component {
           <section className="route-index-routes">
             {this.props.buggouts.length > 1 ||
             this.props.buggouts.length === 0 ? (
-              <h2>{this.props.buggouts.length} Activities</h2>
+              <h2 onClick={() => this.sortActivities_id()} className="link">
+                {this.props.buggouts.length} Activities
+              </h2>
             ) : (
-              <h2>{this.props.buggouts.length} Activity</h2>
+              <h2 onClick={() => this.sortActivities_id()} className="link">
+                {this.props.buggouts.length} Activity
+              </h2>
             )}
 
             <div className="float-card buggout-index-card">
               <table>
                 <thead>
                   <tr>
-                    <th>Transportation</th>
-                    <th>Date</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
+                    <th
+                      onClick={(e) => this.sortActivities_travel_mode()}
+                      className="link button-grey"
+                    >
+                      Transportation
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_date_completed()}
+                      className="link button-grey"
+                    >
+                      Date
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_title()}
+                      className="link button-grey"
+                    >
+                      Title
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_description()}
+                      className="link button-grey"
+                    >
+                      Description
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_description()}
+                      className="link button-grey"
+                    >
+                      Start Time
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_description()}
+                      className="link button-grey"
+                    >
+                      End Time
+                    </th>
                     <th></th>
                     <th></th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.byTitle.map((buggout) => (
+                  {this.state.activities.map((buggout) => (
                     <tr key={`${buggout.id}-tr`}>
                       <td
                         key={`${buggout.id}-travelMode`}

@@ -46,9 +46,7 @@ export default class dashboard extends Component {
                   />
                 ))
               ) : (
-                <p className="float-card post-item">
-                  Welcome, get started by...
-                </p>
+                <p className="float-card post-item"></p>
               )}
             </section>
             <section className="about-pane">

@@ -21,7 +21,7 @@ const about = (props) => {
         <article className="mvp-item">
           <i className="fas fa-server"></i>
           <div className="mvp-content">
-            <h2 className="bold">Ruby/Raise CRUD</h2>
+            <h2 className="bold">Ruby/Rails CRUD</h2>
             <h2>
               Maintain a backend server through Ruby Rails to achieve CRUD
               actions as well as relationship model associations

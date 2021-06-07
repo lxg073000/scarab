@@ -53,8 +53,13 @@ export default class footer_white extends Component {
           <div className="f">
             <ul className="footer-links">
               <li>Get Started</li>
-              <li className="footer-link" onClick={() => this.props.logout()}>
-                Log Out
+              <li>
+                <span
+                  className="footer-link"
+                  onClick={() => this.props.logout()}
+                >
+                  Log Out
+                </span>
               </li>
             </ul>
           </div>
