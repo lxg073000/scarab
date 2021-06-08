@@ -47,6 +47,6 @@ class Api::BuggoutsController < ApplicationController
   end
 
   def buggoutParams
-    params.require(:buggout).permit(:google_route_id, :user_id, :title, :description, :travelMode, :distance, :date_completed, :start_time, :pace, :duration => [])
+    params.require(:buggout).permit(:google_route_id, :user_id, :title, :description, :travelMode, :distance, :date_completed, :start_time, :pace, :created_at, :duration => [])
   end
 end

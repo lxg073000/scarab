@@ -5,6 +5,7 @@ class GoogleRoute < ApplicationRecord
 
   belongs_to :user
   has_many :buggouts
+  has_and_belongs_to_many :post, foreign_key: "google_route_id"
 
   def ensure_travel_icon
 

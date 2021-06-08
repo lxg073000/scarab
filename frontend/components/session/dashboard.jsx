@@ -8,6 +8,9 @@ export default class dashboard extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      posts: [],
+    };
   }
 
   componentDidMount() {
@@ -16,8 +19,22 @@ export default class dashboard extends Component {
     this.props.fetchBuggouts();
     this.props.fetchPosts();
   }
-  componentDidUpdate() {
-    // this.props.receiveCurrentUser(this.props.currentUser.id);
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      const posts = this.props.posts.sort(function (a, b) {
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
+        return 0;
+      });
+
+      this.setState({
+        posts,
+      });
+    }
+  }
+
+  deletePost(postID) {
+    this.props.deletePost(postID);
   }
 
   handleSubmit(e) {
@@ -38,7 +55,7 @@ export default class dashboard extends Component {
             </section>
             <section className="activity-pane">
               {Object.entries(this.props.posts).length > 0 ? (
-                this.props.posts.map((post) => (
+                this.state.posts.map((post) => (
                   <Activity
                     key={post.id}
                     post={post}

@@ -293,60 +293,6 @@ export default class edit_form extends Component {
     );
   }
 
-  // componentDidUpdate(previousProps, previousState, snapshot) {
-  //
-
-  //   if (previousState !== snapshot) {
-  //     const waypointData = this.state.routes[this.props.match.params.id];
-  //     const markerPOS = new google.maps.LatLng(
-  //       waypointData.waypoints[0].split(",")[0],
-  //       waypointData.waypoints[0].split(",")[1]
-  //     );
-  //     let gMarker = new google.maps.Marker({
-  //       position: markerPOS,
-  //       draggable: false,
-  //       map: null,
-  //     });
-  //     this.origin = gMarker;
-
-  //     let icon = "";
-  //     switch (waypointData.travelMode) {
-  //       case "WALKING":
-  //         icon = "fas fa-running";
-  //         document
-  //           .getElementsByClassName("running")[0]
-  //           .classList.toggle("selected-route-item");
-  //         break;
-  //       case "BICYCLING":
-  //         icon = "fas fa-bicycle";
-  //         document
-  //           .getElementsByClassName("bicycle")[0]
-  //           .classList.toggle("selected-route-item");
-  //         break;
-  //       case "DRIVING":
-  //         icon = "fas fa-car";
-  //         document
-  //           .getElementsByClassName("car")[0]
-  //           .classList.toggle("selected-route-item");
-  //         break;
-  //       default:
-  //     }
-
-  //     this.setState(
-  //       {
-  //         id: waypointData.id,
-  //         name: waypointData.name,
-  //         description: waypointData.description,
-  //         origin: gMarker,
-  //         travelMode: waypointData.travelMode,
-  //         travelIcon: icon,
-  //         waypoints: waypointData.waypoints,
-  //       },
-  //       () => this.handleMarkers()
-  //     );
-  //   }
-  // }
-
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(this.map);
   }

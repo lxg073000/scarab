@@ -1,6 +1,7 @@
 import React from "react";
 
 const activity_feed = ({ post, deletePost }) => {
+  debugger;
   return (
     <div key={`${post.id}-post`} className="float-card post-item">
       <section className="post-item-heading">
@@ -16,6 +17,11 @@ const activity_feed = ({ post, deletePost }) => {
           </h2>
         </div>
       </section>
+      {!post.buggout_id ? (
+        <section className="buggout-share">
+          <h2>NO BUGGOUT</h2>
+        </section>
+      ) : null}
       <section className="post-item-main">
         <i className="button-grey far fa-thumbs-up"></i>
         <i className="button-grey far fa-comment-alt"></i>

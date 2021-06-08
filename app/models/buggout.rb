@@ -3,5 +3,6 @@ class Buggout < ApplicationRecord
 
   belongs_to :user
   belongs_to :google_route
+  has_and_belongs_to_many :post, foreign_key: "buggout_id"
 
 end

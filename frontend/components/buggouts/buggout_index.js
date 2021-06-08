@@ -20,8 +20,10 @@ export default class buggout_index_card extends Component {
     if (prevProps !== this.props) {
       // this.props.fetchBuggouts();
       // this.sortActivities();
+      let activities = {};
+      this.props.buggouts.map((buggout) => (activities[buggout.id] = buggout));
       this.setState({
-        activities: this.props.buggouts,
+        activities: this.sortActivities_id(),
       });
     }
   }
@@ -31,14 +33,18 @@ export default class buggout_index_card extends Component {
   }
 
   shareBuggout(id) {
+    debugger;
     const post = {
       post: {
+        buggout_id: id,
+        google_route_id: this.state.activities[id].google_route_id,
         user_id: currentUser.id,
         username: currentUser.username,
-        title: `I completed a ${
-          document.getElementById(`${id}-travelMode`).innerHTML
-        }!`,
-        body: `${document.getElementById(`${id}-description`).innerHTML}`,
+        title: this.state.activities[id].title,
+        body: this.state.activities[id].description,
+        pace: this.state.activities[id].pace,
+        duration: this.state.activities[id].duration,
+        distance: this.state.activities[id].distance,
       },
     };
     this.props.createPost(post);
@@ -47,8 +53,8 @@ export default class buggout_index_card extends Component {
 
   sortActivities_id() {
     const sortById = this.props.buggouts.sort(function (a, b) {
-      if (a.id < b.id) return -1;
-      if (a.id > b.id) return 1;
+      if (a.id > b.id) return -1;
+      if (a.id < b.id) return 1;
       return 0;
     });
 
@@ -78,6 +84,17 @@ export default class buggout_index_card extends Component {
       activities: sortByDescription,
     });
   }
+  sortActivities_start_time() {
+    const sortByStartTime = this.props.buggouts.sort(function (a, b) {
+      if (a.start_time < b.start_time) return -1;
+      if (a.start_time > b.start_time) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortByStartTime,
+    });
+  }
   sortActivities_duration() {
     const sortByDuration = this.props.buggouts.sort(function (a, b) {
       if (a.duration < b.duration) return -1;
@@ -87,6 +104,17 @@ export default class buggout_index_card extends Component {
 
     this.setState({
       activities: sortByDuration,
+    });
+  }
+  sortActivities_distance() {
+    const sortByDistance = this.props.buggouts.sort(function (a, b) {
+      if (a.distance < b.distance) return -1;
+      if (a.distance > b.distance) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortByDistance,
     });
   }
   sortActivities_pace() {
@@ -124,7 +152,6 @@ export default class buggout_index_card extends Component {
   }
 
   formatDuration(durationArray) {
-    console.log(durationArray);
     const formattedDuration = [];
 
     durationArray.forEach((dur) => {
@@ -135,7 +162,6 @@ export default class buggout_index_card extends Component {
     return formattedDuration.join(":");
   }
   formatTravelMode(travelMode) {
-    console.log(travelMode);
     let formattedTravelMode = "";
 
     if (travelMode === "WALKING") {
@@ -148,8 +174,6 @@ export default class buggout_index_card extends Component {
     return formattedTravelMode;
   }
   formatTime(startTime) {
-    debugger;
-    console.log(startTime);
     let formattedTime = new Date();
     formattedTime.setHours(startTime.split(":")[0]);
     formattedTime.setMinutes(startTime.split(":")[1]);
@@ -222,7 +246,7 @@ export default class buggout_index_card extends Component {
                       Description
                     </th>
                     <th
-                      onClick={() => this.sortActivities_description()}
+                      onClick={() => this.sortActivities_start_time()}
                       className="link button-grey"
                     >
                       Start Time
@@ -251,7 +275,7 @@ export default class buggout_index_card extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.activities.map((buggout) => (
+                  {this.props.buggouts.map((buggout) => (
                     <tr key={`${buggout.id}-tr`}>
                       <td
                         key={`${buggout.id}-travelMode`}

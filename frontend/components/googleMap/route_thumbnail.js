@@ -10,7 +10,6 @@ class route_thumbnail extends Component {
   }
 
   componentDidUpdate(previousProps, previousState) {
-    debugger;
     if (previousProps.route !== this.props.route) {
       this.createMap();
     }

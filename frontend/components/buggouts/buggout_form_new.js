@@ -15,7 +15,6 @@ class buggout_form_new extends Component {
   }
 
   submitBuggout() {
-    debugger;
     const buggout = {
       buggout: {
         user_id: currentUser.id,

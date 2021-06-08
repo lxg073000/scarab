@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
 
   def index
-    @posts = Post.where({user_id: current_user.id}).order("created_at desc")
+    @posts = Post.where({user_id: current_user.id})
         if @posts
           render :index
         else
@@ -47,6 +47,6 @@ class Api::PostsController < ApplicationController
   end
 
   def postParams
-    params.require(:post).permit(:username, :comment_id, :user_id, :title, :body, :like_id => [], :comment_id => [])
+    params.require(:post).permit(:username, :comment_id, :google_route_id, :buggout_id, :user_id, :title, :body, :pace, :distance, :created_at, :duration => [], :like_id => [], :comment_id => [])
   end
 end
