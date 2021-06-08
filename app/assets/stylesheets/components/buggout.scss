@@ -39,6 +39,12 @@ section.right {
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5em;
+}
+
+section.left {
+  width: fit-content;
+}
+section.right {
   width: 50%;
 }
 
@@ -52,6 +58,43 @@ section.right {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+.hr,
+.min,
+.sec {
+  display: flex;
+  gap: 2ch;
+  position: relative;
+  input[type="number"] {
+    text-align: end;
+  }
+}
+.hr input[type="number"] {
+  width: 9ch;
+  padding-right: calc(2em + 1ch);
+}
+.min input[type="number"],
+.sec input[type="number"] {
+  width: 10ch;
+  padding-right: calc(2em + 2ch);
+}
+.hr::after,
+.min::after,
+.sec::after {
+  left: 5ch;
+  bottom: calc(26px + 1ch);
+}
+.hr::after {
+  content: "hr";
+  position: absolute;
+}
+.min::after {
+  content: "min";
+  position: absolute;
+}
+.sec::after {
+  content: "sec";
+  position: absolute;
 }
 
 .supply-route-select {

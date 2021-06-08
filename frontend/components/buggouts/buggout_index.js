@@ -8,7 +8,9 @@ export default class buggout_index_card extends Component {
       activities: this.props.buggouts,
     };
 
-    // this.sortActivities = this.sortActivities.bind(this);
+    this.formatDuration = this.formatDuration.bind(this);
+    this.formatTravelMode = this.formatTravelMode.bind(this);
+    this.formatTime = this.formatTime.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +78,28 @@ export default class buggout_index_card extends Component {
       activities: sortByDescription,
     });
   }
+  sortActivities_duration() {
+    const sortByDuration = this.props.buggouts.sort(function (a, b) {
+      if (a.duration < b.duration) return -1;
+      if (a.duration > b.duration) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortByDuration,
+    });
+  }
+  sortActivities_pace() {
+    const sortByPace = this.props.buggouts.sort(function (a, b) {
+      if (a.pace < b.pace) return -1;
+      if (a.pace > b.pace) return 1;
+      return 0;
+    });
+
+    this.setState({
+      activities: sortByPace,
+    });
+  }
   sortActivities_date_completed() {
     const sortByDate = this.props.buggouts.sort(function (a, b) {
       if (new Date(a.date_completed) < new Date(b.date_completed)) return -1;
@@ -97,6 +121,41 @@ export default class buggout_index_card extends Component {
     this.setState({
       activities: sortByTravelMode,
     });
+  }
+
+  formatDuration(durationArray) {
+    console.log(durationArray);
+    const formattedDuration = [];
+
+    durationArray.forEach((dur) => {
+      dur < 10
+        ? formattedDuration.push("0" + dur)
+        : formattedDuration.push(`${dur}`);
+    });
+    return formattedDuration.join(":");
+  }
+  formatTravelMode(travelMode) {
+    console.log(travelMode);
+    let formattedTravelMode = "";
+
+    if (travelMode === "WALKING") {
+      formattedTravelMode = "fas fa-running";
+    } else if (travelMode === "DRIVING") {
+      formattedTravelMode = "fas fa-car";
+    } else {
+      formattedTravelMode = "fas fa-bicycle";
+    }
+    return formattedTravelMode;
+  }
+  formatTime(startTime) {
+    debugger;
+    console.log(startTime);
+    let formattedTime = new Date();
+    formattedTime.setHours(startTime.split(":")[0]);
+    formattedTime.setMinutes(startTime.split(":")[1]);
+    formattedTime = formattedTime.toLocaleTimeString();
+
+    return formattedTime;
   }
 
   render() {
@@ -142,7 +201,7 @@ export default class buggout_index_card extends Component {
                       onClick={(e) => this.sortActivities_travel_mode()}
                       className="link button-grey"
                     >
-                      Transportation
+                      Sport
                     </th>
                     <th
                       onClick={() => this.sortActivities_date_completed()}
@@ -169,10 +228,22 @@ export default class buggout_index_card extends Component {
                       Start Time
                     </th>
                     <th
-                      onClick={() => this.sortActivities_description()}
+                      onClick={() => this.sortActivities_duration()}
                       className="link button-grey"
                     >
-                      End Time
+                      Duration
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_distance()}
+                      className="link button-grey numeric-align"
+                    >
+                      Distance (mi)
+                    </th>
+                    <th
+                      onClick={() => this.sortActivities_pace()}
+                      className="link button-grey numeric-align"
+                    >
+                      Pace (mi / hr)
                     </th>
                     <th></th>
                     <th></th>
@@ -186,7 +257,9 @@ export default class buggout_index_card extends Component {
                         key={`${buggout.id}-travelMode`}
                         id={`${buggout.id}-travelMode`}
                       >
-                        {buggout.travelMode}
+                        <i
+                          className={this.formatTravelMode(buggout.travelMode)}
+                        ></i>
                       </td>
                       <td key={`${buggout.id}-date_completed`}>
                         {buggout.date_completed}
@@ -208,9 +281,20 @@ export default class buggout_index_card extends Component {
                         {buggout.description}
                       </td>
                       <td key={`${buggout.id}-start_time`}>
-                        {buggout.start_time}
+                        {this.formatTime(buggout.start_time)}
                       </td>
-                      <td key={`${buggout.id}-end_time`}>{buggout.end_time}</td>
+                      <td key={`${buggout.id}-duration`}>
+                        {this.formatDuration(buggout.duration)}
+                      </td>
+                      <td
+                        key={`${buggout.id}-distance`}
+                        className="numeric-align"
+                      >
+                        {buggout.distance}
+                      </td>
+                      <td key={`${buggout.id}-pace`} className="numeric-align">
+                        {buggout.pace}
+                      </td>
                       <td
                         className="accent3 link"
                         key={`${buggout.id}-edit`}

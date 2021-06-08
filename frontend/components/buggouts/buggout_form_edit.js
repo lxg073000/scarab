@@ -13,7 +13,7 @@ class buggout_form_edit extends Component {
       title: "",
       description: "",
       start_time: "",
-      end_time: "",
+      duration: "",
     };
   }
 
@@ -41,7 +41,18 @@ class buggout_form_edit extends Component {
         title: document.getElementById("edit-title-val").value,
         description: document.getElementById("edit-description-val").value,
         start_time: document.getElementById("edit-start-val").value,
-        end_time: document.getElementById("edit-end-val").value,
+        pace:
+          parseFloat(this.props.routes[this.state.google_route_id].distance) /
+          parseFloat(
+            parseFloat(document.getElementById("edit-hr-val").value / 1) +
+              parseFloat(document.getElementById("edit-min-val").value / 60) +
+              parseFloat(document.getElementById("edit-sec-val").value / 3600)
+          ),
+        duration: [
+          parseInt(document.getElementById("edit-hr-val").value),
+          parseInt(document.getElementById("edit-min-val").value),
+          parseInt(document.getElementById("edit-sec-val").value),
+        ],
       },
     };
     this.props.updateBuggout(buggout);
@@ -84,7 +95,7 @@ class buggout_form_edit extends Component {
               />
               <div className="time">
                 <div className="time-item">
-                  <h2 className="bold">Date Completed</h2>
+                  <h2 className="bold">Date</h2>
                   <input
                     id="edit-date-val"
                     type="date"
@@ -92,7 +103,7 @@ class buggout_form_edit extends Component {
                   />
                 </div>
                 <div className="time-item">
-                  <h2 className="bold">Start Time</h2>
+                  <h2 className="bold">Time</h2>
                   <input
                     id="edit-start-val"
                     type="time"
@@ -100,12 +111,33 @@ class buggout_form_edit extends Component {
                   />
                 </div>
                 <div className="time-item">
-                  <h2 className="bold">End Time</h2>
-                  <input
-                    id="edit-end-val"
-                    type="time"
-                    defaultValue={this.state.end_time}
-                  />
+                  <h2 className="bold">Duration</h2>
+                  <div className="flex">
+                    <div className="hr">
+                      <input
+                        id="edit-hr-val"
+                        type="number"
+                        maxLength="2"
+                        defaultValue={this.state.duration[0]}
+                      />
+                    </div>
+                    <div className="min">
+                      <input
+                        id="edit-min-val"
+                        type="number"
+                        maxLength="2"
+                        defaultValue={this.state.duration[1]}
+                      />
+                    </div>
+                    <div className="sec">
+                      <input
+                        id="edit-sec-val"
+                        type="number"
+                        maxLength="2"
+                        defaultValue={this.state.duration[2]}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="buttons-div">

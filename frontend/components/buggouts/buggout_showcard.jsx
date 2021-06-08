@@ -13,7 +13,7 @@ export default class buggout_index_card extends Component {
       title: "",
       description: "",
       start_time: "",
-      end_time: "",
+      pace: "",
     };
   }
 
@@ -63,7 +63,7 @@ export default class buggout_index_card extends Component {
               />
               <div className="time">
                 <div className="time-item">
-                  <h2 className="bold">Date Completed</h2>
+                  <h2 className="bold">Date</h2>
                   <input
                     id="date-val"
                     type="date"
@@ -72,7 +72,7 @@ export default class buggout_index_card extends Component {
                   />
                 </div>
                 <div className="time-item">
-                  <h2 className="bold">Start Time</h2>
+                  <h2 className="bold">Time</h2>
                   <input
                     id="start-val"
                     type="time"
@@ -81,11 +81,11 @@ export default class buggout_index_card extends Component {
                   />
                 </div>
                 <div className="time-item">
-                  <h2 className="bold">End Time</h2>
+                  <h2 className="bold">Pace</h2>
                   <input
-                    id="end-val"
-                    type="time"
-                    defaultValue={this.state.end_time}
+                    id="pace-val"
+                    type="text"
+                    value={`${this.state.pace} mi / hr`}
                     disabled
                   />
                 </div>

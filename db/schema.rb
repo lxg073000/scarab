@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_180617) do
+ActiveRecord::Schema.define(version: 2021_06_08_073055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,11 +42,13 @@ ActiveRecord::Schema.define(version: 2021_05_26_180617) do
     t.string "description"
     t.string "date_completed"
     t.string "start_time"
-    t.string "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "travelMode"
+    t.decimal "pace", precision: 15, scale: 2
+    t.integer "duration", array: true
+    t.decimal "distance"
   end
 
   create_table "google_routes", force: :cascade do |t|
