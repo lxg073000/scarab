@@ -5,7 +5,7 @@ export default class buggout_index_card extends Component {
     super(props);
 
     this.state = {
-      activities: this.props.buggouts,
+      activities: [],
     };
 
     this.formatDuration = this.formatDuration.bind(this);
@@ -15,6 +15,14 @@ export default class buggout_index_card extends Component {
 
   componentDidMount() {
     this.props.fetchBuggouts();
+    let activities = {};
+    this.props.buggouts.map((buggout) => (activities[buggout.id] = buggout));
+    this.setState(
+      {
+        activities,
+      },
+      this.sortActivities_id()
+    );
   }
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -22,9 +30,12 @@ export default class buggout_index_card extends Component {
       // this.sortActivities();
       let activities = {};
       this.props.buggouts.map((buggout) => (activities[buggout.id] = buggout));
-      this.setState({
-        activities: this.sortActivities_id(),
-      });
+      this.setState(
+        {
+          activities,
+        },
+        this.sortActivities_id()
+      );
     }
   }
 
@@ -45,6 +56,7 @@ export default class buggout_index_card extends Component {
         pace: this.state.activities[id].pace,
         duration: this.state.activities[id].duration,
         distance: this.state.activities[id].distance,
+        travelMode: this.state.activities[id].travelMode,
       },
     };
     this.props.createPost(post);

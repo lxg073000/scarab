@@ -1,11 +1,16 @@
 import React from "react";
+import { formatDuration, formatTravelMode } from "../../util/conversions";
 
-const activity_feed = ({ post, deletePost }) => {
+const activity_feed = ({ post, deletePost, buggout }) => {
   debugger;
+
   return (
     <div key={`${post.id}-post`} className="float-card post-item">
       <section className="post-item-heading">
-        <img src={window.user_pic} alt="user_pic" />
+        <div className="flex-col">
+          <img src={window.user_pic} alt="user_pic" />
+          {/* <i className={`${formatTravelMode(post.travelMode)}`}></i> */}
+        </div>
         <div className="post-item-body">
           <h3 className="bold">{post.username}</h3>
           <h4>{new Date(post.created_at).toDateString()}</h4>
@@ -16,12 +21,32 @@ const activity_feed = ({ post, deletePost }) => {
             {post.body}
           </h2>
         </div>
+        {post.buggout_id ? (
+          <section className="buggout-share">
+            <div className="flex">
+              <div className="flex-col">
+                {`${post.distance} mi`}
+                <h4>Distance</h4>
+              </div>
+              <div className="flex-col">
+                {formatDuration(post.duration)}
+                <h4>Duration</h4>
+              </div>
+              <div className="flex-col">
+                {post.pace}
+                <h4>Pace</h4>
+              </div>
+              <div className="flex-col">
+                {/* {buggout ? (
+                  <i className={`${formatTravelMode(buggout.travelMode)}`}></i>
+                ) : null} */}
+                <h4>Sport</h4>
+              </div>
+            </div>
+          </section>
+        ) : null}
       </section>
-      {!post.buggout_id ? (
-        <section className="buggout-share">
-          <h2>NO BUGGOUT</h2>
-        </section>
-      ) : null}
+
       <section className="post-item-main">
         <i className="button-grey far fa-thumbs-up"></i>
         <i className="button-grey far fa-comment-alt"></i>

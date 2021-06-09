@@ -15,8 +15,8 @@ export default class dashboard extends Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser);
-    this.props.fetchRoutes();
     this.props.fetchBuggouts();
+    this.props.fetchRoutes();
     this.props.fetchPosts();
   }
   componentDidUpdate(prevProps) {
@@ -42,6 +42,7 @@ export default class dashboard extends Component {
   }
 
   render() {
+    // debugger;
     return (
       <div className="component-container-feed">
         <div className="dashboard-shell">
@@ -59,6 +60,7 @@ export default class dashboard extends Component {
                   <Activity
                     key={post.id}
                     post={post}
+                    buggout={this.props.buggouts}
                     deletePost={this.props.deletePost}
                   />
                 ))

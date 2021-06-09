@@ -47,6 +47,6 @@ class Api::PostsController < ApplicationController
   end
 
   def postParams
-    params.require(:post).permit(:username, :comment_id, :google_route_id, :buggout_id, :user_id, :title, :body, :pace, :distance, :created_at, :duration => [], :like_id => [], :comment_id => [])
+    params.require(:post).permit(:username, :comment_id, :google_route_id, :buggout_id, :user_id, :title, :body, :pace, :distance, :travelMode, :created_at, :duration => [], :like_id => [], :comment_id => [])
   end
 end

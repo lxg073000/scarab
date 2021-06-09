@@ -1,6 +1,10 @@
 .flex {
   display: flex;
 }
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
 
 td.numeric-align,
 th.numeric-align {
