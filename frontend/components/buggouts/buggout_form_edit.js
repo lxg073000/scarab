@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
-import { calcPace } from "../../util/conversions";
+import { calcPace, formatTravelMode } from "../../util/conversions";
 
 class buggout_form_edit extends Component {
   constructor(props) {
@@ -174,14 +174,25 @@ class buggout_form_edit extends Component {
                     </option>
                   ))}
                 </select>
-                {document.getElementById("edit-supply-routes") ? (
-                  <i
-                    className={
-                      document
-                        .getElementById("edit-supply-routes")
-                        .value.split(",")[1]
-                    }
-                  ></i>
+                {document.getElementById("edit-supply-routes") &&
+                document.getElementById("edit-supply-routes").value !==
+                  "SELECT ROUTE" ? (
+                  <>
+                    <i
+                      className={formatTravelMode(
+                        this.props.routes[
+                          document.getElementById("edit-supply-routes").value
+                        ].travelMode
+                      )}
+                    ></i>
+                    <p className="">
+                      {
+                        this.props.routes[
+                          document.getElementById("edit-supply-routes").value
+                        ].distance
+                      }
+                    </p>
+                  </>
                 ) : null}
               </div>
 

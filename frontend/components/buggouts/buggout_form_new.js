@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
-import { calcPace } from "../../util/conversions";
+import { calcPace, formatTravelMode } from "../../util/conversions";
 
 class buggout_form_new extends Component {
   constructor(props) {
@@ -134,17 +134,22 @@ class buggout_form_new extends Component {
                 {document.getElementById("new-supply-routes") &&
                 document.getElementById("new-supply-routes").value !==
                   "SELECT ROUTE" ? (
-                  <p
-                    className={
-                      document.getElementById("new-supply-routes").value
-                    }
-                  >
-                    {
-                      this.props.routes[
-                        document.getElementById("new-supply-routes").value
-                      ].travelMode
-                    }
-                  </p>
+                  <>
+                    <i
+                      className={formatTravelMode(
+                        this.props.routes[
+                          document.getElementById("new-supply-routes").value
+                        ].travelMode
+                      )}
+                    ></i>
+                    <p className="">
+                      {
+                        this.props.routes[
+                          document.getElementById("new-supply-routes").value
+                        ].distance
+                      }
+                    </p>
+                  </>
                 ) : null}
               </div>
 

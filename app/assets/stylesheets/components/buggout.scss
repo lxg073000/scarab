@@ -43,6 +43,9 @@ section.right {
 
 section.left {
   width: fit-content;
+  h2.bold:first-child {
+    margin-top: 5px;
+  }
 }
 section.right {
   width: 50%;
@@ -72,11 +75,13 @@ section.right {
 .hr input[type="number"] {
   width: 9ch;
   padding-right: calc(2em + 1ch);
+  height: 58px;
 }
 .min input[type="number"],
 .sec input[type="number"] {
   width: 10ch;
   padding-right: calc(2em + 2ch);
+  height: 58px;
 }
 .hr::after,
 .min::after,
@@ -99,13 +104,20 @@ section.right {
 
 .supply-route-select {
   display: flex;
-  gap: 1em;
+  gap: 1ch;
+  background: #f9fcff;
+  box-shadow: 0 0 0px 1px #eaedf0;
+  align-items: center;
   select {
-    font-size: 1em;
+    font-size: 15px;
     font-weight: 600;
+    background: #f9fcff;
+    box-shadow: 0 0 0px 1px #eaedf0;
+    padding: 4px;
   }
   i {
-    font-size: 1em;
+    font-size: 17px;
+    padding: 4px 0px;
   }
 }
 

@@ -11,14 +11,18 @@ const activity_feed = ({ post, deletePost, buggout }) => {
           <img src={window.user_pic} alt="user_pic" />
         </div>
         <div className="post-item-body">
-          <h3 className="bold">{post.username}</h3>
-          <h4>{new Date(post.created_at).toDateString()}</h4>
-          <h1 key={`${post.id}-title`} className="post-title bold">
-            {post.title}
-          </h1>
-          <h2 key={`${post.id}-body`} className="post-body">
-            {post.body}
-          </h2>
+          <section className="headline">
+            <h3 className="bold">{post.username}</h3>
+            <h4>{new Date(post.created_at).toDateString()}</h4>
+            <h1 key={`${post.id}-title`} className="post-title bold">
+              {post.title}
+            </h1>
+          </section>
+          <section className="body">
+            <h2 key={`${post.id}-body`} className="post-body">
+              {post.body}
+            </h2>
+          </section>
         </div>
         {post.buggout_id ? (
           <section className="buggout-share">
@@ -39,7 +43,7 @@ const activity_feed = ({ post, deletePost, buggout }) => {
                 <p>
                   {post.pace} <span className="numeric-label">/mi</span>
                 </p>
-                <h4>Pace</h4>
+                <h4 className="pace">Pace</h4>
               </div>
               <div
                 className={`${formatTravelMode(
