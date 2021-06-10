@@ -61,6 +61,30 @@ class route_thumbnail extends Component {
         },
         {
           featureType: "poi.park",
+          elementType: "labels.text.fill",
+          stylers: [
+            {
+              color: "#8493a9",
+            },
+            {
+              visibility: "on",
+            },
+          ],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text.stroke",
+          stylers: [
+            {
+              color: "#ffffff",
+            },
+            {
+              visibility: "on",
+            },
+          ],
+        },
+        {
+          featureType: "poi.park",
           elementType: "geometry.fill",
           stylers: [
             {
