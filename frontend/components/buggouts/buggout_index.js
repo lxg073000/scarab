@@ -45,7 +45,6 @@ export default class buggout_index_card extends Component {
   }
 
   shareBuggout(id) {
-    debugger;
     const post = {
       post: {
         buggout_id: id,

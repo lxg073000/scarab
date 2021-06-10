@@ -2,7 +2,7 @@ import React from "react";
 import { formatDuration, formatTravelMode } from "../../util/conversions";
 
 const activity_feed = ({ post, deletePost, buggout }) => {
-  debugger;
+  // debugger;
 
   return (
     <div key={`${post.id}-post`} className="float-card post-item">

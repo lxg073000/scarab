@@ -238,7 +238,7 @@ class route_thumbnail extends Component {
         this.props.route.travelMode
       );
     } else {
-      debugger;
+      // debugger;
       this.WaypointManager.calcRoute();
     }
   }

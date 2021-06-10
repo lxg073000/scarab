@@ -43,6 +43,6 @@ export function calcPace(hours, minutes, seconds, miles) {
   if (paceSeconds < 10) {
     paceSeconds = "0" + paceSeconds;
   }
-  debugger;
+
   return `${paceMinutes}:${paceSeconds}`;
 }

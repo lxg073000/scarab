@@ -42,7 +42,6 @@ export default class dashboard extends Component {
   }
 
   render() {
-    // debugger;
     return (
       <div className="component-container-feed">
         <div className="dashboard-shell">
