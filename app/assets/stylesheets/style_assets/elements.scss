@@ -39,6 +39,23 @@
 .button {
   cursor: pointer;
 }
+
+.selected-accent {
+  background: #017fb6;
+  color: white;
+  &:hover {
+    background: #017fb6;
+    color: white;
+    cursor: default;
+  }
+}
+
+.button.selected-accent:hover {
+  background: #017fb6;
+  color: white;
+  cursor: default;
+}
+
 .button-orange {
   cursor: pointer;
   color: white;
@@ -85,7 +102,15 @@
   }
 }
 
-input,
+.button-grey.selected {
+  background: #ababab;
+  color: #f7f7fa;
+  &:hover {
+    cursor: default;
+  }
+}
+
+input:not(.comment-field),
 textarea {
   padding: 1em;
   margin: 1em 0;

@@ -36,10 +36,8 @@ class buggout_form_edit extends Component {
       this.props.routes[this.state.google_route_id].distance
     );
     const hr = parseFloat(document.getElementById("edit-hr-val").value / 1);
-    const min = parseFloat(document.getElementById("edit-min-val").value / 60);
-    const sec = parseFloat(
-      document.getElementById("edit-sec-val").value / 3600
-    );
+    const min = parseFloat(document.getElementById("edit-min-val").value / 1);
+    const sec = parseFloat(document.getElementById("edit-sec-val").value / 1);
 
     const buggout = {
       buggout: {

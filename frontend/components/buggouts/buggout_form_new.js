@@ -20,8 +20,8 @@ class buggout_form_new extends Component {
       this.props.routes[this.state.google_route_id].distance
     );
     const hr = parseFloat(document.getElementById("hr-val").value / 1);
-    const min = parseFloat(document.getElementById("min-val").value / 60);
-    const sec = parseFloat(document.getElementById("sec-val").value / 3600);
+    const min = parseFloat(document.getElementById("min-val").value / 1);
+    const sec = parseFloat(document.getElementById("sec-val").value / 1);
 
     const buggout = {
       buggout: {

@@ -10,3 +10,17 @@ td.numeric-align,
 th.numeric-align {
   text-align: right;
 }
+
+// ANIMATIONS
+
+.shrink {
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: 200ms all ease;
+}
+
+.grow {
+  transform: scaleX(1);
+  transform-origin: 100% 50%;
+  transition: 200ms all ease;
+}

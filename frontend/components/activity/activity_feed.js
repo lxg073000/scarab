@@ -56,8 +56,23 @@ const activity_feed = ({ post, deletePost, buggout }) => {
       </section>
 
       <section className="post-item-main">
-        <i className="button-grey far fa-thumbs-up"></i>
-        <i className="button-grey far fa-comment-alt"></i>
+        <input
+          type="text"
+          className="comment-field shrink"
+          id={`comment-field-${post.id}`}
+        />
+        <i
+          className="button-grey far fa-thumbs-up"
+          onClick={(e) => e.target.classList.toggle("selected")}
+        ></i>
+        <i
+          className="button-grey far fa-comment-alt"
+          onClick={() =>
+            document
+              .getElementById(`comment-field-${post.id}`)
+              .classList.toggle("grow")
+          }
+        ></i>
         <i
           className="button-grey fas fa-times"
           onClick={() => deletePost(post.id)}

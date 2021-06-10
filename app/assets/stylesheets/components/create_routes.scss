@@ -164,16 +164,6 @@
   width: 100%;
 }
 
-.selected {
-  background: #017fb6;
-  color: white;
-  &:hover {
-    background: #017fb6 !important;
-    color: white !important;
-    cursor: default !important;
-  }
-}
-
 .route-shell {
   display: flex;
   flex-wrap: wrap;

@@ -106,7 +106,7 @@ export default class route_index_card extends Component {
             <div className="route-filters">
               <h2
                 className={`button bold neutral ${
-                  this.state.filter === "" ? "selected" : null
+                  this.state.filter === "" ? "selected-accent" : null
                 }`}
                 onClick={() => this.filterResults()}
               >
@@ -114,7 +114,7 @@ export default class route_index_card extends Component {
               </h2>
               <h2
                 className={`button bold neutral ${
-                  this.state.filter === "BICYCLING" ? "selected" : null
+                  this.state.filter === "BICYCLING" ? "selected-accent" : null
                 }`}
                 onClick={() => this.filterResults("BICYCLING")}
               >
@@ -122,7 +122,7 @@ export default class route_index_card extends Component {
               </h2>
               <h2
                 className={`button bold neutral ${
-                  this.state.filter === "DRIVING" ? "selected" : null
+                  this.state.filter === "DRIVING" ? "selected-accent" : null
                 }`}
                 onClick={() => this.filterResults("DRIVING")}
               >
@@ -130,7 +130,7 @@ export default class route_index_card extends Component {
               </h2>
               <h2
                 className={`button bold neutral ${
-                  this.state.filter === "WALKING" ? "selected" : null
+                  this.state.filter === "WALKING" ? "selected-accent" : null
                 }`}
                 onClick={() => this.filterResults("WALKING")}
               >
