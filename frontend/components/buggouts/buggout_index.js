@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { formatDuration } from "../../util/conversions";
 
 export default class buggout_index_card extends Component {
   constructor(props) {
@@ -273,13 +274,13 @@ export default class buggout_index_card extends Component {
                       onClick={() => this.sortActivities_distance()}
                       className="link button-grey numeric-align"
                     >
-                      Distance (mi)
+                      Distance
                     </th>
                     <th
                       onClick={() => this.sortActivities_pace()}
                       className="link button-grey numeric-align"
                     >
-                      Pace (mi / hr)
+                      Pace
                     </th>
                     <th></th>
                     <th></th>
@@ -320,16 +321,16 @@ export default class buggout_index_card extends Component {
                         {this.formatTime(buggout.start_time)}
                       </td>
                       <td key={`${buggout.id}-duration`}>
-                        {this.formatDuration(buggout.duration)}
+                        {formatDuration(buggout.duration)}
                       </td>
                       <td
                         key={`${buggout.id}-distance`}
                         className="numeric-align"
                       >
-                        {buggout.distance}
+                        {`${buggout.distance} mi`}
                       </td>
                       <td key={`${buggout.id}-pace`} className="numeric-align">
-                        {buggout.pace}
+                        {`${buggout.pace} / mi`}
                       </td>
                       <td
                         className="accent3 link"

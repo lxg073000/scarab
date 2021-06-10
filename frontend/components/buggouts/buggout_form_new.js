@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
+import { calcPace } from "../../util/conversions";
 
 class buggout_form_new extends Component {
   constructor(props) {
@@ -15,6 +16,13 @@ class buggout_form_new extends Component {
   }
 
   submitBuggout() {
+    const distance = parseFloat(
+      this.props.routes[this.state.google_route_id].distance
+    );
+    const hr = parseFloat(document.getElementById("hr-val").value / 1);
+    const min = parseFloat(document.getElementById("min-val").value / 60);
+    const sec = parseFloat(document.getElementById("sec-val").value / 3600);
+
     const buggout = {
       buggout: {
         user_id: currentUser.id,
@@ -25,13 +33,7 @@ class buggout_form_new extends Component {
         title: document.getElementById("title-val").value,
         description: document.getElementById("description-val").value,
         start_time: document.getElementById("start-val").value,
-        pace:
-          parseFloat(this.props.routes[this.state.google_route_id].distance) /
-          parseFloat(
-            parseFloat(document.getElementById("hr-val").value / 1) +
-              parseFloat(document.getElementById("min-val").value / 60) +
-              parseFloat(document.getElementById("sec-val").value / 3600)
-          ),
+        pace: calcPace(hr, min, sec, distance),
         duration: [
           parseInt(document.getElementById("hr-val").value),
           parseInt(document.getElementById("min-val").value),

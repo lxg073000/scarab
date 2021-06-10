@@ -9,7 +9,6 @@ const activity_feed = ({ post, deletePost, buggout }) => {
       <section className="post-item-heading">
         <div className="flex-col">
           <img src={window.user_pic} alt="user_pic" />
-          {/* <i className={`${formatTravelMode(post.travelMode)}`}></i> */}
         </div>
         <div className="post-item-body">
           <h3 className="bold">{post.username}</h3>
@@ -23,25 +22,30 @@ const activity_feed = ({ post, deletePost, buggout }) => {
         </div>
         {post.buggout_id ? (
           <section className="buggout-share">
-            <div className="flex">
+            <div className="flex-col">
+              <i className={`${formatTravelMode(post.travelMode)} post-bg`}></i>
               <div className="flex-col">
-                {`${post.distance} mi`}
+                <p>
+                  {post.distance}
+                  <span className="numeric-label">mi</span>
+                </p>
                 <h4>Distance</h4>
               </div>
               <div className="flex-col">
-                {formatDuration(post.duration)}
+                <p>{formatDuration(post.duration)}</p>
                 <h4>Duration</h4>
               </div>
               <div className="flex-col">
-                {post.pace}
+                <p>
+                  {post.pace} <span className="numeric-label">/mi</span>
+                </p>
                 <h4>Pace</h4>
               </div>
-              <div className="flex-col">
-                {/* {buggout ? (
-                  <i className={`${formatTravelMode(buggout.travelMode)}`}></i>
-                ) : null} */}
-                <h4>Sport</h4>
-              </div>
+              <div
+                className={`${formatTravelMode(
+                  post.travelMode
+                )}-post-bg-img post-background`}
+              ></div>
             </div>
           </section>
         ) : null}

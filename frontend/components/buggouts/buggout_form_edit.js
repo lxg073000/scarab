@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
+import { calcPace } from "../../util/conversions";
 
 class buggout_form_edit extends Component {
   constructor(props) {
@@ -31,6 +32,15 @@ class buggout_form_edit extends Component {
   }
 
   updateBuggout() {
+    const distance = parseFloat(
+      this.props.routes[this.state.google_route_id].distance
+    );
+    const hr = parseFloat(document.getElementById("edit-hr-val").value / 1);
+    const min = parseFloat(document.getElementById("edit-min-val").value / 60);
+    const sec = parseFloat(
+      document.getElementById("edit-sec-val").value / 3600
+    );
+
     const buggout = {
       buggout: {
         id: this.state.id,
@@ -41,13 +51,7 @@ class buggout_form_edit extends Component {
         title: document.getElementById("edit-title-val").value,
         description: document.getElementById("edit-description-val").value,
         start_time: document.getElementById("edit-start-val").value,
-        pace:
-          parseFloat(this.props.routes[this.state.google_route_id].distance) /
-          parseFloat(
-            parseFloat(document.getElementById("edit-hr-val").value / 1) +
-              parseFloat(document.getElementById("edit-min-val").value / 60) +
-              parseFloat(document.getElementById("edit-sec-val").value / 3600)
-          ),
+        pace: calcPace(hr, min, sec, distance),
         duration: [
           parseInt(document.getElementById("edit-hr-val").value),
           parseInt(document.getElementById("edit-min-val").value),

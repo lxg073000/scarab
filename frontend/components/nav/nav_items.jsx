@@ -150,7 +150,7 @@ ${this.state.nav}`}
                         )
                       }
                     >
-                      Supply Routes
+                      My Routes
                     </li>
                   </ul>
                 </ul>

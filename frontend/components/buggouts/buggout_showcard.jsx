@@ -85,7 +85,7 @@ export default class buggout_index_card extends Component {
                   <input
                     id="pace-val"
                     type="text"
-                    value={`${this.state.pace} mi / hr`}
+                    value={`${this.state.pace} / mi`}
                     disabled
                   />
                 </div>
