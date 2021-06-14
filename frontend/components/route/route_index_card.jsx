@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-
-// import WaypointManager from "../../util/waypoint_manager";
 import Route from "./route_showcard_container";
 
 export default class route_index_card extends Component {
@@ -138,7 +136,6 @@ export default class route_index_card extends Component {
               </h2>
             </div>
             <div className="route-index-items">
-              {/* {this.filterRoutes("walking")} */}
               {Object.values(this.props.routes).map((route, idx) => (
                 <Route route={route} key={idx} />
               ))}

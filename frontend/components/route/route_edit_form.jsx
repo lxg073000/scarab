@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
-// import { useHistory } from "react-router-dom";
-// import RouteForm from "../route/route_form";
+import { map_options_slim } from "../../util/conversions";
 
 export default class edit_form extends Component {
   constructor(props) {
@@ -252,7 +251,7 @@ export default class edit_form extends Component {
         },
       ],
     };
-    this.map = new google.maps.Map(this.mapNode, this.mapOptions);
+    this.map = new google.maps.Map(this.mapNode, map_options_slim);
     this.WaypointManager = new WaypointManager(this.map);
 
     google.maps.event.addListener(this.map, "click", (e) => {

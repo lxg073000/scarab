@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
+import { map_options_full } from "../../util/conversions";
 // import RouteForm from "../route/route_form";
 
 export default class route_map extends Component {
@@ -33,222 +34,10 @@ export default class route_map extends Component {
     this.prefToggle = this.prefToggle.bind(this);
     this.deleteRoute = this.deleteRoute.bind(this);
     this.saveRoute = this.saveRoute.bind(this);
-    // this.removeMarkerFromMap = this.removeMarkerFromMap.bind(this);
   }
 
   componentDidMount() {
-    this.mapOptions = {
-      center: { lat: 40.7623, lng: -73.985 },
-      zoom: 13,
-      clickableIcons: false,
-      styles: [
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text",
-          stylers: [{ visibility: "on" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "landscape.natural",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#dde2e3",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "all",
-          stylers: [
-            {
-              color: "#c6e8b3",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#8493a9",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#ffffff",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#c6e8b3",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              visibility: "off",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#c1d1d6",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#a9b8bd",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-        {
-          featureType: "road.local",
-          elementType: "all",
-          stylers: [
-            {
-              color: "#f8fbfc",
-            },
-          ],
-        },
-        {
-          featureType: "road.local",
-          elementType: "labels.text",
-          stylers: [
-            {
-              color: "#979a9c",
-            },
-            {
-              visibility: "on",
-            },
-            {
-              weight: 0.5,
-            },
-          ],
-        },
-        {
-          featureType: "road.local",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              visibility: "on",
-            },
-            {
-              color: "#827e7e",
-            },
-          ],
-        },
-        {
-          featureType: "road.local",
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#3b3c3c",
-            },
-            {
-              visibility: "off",
-            },
-          ],
-        },
-        {
-          featureType: "water",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#a6cbe3",
-            },
-            {
-              visibility: "on",
-            },
-          ],
-        },
-      ],
-    };
-    this.map = new google.maps.Map(this.mapNode, this.mapOptions);
+    this.map = new google.maps.Map(this.mapNode, map_options_full);
     this.WaypointManager = new WaypointManager(this.map);
 
     google.maps.event.addListener(this.map, "click", (e) => {
@@ -263,7 +52,6 @@ export default class route_map extends Component {
   addMarkerToMap(latLng, map) {
     let gMarker = new google.maps.Marker({
       position: latLng,
-      // icon: { url: window.sPoint },
       draggable: false,
       map: this.state.waypoints.length === 0 ? map : null,
     });
