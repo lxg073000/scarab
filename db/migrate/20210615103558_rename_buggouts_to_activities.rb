@@ -1,5 +1,5 @@
-class RenameActivitiesToActivities < ActiveRecord::Migration[5.2]
+class RenameBuggoutsToActivities < ActiveRecord::Migration[5.2]
   def change
-    rename_table :activities, :activities
+    rename_table :buggouts, :activities
   end
 end
