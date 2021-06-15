@@ -110,7 +110,7 @@
   }
 }
 
-input:not(.comment-field, .form-field, .form-submit),
+input:not(.comment-field, .form-field, .form-submit, .bare),
 textarea {
   padding: 1em;
   margin: 1em 0;

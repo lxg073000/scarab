@@ -26,9 +26,8 @@ export default class buggout_index_card extends Component {
     );
   }
   componentDidUpdate(prevProps) {
+    debugger;
     if (prevProps !== this.props) {
-      // this.props.fetchBuggouts();
-      // this.sortActivities();
       let activities = {};
       this.props.buggouts.map((buggout) => (activities[buggout.id] = buggout));
       this.setState(
@@ -69,6 +68,8 @@ export default class buggout_index_card extends Component {
       if (a.id < b.id) return 1;
       return 0;
     });
+
+    // this.setState({}, console.log(this.state));
 
     this.setState({
       activities: sortById,
@@ -119,6 +120,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_distance() {
+    debugger;
     const sortByDistance = this.props.buggouts.sort(function (a, b) {
       if (a.distance < b.distance) return -1;
       if (a.distance > b.distance) return 1;
@@ -195,6 +197,7 @@ export default class buggout_index_card extends Component {
   }
 
   render() {
+    debugger;
     return (
       <div className="component-container-main">
         <div className="route-index-shell">
@@ -210,9 +213,15 @@ export default class buggout_index_card extends Component {
             </div>
             <div>
               <p>
-                Learn more about{" "}
-                <span className="link accent3">sharing & exporting routes</span>{" "}
-                to a variety of devices.
+                Learn more about me by visiting my{" "}
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  href="https://lernardgrigsby.github.io/"
+                >
+                  {" "}
+                  <span className="link accent3">personal portfoilio!</span>
+                </a>{" "}
               </p>
               <img src={window.device_routes} alt="" className="" />
             </div>

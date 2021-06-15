@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :google_routes do
       get :filter
     end
+    resources :comments, only: [:create, :update, :destroy, :show, :index]
     
     resource :session, only: [:show, :create, :destroy]
   end

@@ -8,6 +8,7 @@ import Dashboard from "./dashboard";
 import { fetchRoutes } from "../../actions/gRoute";
 import { fetchBuggouts } from "../../actions/buggouts";
 import { fetchPosts, deletePost } from "../../actions/posts";
+import { fetchComments, deleteComment } from "../../actions/comments";
 
 const mapState = (state) => {
   return {
@@ -21,6 +22,8 @@ const mapDispatch = (dispatch) => ({
   fetchUser: (userID) => dispatch(fetchUser(userID)),
   fetchPosts: () => dispatch(fetchPosts()),
   deletePost: (postID) => dispatch(deletePost(postID)),
+  fetchComments: () => dispatch(fetchComments()),
+  deleteComment: (commentID) => dispatch(deleteComment(commentID)),
   fetchRoutes: () => dispatch(fetchRoutes()),
   fetchBuggouts: () => dispatch(fetchBuggouts()),
   receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),

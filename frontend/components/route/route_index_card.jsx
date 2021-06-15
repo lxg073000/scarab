@@ -93,9 +93,15 @@ export default class route_index_card extends Component {
             </div>
             <div>
               <p>
-                Learn more about{" "}
-                <span className="link accent3">sharing & exporting routes</span>{" "}
-                to a variety of devices.
+                Learn more about me by visiting my{" "}
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  href="https://lernardgrigsby.github.io/"
+                >
+                  {" "}
+                  <span className="link accent3">personal portfoilio!</span>
+                </a>{" "}
               </p>
               <img src={window.device_routes} alt="" className="" />
             </div>

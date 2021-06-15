@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import UserInfo from "../user/user_profile_card";
-import Activity from "../activity/activity_feed_container";
+import Activity from "../activity/activity_feed";
 import About from "../nav/about";
 
 export default class dashboard extends Component {
@@ -18,6 +18,7 @@ export default class dashboard extends Component {
     this.props.fetchBuggouts();
     this.props.fetchRoutes();
     this.props.fetchPosts();
+    this.props.fetchComments();
   }
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {

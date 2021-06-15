@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_202001) do
+ActiveRecord::Schema.define(version: 2021_06_15_100013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 2021_06_09_202001) do
     t.integer "duration", array: true
     t.decimal "distance"
     t.string "pace"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.integer "commenter_id"
+    t.integer "post_user_id"
+    t.integer "post_id"
+    t.datetime "created_at"
   end
 
   create_table "google_routes", force: :cascade do |t|

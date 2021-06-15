@@ -1,8 +1,12 @@
 import React from "react";
+import Comment from "../comment/comment_form_new";
 import { formatDuration, formatTravelMode } from "../../util/conversions";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchComments } from "../../actions/comments";
 
-const activity_feed = ({ post, deletePost, buggout }) => {
-  // debugger;
+const activity_feed = ({ post, deletePost }) => {
+  const comments = useSelector((state) => state.entities.comments);
+  const dispatch = useDispatch(fetchComments());
 
   return (
     <div key={`${post.id}-post`} className="float-card post-item">
@@ -56,11 +60,18 @@ const activity_feed = ({ post, deletePost, buggout }) => {
       </section>
 
       <section className="post-item-main">
-        <input
+        {/* <input
           type="text"
           className="comment-field shrink"
           id={`comment-field-${post.id}`}
+        /> */}
+        <Comment
+          post={post}
+          comments={comments}
+          dispatch={dispatch}
+          // handleSubmit={(e, comment) => handleComment(e, comment)}
         />
+
         <i
           className="button-grey far fa-thumbs-up"
           onClick={(e) => e.target.classList.toggle("selected")}

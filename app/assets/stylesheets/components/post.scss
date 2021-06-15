@@ -241,10 +241,14 @@ h1.post-title {
   justify-content: space-between;
 }
 
+.comment-form {
+  width: 100%;
+}
+
 .comment-field {
   background: #f7f7fa;
   width: 100%;
   box-shadow: 0 0 1px #ababab;
-  padding: 2px 7px;
-  font-size: 14px;
+  padding: 8px 7px;
+  font-size: 15px;
 }

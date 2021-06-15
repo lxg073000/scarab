@@ -14,26 +14,26 @@ export default class footer_white extends Component {
             <ul className="footer-links">
               <li>Follow</li>
               <li>
-                <i className="fa-icon fab fa-instagram"></i>
+                <i className="fab fa-linkedin"></i>
                 <a
                   className="footer-link"
                   rel="noreferrer"
                   target="_blank"
-                  href="https://www.instagram.com/lernardgrigsby/"
+                  href="https://www.linkedin.com/in/lernardgrigsby/"
                 >
-                  Instagram
+                  Linkedin
                 </a>
               </li>
               <li>
-                <i className="fa-icon fab fa-twitter"></i>
+                <i className="fab fa-angellist"></i>
 
                 <a
                   className="footer-link"
                   rel="noreferrer"
                   target="_blank"
-                  href="https://twitter.com/LernardGrigsby"
+                  href="https://angel.co/u/lernard-grigsby"
                 >
-                  Twitter
+                  AngelList
                 </a>
               </li>
               <li>
