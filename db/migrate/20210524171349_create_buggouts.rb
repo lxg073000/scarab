@@ -1,6 +1,6 @@
-class CreateBuggouts < ActiveRecord::Migration[5.2]
+class CreateActivities < ActiveRecord::Migration[5.2]
   def change
-    create_table :buggouts do |t|
+    create_table :activities do |t|
       t.integer :google_route_id
       t.string :title
       t.string :description

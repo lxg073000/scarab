@@ -1,6 +1,6 @@
-class RemoveColumnFromBuggouts < ActiveRecord::Migration[5.2]
+class RemoveColumnFromActivities < ActiveRecord::Migration[5.2]
   def change
-    remove_column :buggouts, :pace, :decimal
-    add_column :buggouts, :pace, :string
+    remove_column :activities, :pace, :decimal
+    add_column :activities, :pace, :string
   end
 end

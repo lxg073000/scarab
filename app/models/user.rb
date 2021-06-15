@@ -7,10 +7,10 @@ class User < ApplicationRecord
   before_validation :ensure_session_token
 
   has_many :google_routes
-  has_many :buggouts
+  has_many :activities
   has_many :trustees
-  has_many :liked_buggouts
-  has_many :buggouts_liked
+  has_many :liked_activities
+  has_many :activities_liked
   has_one_attached :profile_picture
 
   def password=(password)

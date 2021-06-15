@@ -1,4 +1,4 @@
-.buggout-shell {
+.activity-shell {
   width: 600px;
   margin: auto;
   h2.bold {
@@ -6,7 +6,7 @@
   }
 }
 
-.new-buggout-shell {
+.new-activity-shell {
   margin: 3em auto;
   max-width: 1200px;
   display: flex;
@@ -14,7 +14,7 @@
   gap: 4em;
 }
 
-.buggout-new {
+.activity-new {
   position: relative;
   &:after {
     content: "";
@@ -27,7 +27,7 @@
   }
 }
 
-main.buggout-details {
+main.activity-details {
   display: flex;
   gap: 4em;
   justify-content: space-between;
@@ -127,9 +127,9 @@ section.right {
   background: rgb(249, 252, 255);
 }
 
-//BUGGOUT INDEX
+//ACTIVITY INDEX
 
-.buggout-index-card {
+.activity-index-card {
   display: grid;
   text-align: left;
   td,

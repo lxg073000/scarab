@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
 import { calcPace, formatTravelMode } from "../../util/conversions";
 
-class buggout_form_edit extends Component {
+class activity_form_edit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,19 +19,19 @@ class buggout_form_edit extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBuggouts();
+    this.props.fetchActivities();
     this.props.fetchRoutes();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
-        ...this.props.buggouts[this.props.match.params.activity_id],
+        ...this.props.activities[this.props.match.params.activity_id],
       });
     }
   }
 
-  updateBuggout() {
+  updateActivity() {
     const distance = parseFloat(
       this.props.routes[this.state.google_route_id].distance
     );
@@ -39,8 +39,8 @@ class buggout_form_edit extends Component {
     const min = parseFloat(document.getElementById("edit-min-val").value / 1);
     const sec = parseFloat(document.getElementById("edit-sec-val").value / 1);
 
-    const buggout = {
-      buggout: {
+    const activity = {
+      activity: {
         id: this.state.id,
         user_id: this.state.user_id,
         google_route_id: this.state.google_route_id,
@@ -57,7 +57,7 @@ class buggout_form_edit extends Component {
         ],
       },
     };
-    this.props.updateBuggout(buggout);
+    this.props.updateActivity(activity);
     this.setState({}, this.props.history.push("/activities/"));
   }
 
@@ -75,11 +75,11 @@ class buggout_form_edit extends Component {
 
     return (
       <div className="component-container-main">
-        <div className="new-buggout-shell">
-          <header className="buggout-new">
+        <div className="new-activity-shell">
+          <header className="activity-new">
             <h1 className="bold">Edit Activity</h1>
           </header>
-          <main className="buggout-details">
+          <main className="activity-details">
             <section className="left">
               <h2 className="bold">Title</h2>
               <input
@@ -145,7 +145,7 @@ class buggout_form_edit extends Component {
               <div className="buttons-div">
                 <h2
                   className="button-orange"
-                  onClick={() => this.updateBuggout()}
+                  onClick={() => this.updateActivity()}
                 >
                   Update Activity
                 </h2>
@@ -212,4 +212,4 @@ class buggout_form_edit extends Component {
   }
 }
 
-export default buggout_form_edit;
+export default activity_form_edit;

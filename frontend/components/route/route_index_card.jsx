@@ -30,7 +30,7 @@ export default class route_index_card extends Component {
 
   filterRoutes(travelMode) {
     let filtered = this.props.routes.filter(
-      (buggout) => buggout.travelMode === travelMode
+      (activity) => activity.travelMode === travelMode
     );
 
     filtered = Object.values(filtered);
@@ -138,7 +138,7 @@ export default class route_index_card extends Component {
                 }`}
                 onClick={() => this.filterResults("WALKING")}
               >
-                Walking
+                Running
               </h2>
             </div>
             <div className="route-index-items">

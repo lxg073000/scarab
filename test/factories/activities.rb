@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :buggout do
+  factory :activity do
     google_route_id { 1 }
     title { "MyString" }
     description { "MyString" }

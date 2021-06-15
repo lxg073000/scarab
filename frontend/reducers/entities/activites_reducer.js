@@ -1,23 +1,23 @@
 import {
-  RECEIVE_BUGGOUTS,
-  RECEIVE_BUGGOUT,
-  REMOVE_BUGGOUT,
-} from "../../actions/buggouts";
+  RECEIVE_ACTIVITIES,
+  RECEIVE_ACTIVITY,
+  REMOVE_ACTIVITY,
+} from "../../actions/activities";
 import { LOGOUT_CURRENT_USER } from "../../actions/session";
 
-const BuggoutsReducer = (oldState = {}, action) => {
+const ActivitiesReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   let nextState = Object.assign({}, oldState);
   switch (action.type) {
-    case RECEIVE_BUGGOUTS:
-      nextState = Object.assign({}, nextState, action.buggouts);
-      return action.buggouts;
-    case RECEIVE_BUGGOUT:
+    case RECEIVE_ACTIVITIES:
+      nextState = Object.assign({}, nextState, action.activities);
+      return action.activities;
+    case RECEIVE_ACTIVITY:
       nextState = Object.assign({}, nextState, {
-        [action.buggout.id]: action.buggout,
+        [action.activity.id]: action.activity,
       });
       return nextState;
-    case REMOVE_BUGGOUT:
+    case REMOVE_ACTIVITY:
       delete nextState[action.activity_id.id];
       return nextState;
     case LOGOUT_CURRENT_USER:
@@ -27,4 +27,4 @@ const BuggoutsReducer = (oldState = {}, action) => {
   }
 };
 
-export default BuggoutsReducer;
+export default ActivitiesReducer;

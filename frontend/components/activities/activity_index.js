@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { formatDuration } from "../../util/conversions";
 
-export default class buggout_index_card extends Component {
+export default class activity_index_card extends Component {
   constructor(props) {
     super(props);
 
@@ -15,9 +15,11 @@ export default class buggout_index_card extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBuggouts();
+    this.props.fetchActivities();
     let activities = {};
-    this.props.buggouts.map((buggout) => (activities[buggout.id] = buggout));
+    this.props.activities.map(
+      (activity) => (activities[activity.id] = activity)
+    );
     this.setState(
       {
         activities,
@@ -29,7 +31,9 @@ export default class buggout_index_card extends Component {
     debugger;
     if (prevProps !== this.props) {
       let activities = {};
-      this.props.buggouts.map((buggout) => (activities[buggout.id] = buggout));
+      this.props.activities.map(
+        (activity) => (activities[activity.id] = activity)
+      );
       this.setState(
         {
           activities,
@@ -39,14 +43,14 @@ export default class buggout_index_card extends Component {
     }
   }
 
-  deleteBuggout(buggoutID) {
-    this.props.deleteBuggout(buggoutID);
+  deleteActivity(activityID) {
+    this.props.deleteActivity(activityID);
   }
 
-  shareBuggout(id) {
+  shareActivity(id) {
     const post = {
       post: {
-        buggout_id: id,
+        activity_id: id,
         google_route_id: this.state.activities[id].google_route_id,
         user_id: currentUser.id,
         username: currentUser.username,
@@ -63,7 +67,7 @@ export default class buggout_index_card extends Component {
   }
 
   sortActivities_id() {
-    const sortById = this.props.buggouts.sort(function (a, b) {
+    const sortById = this.props.activities.sort(function (a, b) {
       if (a.id > b.id) return -1;
       if (a.id < b.id) return 1;
       return 0;
@@ -76,7 +80,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_title() {
-    const sortByTitle = this.props.buggouts.sort(function (a, b) {
+    const sortByTitle = this.props.activities.sort(function (a, b) {
       if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
       if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
       return 0;
@@ -87,7 +91,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_description() {
-    const sortByDescription = this.props.buggouts.sort(function (a, b) {
+    const sortByDescription = this.props.activities.sort(function (a, b) {
       if (a.description.toLowerCase() < b.description.toLowerCase()) return -1;
       if (a.description.toLowerCase() > b.description.toLowerCase()) return 1;
       return 0;
@@ -98,7 +102,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_start_time() {
-    const sortByStartTime = this.props.buggouts.sort(function (a, b) {
+    const sortByStartTime = this.props.activities.sort(function (a, b) {
       if (a.start_time < b.start_time) return -1;
       if (a.start_time > b.start_time) return 1;
       return 0;
@@ -109,7 +113,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_duration() {
-    const sortByDuration = this.props.buggouts.sort(function (a, b) {
+    const sortByDuration = this.props.activities.sort(function (a, b) {
       if (a.duration < b.duration) return -1;
       if (a.duration > b.duration) return 1;
       return 0;
@@ -121,7 +125,7 @@ export default class buggout_index_card extends Component {
   }
   sortActivities_distance() {
     debugger;
-    const sortByDistance = this.props.buggouts.sort(function (a, b) {
+    const sortByDistance = this.props.activities.sort(function (a, b) {
       if (a.distance < b.distance) return -1;
       if (a.distance > b.distance) return 1;
       return 0;
@@ -132,7 +136,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_pace() {
-    const sortByPace = this.props.buggouts.sort(function (a, b) {
+    const sortByPace = this.props.activities.sort(function (a, b) {
       if (a.pace < b.pace) return -1;
       if (a.pace > b.pace) return 1;
       return 0;
@@ -143,7 +147,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_date_completed() {
-    const sortByDate = this.props.buggouts.sort(function (a, b) {
+    const sortByDate = this.props.activities.sort(function (a, b) {
       if (new Date(a.date_completed) < new Date(b.date_completed)) return -1;
       if (new Date(a.date_completed) > new Date(b.date_completed)) return 1;
       return 0;
@@ -154,7 +158,7 @@ export default class buggout_index_card extends Component {
     });
   }
   sortActivities_travel_mode() {
-    const sortByTravelMode = this.props.buggouts.sort(function (a, b) {
+    const sortByTravelMode = this.props.activities.sort(function (a, b) {
       if (a.travelMode < b.travelMode) return -1;
       if (a.travelMode > b.travelMode) return 1;
       return 0;
@@ -227,18 +231,18 @@ export default class buggout_index_card extends Component {
             </div>
           </section>
           <section className="route-index-routes">
-            {this.props.buggouts.length > 1 ||
-            this.props.buggouts.length === 0 ? (
+            {this.props.activities.length > 1 ||
+            this.props.activities.length === 0 ? (
               <h2 onClick={() => this.sortActivities_id()} className="link">
-                {this.props.buggouts.length} Activities
+                {this.props.activities.length} Activities
               </h2>
             ) : (
               <h2 onClick={() => this.sortActivities_id()} className="link">
-                {this.props.buggouts.length} Activity
+                {this.props.activities.length} Activity
               </h2>
             )}
 
-            <div className="float-card buggout-index-card">
+            <div className="float-card activity-index-card">
               <table>
                 <thead>
                   <tr>
@@ -296,56 +300,56 @@ export default class buggout_index_card extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.buggouts.map((buggout) => (
-                    <tr key={`${buggout.id}-tr`}>
+                  {this.props.activities.map((activity) => (
+                    <tr key={`${activity.id}-tr`}>
                       <td
-                        key={`${buggout.id}-travelMode`}
-                        id={`${buggout.id}-travelMode`}
+                        key={`${activity.id}-travelMode`}
+                        id={`${activity.id}-travelMode`}
                       >
                         <i
-                          className={this.formatTravelMode(buggout.travelMode)}
+                          className={this.formatTravelMode(activity.travelMode)}
                         ></i>
                       </td>
-                      <td key={`${buggout.id}-date_completed`}>
-                        {buggout.date_completed}
+                      <td key={`${activity.id}-date_completed`}>
+                        {activity.date_completed}
                       </td>
                       <td
                         className="accent3 link"
-                        key={`${buggout.id}-title`}
-                        id={`${buggout.id}-title`}
+                        key={`${activity.id}-title`}
+                        id={`${activity.id}-title`}
                         onClick={() =>
-                          this.props.history.push(`/activity/${buggout.id}`)
+                          this.props.history.push(`/activity/${activity.id}`)
                         }
                       >
-                        {buggout.title}
+                        {activity.title}
                       </td>
                       <td
-                        key={`${buggout.id}-description`}
-                        id={`${buggout.id}-description`}
+                        key={`${activity.id}-description`}
+                        id={`${activity.id}-description`}
                       >
-                        {buggout.description}
+                        {activity.description}
                       </td>
-                      <td key={`${buggout.id}-start_time`}>
-                        {this.formatTime(buggout.start_time)}
+                      <td key={`${activity.id}-start_time`}>
+                        {this.formatTime(activity.start_time)}
                       </td>
-                      <td key={`${buggout.id}-duration`}>
-                        {formatDuration(buggout.duration)}
+                      <td key={`${activity.id}-duration`}>
+                        {formatDuration(activity.duration)}
                       </td>
                       <td
-                        key={`${buggout.id}-distance`}
+                        key={`${activity.id}-distance`}
                         className="numeric-align"
                       >
-                        {`${buggout.distance} mi`}
+                        {`${activity.distance} mi`}
                       </td>
-                      <td key={`${buggout.id}-pace`} className="numeric-align">
-                        {`${buggout.pace} / mi`}
+                      <td key={`${activity.id}-pace`} className="numeric-align">
+                        {`${activity.pace} / mi`}
                       </td>
                       <td
                         className="accent3 link"
-                        key={`${buggout.id}-edit`}
+                        key={`${activity.id}-edit`}
                         onClick={() =>
                           this.props.history.push(
-                            `/activity/${buggout.id}/edit`
+                            `/activity/${activity.id}/edit`
                           )
                         }
                       >
@@ -353,15 +357,15 @@ export default class buggout_index_card extends Component {
                       </td>
                       <td
                         className="accent3 link"
-                        key={`${buggout.id}-delete`}
-                        onClick={() => this.deleteBuggout(buggout.id)}
+                        key={`${activity.id}-delete`}
+                        onClick={() => this.deleteActivity(activity.id)}
                       >
                         Delete
                       </td>
                       <td
                         className="accent3 link"
-                        key={`${buggout.id}-share`}
-                        onClick={() => this.shareBuggout(buggout.id)}
+                        key={`${activity.id}-share`}
+                        onClick={() => this.shareActivity(activity.id)}
                       >
                         Share
                       </td>

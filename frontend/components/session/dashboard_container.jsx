@@ -6,14 +6,14 @@ import {
 } from "../../actions/session";
 import Dashboard from "./dashboard";
 import { fetchRoutes } from "../../actions/gRoute";
-import { fetchBuggouts } from "../../actions/buggouts";
+import { fetchActivities } from "../../actions/activities";
 import { fetchPosts, deletePost } from "../../actions/posts";
 import { fetchComments, deleteComment } from "../../actions/comments";
 
 const mapState = (state) => {
   return {
     currentUser: state.session.currentUser,
-    buggouts: Object.values(state.entities.buggouts),
+    activities: Object.values(state.entities.activities),
     routes: Object.values(state.entities.routes),
     posts: Object.values(state.entities.posts),
   };
@@ -25,7 +25,7 @@ const mapDispatch = (dispatch) => ({
   fetchComments: () => dispatch(fetchComments()),
   deleteComment: (commentID) => dispatch(deleteComment(commentID)),
   fetchRoutes: () => dispatch(fetchRoutes()),
-  fetchBuggouts: () => dispatch(fetchBuggouts()),
+  fetchActivities: () => dispatch(fetchActivities()),
   receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),
   clearSessionErrors: () => dispatch(clearSessionErrors()),
 });

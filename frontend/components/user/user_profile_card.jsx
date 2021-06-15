@@ -1,6 +1,6 @@
 import React from "react";
 
-const user_profile_card = ({ buggouts, routes, to_activities }) => {
+const user_profile_card = ({ activities, routes, to_activities }) => {
   return (
     <div className="profile-shell float-card">
       <img src={window.user_pic} alt="user_pic" />
@@ -17,7 +17,7 @@ const user_profile_card = ({ buggouts, routes, to_activities }) => {
         <div className="profile-stat-item">
           <h3>Activities</h3>
           <h1 className="link accent4" onClick={to_activities}>
-            {buggouts ? buggouts.length : 0}
+            {activities ? activities.length : 0}
           </h1>
         </div>
       </div>
@@ -25,13 +25,15 @@ const user_profile_card = ({ buggouts, routes, to_activities }) => {
         <section>
           <h3>Latest Training</h3>
           <h3 className="bold">
-            {buggouts.length > 0
+            {activities.length > 0
               ? `${
-                  Object.values(buggouts)[Object.values(buggouts).length - 1]
-                    .title
+                  Object.values(activities)[
+                    Object.values(activities).length - 1
+                  ].title
                 } • ${
-                  Object.values(buggouts)[Object.values(buggouts).length - 1]
-                    .date_completed
+                  Object.values(activities)[
+                    Object.values(activities).length - 1
+                  ].date_completed
                 } `
               : "No Activities"}
           </h3>

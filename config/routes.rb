@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :google_routes, filter: :walking
       get :google_routes, filter: :bicyling
     end
-    resources :buggouts, only: [:index, :create, :update, :show, :destroy]
+    resources :activities, only: [:index, :create, :update, :show, :destroy]
     resources :posts, only: [:index, :create, :update, :show, :destroy]
     
     resources :google_routes, only: [:create, :update, :destroy, :show, :index]

@@ -5,8 +5,6 @@ import configureStore from "./store/store";
 import { createStore } from "redux";
 import { provider } from "react-redux";
 
-// import { fetchWaypoints } from "./actions/waypoint";
-
 document.addEventListener("DOMContentLoaded", () => {
   let preloadedState = {};
   if (window.currentUser) {

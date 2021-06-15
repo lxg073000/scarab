@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
 
-export default class buggout_index_card extends Component {
+export default class activity_index_card extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,14 +18,14 @@ export default class buggout_index_card extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBuggouts();
+    this.props.fetchActivities();
     this.props.fetchRoutes();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
-        ...this.props.buggouts[this.props.match.params.activity],
+        ...this.props.activities[this.props.match.params.activity],
       });
     }
   }
@@ -33,8 +33,8 @@ export default class buggout_index_card extends Component {
   render() {
     return (
       <div className="component-container-main">
-        <div className="new-buggout-shell">
-          <header className="buggout-new">
+        <div className="new-activity-shell">
+          <header className="activity-new">
             {this.props.routes[this.state.google_route_id] ? (
               <h1 className="bold">{`Your Activity on ${
                 this.props.routes[this.state.google_route_id].name
@@ -43,7 +43,7 @@ export default class buggout_index_card extends Component {
               <h1 className="bold">{`Your Activity on...`}</h1>
             )}
           </header>
-          <main className="buggout-details">
+          <main className="activity-details">
             <section className="left">
               <h2 className="bold">Title</h2>
               <input

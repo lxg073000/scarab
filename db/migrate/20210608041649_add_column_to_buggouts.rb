@@ -1,6 +1,6 @@
-class AddColumnToBuggouts < ActiveRecord::Migration[5.2]
+class AddColumnToActivities < ActiveRecord::Migration[5.2]
   def change
-    add_column :buggouts, :pace, :decimal, precision: 15, scale: 2
-    add_column :buggouts, :duration, :string
+    add_column :activities, :pace, :decimal, precision: 15, scale: 2
+    add_column :activities, :duration, :string
   end
 end

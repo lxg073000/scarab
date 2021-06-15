@@ -1,5 +1,5 @@
-class AddUserIdToBuggout < ActiveRecord::Migration[5.2]
+class AddUserIdToActivity < ActiveRecord::Migration[5.2]
   def change
-    add_column :buggouts, :user_id, :integer
+    add_column :activities, :user_id, :integer
   end
 end

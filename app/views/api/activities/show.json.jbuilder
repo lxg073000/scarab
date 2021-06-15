@@ -1,0 +1,1 @@
+json.extract! @activity, :id, :google_route_id, :user_id, :title, :description, :travelMode, :distance, :date_completed, :start_time, :pace, :duration, :created_at

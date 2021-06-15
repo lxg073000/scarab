@@ -28,8 +28,8 @@ const activity_feed = ({ post, deletePost }) => {
             </h2>
           </section>
         </div>
-        {post.buggout_id ? (
-          <section className="buggout-share">
+        {post.activity_id ? (
+          <section className="activity-share">
             <div className="flex-col">
               <i className={`${formatTravelMode(post.travelMode)} post-bg`}></i>
               <div className="flex-col">

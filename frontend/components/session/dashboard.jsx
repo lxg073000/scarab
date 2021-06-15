@@ -15,7 +15,7 @@ export default class dashboard extends Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser);
-    this.props.fetchBuggouts();
+    this.props.fetchActivities();
     this.props.fetchRoutes();
     this.props.fetchPosts();
     this.props.fetchComments();
@@ -49,7 +49,7 @@ export default class dashboard extends Component {
           <div className="dashboard-container">
             <section className="user-pane">
               <UserInfo
-                buggouts={this.props.buggouts}
+                activities={this.props.activities}
                 routes={this.props.routes}
                 to_activities={() => this.props.history.push("/activities")}
               />
@@ -60,7 +60,7 @@ export default class dashboard extends Component {
                   <Activity
                     key={post.id}
                     post={post}
-                    buggout={this.props.buggouts}
+                    activity={this.props.activities}
                     deletePost={this.props.deletePost}
                   />
                 ))

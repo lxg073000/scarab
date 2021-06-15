@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { fetchActivities, updateActivity } from "../../actions/activities";
 import { fetchCurrentUserRoutes } from "../../actions/gRoute";
-import ActivityEdit from "./post_form_edit";
+import ActivityEdit from "./activity_form_edit";
 
 const mapState = (state) => {
   return {

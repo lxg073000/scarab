@@ -3,5 +3,5 @@
 # end
 # json.image_url asset_path()
 
-json.extract! @user, :id, :username, :email, :session_token, :google_routes, :buggouts
+json.extract! @user, :id, :username, :email, :session_token, :google_routes, :activities
 # json.array! @user.google_routes do |route| json.extract! route, :name, :description end

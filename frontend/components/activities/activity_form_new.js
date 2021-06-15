@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import RouteThumbnail from "../googleMap/route_thumbnail_container";
 import { calcPace, formatTravelMode } from "../../util/conversions";
 
-class buggout_form_new extends Component {
+class activity_form_new extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,11 +11,11 @@ class buggout_form_new extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBuggouts();
+    this.props.fetchActivities();
     this.props.fetchRoutes();
   }
 
-  submitBuggout() {
+  submitActivity() {
     const distance = parseFloat(
       this.props.routes[this.state.google_route_id].distance
     );
@@ -23,8 +23,8 @@ class buggout_form_new extends Component {
     const min = parseFloat(document.getElementById("min-val").value / 1);
     const sec = parseFloat(document.getElementById("sec-val").value / 1);
 
-    const buggout = {
-      buggout: {
+    const activity = {
+      activity: {
         user_id: currentUser.id,
         google_route_id: this.state.google_route_id,
         date_completed: document.getElementById("date-val").value,
@@ -42,7 +42,7 @@ class buggout_form_new extends Component {
       },
     };
 
-    this.props.createBuggout(buggout);
+    this.props.createActivity(activity);
     this.props.history.push(`/activities`);
   }
   updateSelected(e) {
@@ -61,11 +61,11 @@ class buggout_form_new extends Component {
 
     return (
       <div className="component-container-main">
-        <div className="new-buggout-shell">
-          <header className="buggout-new">
+        <div className="new-activity-shell">
+          <header className="activity-new">
             <h1 className="bold">Upload Activity</h1>
           </header>
-          <main className="buggout-details">
+          <main className="activity-details">
             <section className="left">
               <h2 className="bold">Title</h2>
               <input id="title-val" type="text" className="text" />
@@ -112,7 +112,7 @@ class buggout_form_new extends Component {
               </div>
               <h2
                 className="button-orange"
-                onClick={() => this.submitBuggout()}
+                onClick={() => this.submitActivity()}
               >
                 Save Activity
               </h2>
@@ -171,4 +171,4 @@ class buggout_form_new extends Component {
   }
 }
 
-export default buggout_form_new;
+export default activity_form_new;

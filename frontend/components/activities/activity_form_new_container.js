@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { fetchActivities, updateActivity } from "../../actions/activities";
+import { fetchActivities, createActivity } from "../../actions/activities";
 import { fetchCurrentUserRoutes } from "../../actions/gRoute";
-import ActivityEdit from "./post_form_edit";
+import ActivityNew from "./activity_form_new";
 
 const mapState = (state) => {
   return {
@@ -12,7 +12,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => ({
   fetchActivities: () => dispatch(fetchActivities()),
   fetchRoutes: () => dispatch(fetchCurrentUserRoutes()),
-  updateActivity: (activity) => dispatch(updateActivity(activity)),
+  createActivity: (activity) => dispatch(createActivity(activity)),
 });
 
-export default connect(mapState, mapDispatch)(ActivityEdit);
+export default connect(mapState, mapDispatch)(ActivityNew);

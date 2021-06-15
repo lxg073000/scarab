@@ -6,20 +6,15 @@ import splash_container from "./splash/splash_container";
 import signup_form_container from "./session/signup_form_container";
 import login_form_container from "./session/login_form_container";
 import dashboard_container from "./session/dashboard_container";
-import user_profile_container from "./user/user_profile_container";
-import user_feed_container from "./user/user_feed_container";
-import user_routes_container from "./user/user_routes_container";
-
 import route_edit_form_container from "./route/route_edit_form_container";
 import search_container from "./googleMap/search_container";
 import route_index_card_container from "./route/route_index_card_container";
 import route_showcard_container from "./route/route_showcard_container";
 import Footer from "./nav/footer_container";
-import buggout_form_new from "./buggouts/buggout_form_new_container";
-import buggout_form_edit from "./buggouts/buggout_form_edit_container";
-import buggout_showcard from "./buggouts/buggout_showcard_container";
-import buggout_index_container from "./buggouts/buggout_index_container";
-
+import activity_form_new from "./activities/activity_form_new_container";
+import activity_form_edit from "./activities/activity_form_edit_container";
+import activity_showcard from "./activities/activity_showcard_container";
+import activity_index_container from "./activities/activity_index_container";
 import post_form_new from "./posts/post_form_new_container";
 import post_form_edit from "./posts/post_form_edit_container";
 import post_index_container from "./posts/post_index_container";
@@ -40,13 +35,6 @@ class App extends React.Component {
           <ProtectedRoute path="/dashboard" component={dashboard_container} />
           <Footer />
         </Route>
-
-        <ProtectedRoute path="/user/:id" component={user_profile_container} />
-        <ProtectedRoute path="/user/:id/feed" component={user_feed_container} />
-        <ProtectedRoute
-          path="/user/:id/routes"
-          component={user_routes_container}
-        />
 
         <ProtectedRoute
           path="/route/:id/edit"
@@ -72,7 +60,7 @@ class App extends React.Component {
             <ProtectedRoute
               exact
               path="/activities"
-              component={buggout_index_container}
+              component={activity_index_container}
             />
             <Footer />
           </Route>
@@ -82,7 +70,7 @@ class App extends React.Component {
             <ProtectedRoute
               exact
               path="/activity/"
-              component={buggout_form_new}
+              component={activity_form_new}
             />
             <Footer />
           </Route>
@@ -92,7 +80,7 @@ class App extends React.Component {
             <ProtectedRoute
               exact
               path="/activity/:activity"
-              component={buggout_showcard}
+              component={activity_showcard}
             />
             <Footer />
           </Route>
@@ -102,7 +90,7 @@ class App extends React.Component {
             <ProtectedRoute
               exact
               path="/activity/:activity_id/edit"
-              component={buggout_form_edit}
+              component={activity_form_edit}
             />
             <Footer />
           </Route>
