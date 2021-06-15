@@ -591,7 +591,7 @@ export default class edit_form extends Component {
     return (
       <div className="fullscreen-map">
         <div className="route-shell">
-          <div className="route-prefs" id="route-prefs">
+          <div className="route-prefs slide-left" id="route-prefs">
             <h1 id="pref-tag">
               Routing Preferences
               <i
@@ -602,67 +602,35 @@ export default class edit_form extends Component {
 
             <h1>Route Name</h1>
             <input
+              disabled
               type="text"
               onChange={this.update("name")}
               value={this.state.name}
             ></input>
             <h1>Route description</h1>
             <input
+              disabled
               type="text"
               onChange={this.update("description")}
               value={this.state.description}
             ></input>
             <h1>Travel Mode</h1>
-            <div
-              className="route-item running"
-              onClick={(e) =>
-                this.updateTravelMode("WALKING", "fas fa-running", e)
-              }
-            >
+            <div className="route-item running" style={{ cursor: "default" }}>
               <i className="fas fa-running"></i>
               <p>Run</p>
             </div>
-            <div
-              className="route-item bicycle"
-              onClick={(e) =>
-                this.updateTravelMode("BICYCLING", "fas fa-bicycle", e)
-              }
-            >
+            <div className="route-item bicycle" style={{ cursor: "default" }}>
               <i className="fas fa-bicycle"></i>
               <p>Bike</p>
             </div>
-            <div
-              className="route-item car"
-              onClick={(e) => this.updateTravelMode("DRIVING", "fas fa-car", e)}
-            >
+            <div className="route-item car" style={{ cursor: "default" }}>
               <i className="fas fa-car"></i>
               <p>Drive</p>
             </div>
           </div>
-          <div className="route-main resize-route" id="route-main">
+          <div className="route-main" id="route-main">
             <div className="route-tools">
               <div className="edits">
-                <i
-                  className="fas fa-undo-alt fas-tools"
-                  onClick={this.undoMarker}
-                ></i>
-                <i
-                  className="fas fa-redo-alt fas-tools"
-                  onClick={this.redoMarker}
-                ></i>
-              </div>
-              <div className="store">
-                <i
-                  className="fas fa-trash fas-tools"
-                  onClick={this.deleteRoute}
-                ></i>
-                <button
-                  className="nav-btn"
-                  id="submission"
-                  onClick={() => this.updateRoute()}
-                >
-                  Update
-                </button>
                 <button
                   className="nav-btn"
                   id="submission"

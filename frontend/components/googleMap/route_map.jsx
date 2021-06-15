@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
 import { map_options_full } from "../../util/conversions";
-// import RouteForm from "../route/route_form";
 
 export default class route_map extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      origin: null,
-      destination: null,
+      // origin: null,
+      // destination: null,
       waypoints: [],
       undoneWaypoints: [],
-      distance: null,
-      duration: null,
-      name: null,
-      description: null,
-      travelMode: "WALKING", //DRIVING, BICYCLING, WALKING
+      // distance: null,
+      // duration: null,
+      // name: null,
+      // description: null,
+      travelMode: "WALKING",
       travelIcon: "fas fa-running",
     };
 
@@ -241,7 +240,7 @@ export default class route_map extends Component {
     };
 
     this.props.createRoute(request);
-    this.props.history.push(`/supply_routes/${currentUser.id}`);
+    this.props.history.push(`/my_routes/${currentUser.id}`);
   }
 
   drawRouteDirections() {
@@ -283,7 +282,7 @@ export default class route_map extends Component {
       ],
     };
     this.props.createRoute(request);
-    this.props.history.push(`/supply_routes/${currentUser.id}`);
+    this.props.history.push(`/my_routes/${currentUser.id}`);
   }
 
   prefToggle() {

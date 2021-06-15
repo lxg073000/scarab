@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-// import {} from "../../actions/splash";
 import SplashCard from "./splash_card";
 import { login } from "../../actions/session";
 

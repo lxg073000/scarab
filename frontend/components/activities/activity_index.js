@@ -28,7 +28,6 @@ export default class activity_index_card extends Component {
     );
   }
   componentDidUpdate(prevProps) {
-    debugger;
     if (prevProps !== this.props) {
       let activities = {};
       this.props.activities.map(
@@ -72,8 +71,6 @@ export default class activity_index_card extends Component {
       if (a.id < b.id) return 1;
       return 0;
     });
-
-    // this.setState({}, console.log(this.state));
 
     this.setState({
       activities: sortById,
@@ -124,7 +121,6 @@ export default class activity_index_card extends Component {
     });
   }
   sortActivities_distance() {
-    debugger;
     const sortByDistance = this.props.activities.sort(function (a, b) {
       if (a.distance < b.distance) return -1;
       if (a.distance > b.distance) return 1;
@@ -197,11 +193,10 @@ export default class activity_index_card extends Component {
     formattedTime.setMinutes(startTime.split(":")[1]);
     formattedTime = formattedTime.toLocaleTimeString();
 
-    return formattedTime;
+    return `${formattedTime.slice(0, -6)} ${formattedTime.slice(-2)}`;
   }
 
   render() {
-    debugger;
     return (
       <div className="component-container-main">
         <div className="route-index-shell">
@@ -224,7 +219,7 @@ export default class activity_index_card extends Component {
                   href="https://lernardgrigsby.github.io/"
                 >
                   {" "}
-                  <span className="link accent3">personal portfoilio!</span>
+                  <span className="link accent3">personal portfolio.</span>
                 </a>{" "}
               </p>
               <img src={window.device_routes} alt="" className="" />

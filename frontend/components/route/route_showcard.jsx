@@ -70,10 +70,7 @@ export default class route_showcard extends Component {
             >
               Delete Route
             </p>
-            <div
-              // className="close-layer"
-              onClick={() => this.toggleOptions()}
-            ></div>
+            <div onClick={() => this.toggleOptions()}></div>
           </div>
         </div>
         <section
@@ -84,7 +81,12 @@ export default class route_showcard extends Component {
         ></section>
 
         <section className="route-details-mini">
-          <h1 className="link title accent3 bold">{`${this.props.route.name}`}</h1>
+          <h1
+            className="link title accent3 bold"
+            onClick={() =>
+              this.props.history.push(`/route/${this.props.route.id}`)
+            }
+          >{`${this.props.route.name}`}</h1>
           <h2 className="description">{`${this.props.route.description}`}</h2>
           <div className="route-stats-mini">
             <h1 className="values">

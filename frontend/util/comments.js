@@ -4,7 +4,6 @@ export const API_fetchComments = () =>
     url: "/api/comments",
   });
 export const API_createComment = function (comment) {
-  debugger;
   return $.ajax({
     method: "POST",
     url: `/api/comments`,

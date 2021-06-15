@@ -8,9 +8,9 @@ export default class splash_card extends Component {
 
   render() {
     const demoUser = {
-      username: "guest",
-      email: "guest@AA.com",
-      password: "password123",
+      username: "Alvin",
+      email: "guest@aa.com",
+      password: "12345asd",
     };
     return (
       <div className="splash-shell">

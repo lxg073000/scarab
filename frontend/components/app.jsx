@@ -9,7 +9,7 @@ import dashboard_container from "./session/dashboard_container";
 import route_edit_form_container from "./route/route_edit_form_container";
 import search_container from "./googleMap/search_container";
 import route_index_card_container from "./route/route_index_card_container";
-import route_showcard_container from "./route/route_showcard_container";
+import route_show_form_container from "./route/route_show_form_container";
 import Footer from "./nav/footer_container";
 import activity_form_new from "./activities/activity_form_new_container";
 import activity_form_edit from "./activities/activity_form_edit_container";
@@ -36,24 +36,32 @@ class App extends React.Component {
           <Footer />
         </Route>
 
-        <ProtectedRoute
-          path="/route/:id/edit"
-          component={route_edit_form_container}
-        />
-        <ProtectedRoute path="/routes/" component={search_container} />
-
-        <Route path="/supply_routes">
+        <Route path="/route/:id/edit">
           <ProtectedRoute
-            path="/supply_routes/:user_id"
+            exact
+            path="/route/:id/edit"
+            component={route_edit_form_container}
+          />
+        </Route>
+
+        <ProtectedRoute exact path="/routes/" component={search_container} />
+
+        <Route exact path="/my_routes/:user_id">
+          <ProtectedRoute
+            exact
+            path="/my_routes/:user_id"
             component={route_index_card_container}
           />
           <Footer />
         </Route>
 
-        <ProtectedRoute
-          path="/route/:id/user/:id"
-          component={route_showcard_container}
-        />
+        <Route exact path="/route/:id/">
+          <ProtectedRoute
+            exact
+            path="/route/:id/"
+            component={route_show_form_container}
+          />
+        </Route>
 
         <Switch>
           <Route exact path="/activities">

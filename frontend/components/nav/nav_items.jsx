@@ -142,13 +142,11 @@ ${this.state.nav}`}
                   </li>
                   <ul className={`dropdown-menu-left ${this.state.dashboard}`}>
                     <li onClick={() => this.props.history.push(`/dashboard`)}>
-                      Activity Feed
+                      My Feed
                     </li>
                     <li
                       onClick={() =>
-                        this.props.history.push(
-                          `/supply_routes/${currentUser.id}`
-                        )
+                        this.props.history.push(`/my_routes/${currentUser.id}`)
                       }
                     >
                       My Routes

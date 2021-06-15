@@ -48,12 +48,10 @@ export default class WaypointManager {
     let legs = directionsResult.routes[0].legs;
 
     for (const data in legs) {
-      // this.distance += parseFloat(legs[data].distance);
       this.distance += parseFloat(getMiles(legs[data].distance.value));
       this.distance = Math.round((this.distance + Number.EPSILON) * 100) / 100;
     }
     for (const data in legs) {
-      // this.duration += parseFloat(legs[data].duration);
       this.duration +=
         (Math.round(legs[data].duration.value / 60 + Number.EPSILON) * 100) /
         100;

@@ -10,9 +10,9 @@ import SignUpForm from "./signup_form";
 const mapState = (state) => ({
   currentUser: state.session.currentUser,
   demoUser: {
-    username: "guest",
-    email: "guest@AA.com",
-    password: "password123",
+    username: "Alvin",
+    email: "guest@aa.com",
+    password: "12345asd",
   },
   errors: state.errors.session,
 });

@@ -100,7 +100,7 @@ export default class route_index_card extends Component {
                   href="https://lernardgrigsby.github.io/"
                 >
                   {" "}
-                  <span className="link accent3">personal portfoilio!</span>
+                  <span className="link accent3">personal portfolio.</span>
                 </a>{" "}
               </p>
               <img src={window.device_routes} alt="" className="" />
