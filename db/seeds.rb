@@ -3,20 +3,19 @@ GoogleRoute.destroy_all
 Activity.destroy_all
 Post.destroy_all
 
-User.create!(
+user1 = User.create!(
   username: "Alvin",
   email: "guest@aa.com",
   password: "12345asd",
 )
-User.create!(
+user2 = User.create!(
   username: "Lernard",
   email: "lernard@aa.com",
   password: "123123asd",
 )
 
-GoogleRoute.create!(
-    id: 1,
-    user_id: 1,
+route1 = GoogleRoute.create!(
+    user_id: user1.id,
     name: "Nine to Five",
     description: "9th to 5th Avenue ;)",
     waypoints: [
@@ -30,9 +29,8 @@ GoogleRoute.create!(
     zoom: "16",
     created_at: "2021-06-15T11:15:09.454Z"
 )
-GoogleRoute.create!(
-    id: 2,
-    user_id: 1,
+route2 = GoogleRoute.create!(
+    user_id: user1.id,
     name: "Best Coast to West Coast",
     description: "Stop home to see Mom",
     waypoints: [
@@ -47,9 +45,8 @@ GoogleRoute.create!(
     zoom: "5",
     created_at: "2021-06-15T11:57:32.570Z",
 )
-GoogleRoute.create!( 
-    id: 3,
-    user_id: 1,
+route3 = GoogleRoute.create!( 
+    user_id: user1.id,
     name: "Coney Island Express",
     description: "Beach Day",
     waypoints: [
@@ -63,9 +60,8 @@ GoogleRoute.create!(
     zoom: "15",
     created_at: "2021-06-15T12:02:50.689Z",
 )
-GoogleRoute.create!(
-    id: 4,
-    user_id: 1,
+route4 = GoogleRoute.create!(
+    user_id: user1.id,
     name: "Central Park Oval",
     description: "Laps at the Great Lawn",
     waypoints: [
@@ -82,10 +78,9 @@ GoogleRoute.create!(
     created_at: "2021-06-15T12:04:04.030Z",
 )
 
-Activity.create!(
-        "id": 1,
-        "user_id": 1,
-        "google_route_id": 3,
+activity1 = Activity.create!(
+        "user_id": user1.id,
+        "google_route_id": route3.id,
         "title": "Sunset Ride",
         "description": "Beautiful Day",
         "travelMode": "BICYCLING",
@@ -101,10 +96,9 @@ Activity.create!(
         "created_at": "2021-06-15T13:13:41.647Z"
           )
 
-Activity.create!(
-        "id": 2,
-        "user_id": 1,
-        "google_route_id": 1,
+activity2 = Activity.create!(
+        "user_id": user1.id,
+        "google_route_id": route1.id,
         "title": "After work Jog",
         "description": "Took it easy",
         "travelMode": "WALKING",
@@ -119,10 +113,9 @@ Activity.create!(
         ],
         "created_at": "2021-06-15T13:15:14.402Z"
           )
-Activity.create!(
-        "id": 3,
-        "user_id": 1,
-        "google_route_id": 2,
+activity3 = Activity.create!(
+        "user_id": user1.id,
+        "google_route_id": route2.id,
         "title": "Road Trip!",
         "description": "Made it in record time",
         "travelMode": "DRIVING",
@@ -137,10 +130,9 @@ Activity.create!(
         ],
         "created_at": "2021-06-15T13:16:56.384Z"
           )
-Activity.create!(
-        "id": 4,
-        "user_id": 1,
-        "google_route_id": 4,
+activity4 = Activity.create!(
+        "user_id": user1.id,
+        "google_route_id": route4.id,
         "title": "Round and Round",
         "description": "Saw a duck",
         "travelMode": "WALKING",
@@ -155,10 +147,9 @@ Activity.create!(
         ],
         "created_at": "2021-06-15T13:17:40.200Z"
           )
-Activity.create!(
-        "id": 5,
-        "user_id": 1,
-        "google_route_id": 1,
+activity5 = Activity.create!(
+        "user_id": user1.id,
+        "google_route_id": route1.id,
         "title": "Work hard play hard!",
         "description": "SPRINTTTT BABY",
         "travelMode": "WALKING",
@@ -175,10 +166,9 @@ Activity.create!(
           )
 
           
-Post.create!(
-        "id": 1,
-        "google_route_id": 3,
-        "activity_id": 1,
+post1 = Post.create!(
+        "google_route_id": route3.id,
+        "activity_id": activity1.id,
         "pace": "2:55",
         "duration": [
             0,
@@ -188,16 +178,15 @@ Post.create!(
         "distance": "1.89",
         "travelMode": "BICYCLING",
         "comment_id": [],
-        "user_id": 1,
+        "user_id": user1.id,
         "title": "Sunset Ride",
         "body": "Beautiful Day",
         "created_at": "2021-06-15T13:31:14.360Z",
         "username": "Alvin"
           )
-Post.create!(
-        "id": 2,
-        "google_route_id": 2,
-        "activity_id": 3,
+post2 = Post.create!(
+        "google_route_id": route2.id,
+        "activity_id": activity3.id,
         "pace": "0:42",
         "duration": [
             40,
@@ -207,16 +196,15 @@ Post.create!(
         "distance": "3509.57",
         "travelMode": "DRIVING",
         "comment_id": [],
-        "user_id": 1,
+        "user_id": user1.id,
         "title": "Road Trip!",
         "body": "Made it in record time",
         "created_at": "2021-06-15T13:31:27.275Z",
         "username": "Alvin"
           )
-Post.create!(
-        "id": 3,
-        "google_route_id": 1,
-        "activity_id": 2,
+post3 = Post.create!(
+        "google_route_id": route1.id,
+        "activity_id": activity2.id,
         "pace": "14:04",
         "duration": [
             0,
@@ -226,16 +214,15 @@ Post.create!(
         "distance": "0.96",
         "travelMode": "WALKING",
         "comment_id": [],
-        "user_id": 1,
+        "user_id": user1.id,
         "title": "After work Jog",
         "body": "Took it easy",
         "created_at": "2021-06-15T13:31:39.757Z",
         "username": "Alvin"
           )
-Post.create!(
-        "id": 5,
-        "google_route_id": 4,
-        "activity_id": 4,
+post4 = Post.create!(
+        "google_route_id": route4.id,
+        "activity_id": activity4.id,
         "pace": "9:48",
         "duration": [
             0,
@@ -245,14 +232,13 @@ Post.create!(
         "distance": "0.51",
         "travelMode": "WALKING",
         "comment_id": [],
-        "user_id": 1,
+        "user_id": user1.id,
         "title": "Round and Round",
         "body": "Saw a duck",
         "created_at": "2021-06-15T13:31:49.568Z",
         "username": "Alvin"
           )
-Post.create!(
-        "id": 6,
+post5 = Post.create!(
         "google_route_id": "",
         "activity_id": "",
         "pace": "",
@@ -260,7 +246,7 @@ Post.create!(
         "distance": "",
         "travelMode": "",
         "comment_id": [],
-        "user_id": 1,
+        "user_id": user1.id,
         "title": "Daily Affirmation",
         "body": "You miss 100% of the shots you don't take...",
         "created_at": "2021-06-15T13:33:30.071Z",
