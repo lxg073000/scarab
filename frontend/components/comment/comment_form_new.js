@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { createComment } from "../../actions/comments";
-
 import React, { useState } from "react";
 
 const Comment = ({ post, comments }) => {
