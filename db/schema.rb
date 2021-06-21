@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_112015) do
+ActiveRecord::Schema.define(version: 2021_06_21_202550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(version: 2021_06_15_112015) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "activity_id"
+    t.integer "google_route_id"
+    t.integer "integer"
+    t.string "pace"
+    t.integer "duration", array: true
+    t.decimal "distance"
+    t.string "travelMode"
     t.integer "comment_id", default: [], array: true
     t.integer "like_id", default: [], array: true
     t.string "username"
@@ -83,12 +90,6 @@ ActiveRecord::Schema.define(version: 2021_06_15_112015) do
     t.string "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "activity_id"
-    t.integer "google_route_id"
-    t.integer "duration", array: true
-    t.decimal "distance"
-    t.string "travelMode"
-    t.string "pace"
   end
 
   create_table "users", force: :cascade do |t|
