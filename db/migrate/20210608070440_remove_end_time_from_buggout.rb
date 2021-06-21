@@ -1,5 +1,5 @@
-class RemoveEndTimeFromActivity < ActiveRecord::Migration[5.2]
+class RemoveEndTimeFromBuggout < ActiveRecord::Migration[5.2]
   def change
-    remove_column :activities, :end_time, :string
+    remove_column :buggouts, :end_time, :string
   end
 end

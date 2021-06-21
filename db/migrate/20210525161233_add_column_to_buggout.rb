@@ -1,5 +1,5 @@
-class AddColumnToActivity < ActiveRecord::Migration[5.2]
+class AddColumnToBuggout < ActiveRecord::Migration[5.2]
   def change
-    add_column :activities, :travelMode, :string
+    add_column :buggouts, :travelMode, :string
   end
 end
