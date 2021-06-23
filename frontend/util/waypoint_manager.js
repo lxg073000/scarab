@@ -16,10 +16,10 @@ export default class WaypointManager {
   }
 
   calcRoute(waypointMarkers, travelMode) {
+    // Format Markers to match GoogleServices API endpoints
     let start = waypointMarkers[0];
     let end = waypointMarkers[waypointMarkers.length - 1];
     let waypoints = [];
-
     if (waypointMarkers.length > 2) {
       for (let i = 1; i < waypointMarkers.length - 1; i++) {
         waypoints.push({ location: waypointMarkers[i], stopover: true });
@@ -33,6 +33,8 @@ export default class WaypointManager {
       travelMode,
     };
 
+    // Provide packaged request object to GoogleServices API to render to map
+    // and dynamically display route distance/estimated time calculations
     this.directionsService.route(request, (result, status) => {
       if (status == "OK") {
         this.directionsRenderer.setDirections(result);

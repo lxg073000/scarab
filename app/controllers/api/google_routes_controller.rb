@@ -1,13 +1,24 @@
 class Api::GoogleRoutesController < ApplicationController
 
-  def index
+   def index
+    
+    if params[:google_route]
+      @gRoutes = GoogleRoute.where({user_id: current_user.id, travelMode:[routeParams[:filter]] })
+        if @gRoutes
+          render "api/google_routes/index"
+        else
+          render json: @gRoutes.errors.full_messages, status: 422
+        end
+    else 
       @gRoutes = GoogleRoute.where({user_id: current_user.id })
       if @gRoutes
         render "api/google_routes/index"
       else
         render json: @gRoutes.errors.full_messages, status: 422
       end
+    end 
   end
+
   
   def create
     @gRoute = GoogleRoute.create(routeParams)

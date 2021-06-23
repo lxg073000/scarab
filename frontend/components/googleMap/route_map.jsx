@@ -36,9 +36,12 @@ export default class route_map extends Component {
   }
 
   componentDidMount() {
+    // Initialize GoogleMap API DOM Element
     this.map = new google.maps.Map(this.mapNode, map_options_full);
+    // Initialize WaypointManager and provide it the GoogleMap instance
     this.WaypointManager = new WaypointManager(this.map);
 
+    // Establish event listener to register client's clicks as map markers
     google.maps.event.addListener(this.map, "click", (e) => {
       this.addMarkerToMap(e.latLng, this.map);
     });
