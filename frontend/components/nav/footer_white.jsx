@@ -8,7 +8,7 @@ export default class footer_white extends Component {
         <div className="footer-cols">
           <div className="f1">
             <span className="logo">SCARAB</span>
-            <span className="fine">©2021 Strava</span>
+            <span className="fine">©2021 Scarab</span>
           </div>
           <div className="f">
             <ul className="footer-links">
