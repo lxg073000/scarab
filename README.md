@@ -13,25 +13,30 @@
   - Polished Pixel Perfect CSS
   - Responsive Breakpoints
 
-## Technologies ##
+<h2 id="technologies">Technologies</h2>
+
 
 - Google Maps JavaScript API - Handle DOM display of map and marking
 - Google Directions API - Receive client request and generate dynamic path for cycling, driving, and jogging
 - Google Maps Static API - Fetch static map paths to reduce billing overhead for site requests to Google Services
 
-## Features ##
-### Dynamic Route Mapping
-- Google Map APIs power Strava's core functionality. To begin, a marker is added to the Google Map DOM element by clicking at a desired location.  After two markers are registered, a GoogleDirections API call is made and a path is rendered.  The path redraws dynamically with each additional marker added and can then be saved and viewed from the My Routes page.
-**<img src="https://github.com/lxg073000/scarab/blob/main/readme_assets/scarab_new_route.gif" width="100%"/>**
-- GoogleMap DOM element is created with event listens to receieve client input and convert to GoogleMap Markers.
-**<img src="https://github.com/lxg073000/scarab/blob/main/readme_assets/cs_mapNode.png"/>**
-- Markers passed to GoogleServices API and render directions for client's route.
-- **<img src="https://github.com/lxg073000/scarab/blob/main/readme_assets/cs_calcRoute.png"/>**
-- Client's Route, name, and description have full CRUD functionality.
+<h2 id="features">Features</h2>
 
-### Strava Route Activity Tracking
+<h3>Dynamic Route Mapping</h3>
+
+- Google Map APIs power Strava's core functionality. To begin, a marker is added to the Google Map DOM element by clicking at a desired location.  After two markers are registered, a GoogleDirections API call is made and a path is rendered.  The path redraws dynamically with each additional marker added and can then be saved and viewed from the My Routes page.
+- **<img src="https://github.com/lxg073000/scarab/blob/main/readme_assets/scarab_new_route.gif" width="100%" list-style="none"/>**
+- GoogleMap DOM element is created with event listens to receieve client input and convert to GoogleMap Markers.
+- **<img src="https://github.com/lxg073000/scarab/blob/main/readme_assets/cs_mapNode.png" width="100%" list-style="none"/>**
+- Markers passed to GoogleServices API and render directions for client's route.
+- **<img src="https://github.com/lxg073000/scarab/blob/main/readme_assets/cs_calcRoute.png" width="100%" list-style="none"/>**
+
+<h3>Strava Route Activity Tracking</h3>
+
 - Clients log Activities by selecting a Route associated with their travel.  Uploaded Activities are logged with a title, description, date, time, and duration.
 - The Pace per mile is calculated and can be sorted within the index for easy viewing.
-### Polished Pixel Perfect CSS
+
+<h3>Polished Pixel Perfect CSS</h3>
+
 - Original Vanilla CSS / SASS written provide the App's frontend with styling heavily inspired by Strava's production site
 - Google Map features and landmarks styled to match App
