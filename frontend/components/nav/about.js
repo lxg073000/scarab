@@ -13,7 +13,12 @@ const about = (props) => {
               amet consectetur adipisicing elit. Assumenda adipisci porro
               possimus hic quo iusto.
             </h2>
-            <a href="" className="link accent bold">
+            <a
+              href="https://github.com/lxg073000/scarab#readme"
+              rel="noreferrer"
+              target="_blank"
+              className="link accent bold"
+            >
               Github Wiki
             </a>
           </div>
@@ -26,7 +31,12 @@ const about = (props) => {
               Maintain a backend server through Ruby Rails to achieve CRUD
               actions as well as relationship model associations
             </h2>
-            <a href="" className="link accent bold">
+            <a
+              href="https://github.com/lxg073000/scarab#readme"
+              rel="noreferrer"
+              target="_blank"
+              className="link accent bold"
+            >
               Github Wiki
             </a>
           </div>
@@ -39,7 +49,12 @@ const about = (props) => {
               Designed media queries to match the functionality and appearance
               of Strava.com
             </h2>
-            <a href="" className="link accent bold">
+            <a
+              href="https://github.com/lxg073000/scarab#readme"
+              rel="noreferrer"
+              target="_blank"
+              className="link accent bold"
+            >
               Github Wiki
             </a>
           </div>
