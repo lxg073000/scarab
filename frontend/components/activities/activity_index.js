@@ -77,6 +77,7 @@ export default class activity_index_card extends Component {
     });
   }
   sortActivities_title() {
+    // debugger;
     const sortByTitle = this.props.activities.sort(function (a, b) {
       if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
       if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
