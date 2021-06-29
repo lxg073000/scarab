@@ -252,3 +252,79 @@ h1.post-title {
   padding: 8px 7px;
   font-size: 15px;
 }
+
+// Getting Started Post
+
+banner.getting-started {
+  width: 100%;
+  height: 152px;
+  background-image: url("header_image.jpg");
+  background-size: cover;
+  box-shadow: 0px 8px 24px #99999980;
+}
+
+.getting-started {
+  overflow: hidden;
+  padding: 0px;
+  h1 {
+    text-align: left;
+    font-size: 2em;
+  }
+  .gs-header {
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -2em;
+      height: 1px;
+      width: 100%;
+      background: #eaeaed;
+    }
+    h1 {
+      margin-bottom: 0.5em;
+    }
+  }
+  .gs-item {
+    display: flex;
+  }
+  .gs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  .gs-icon {
+    background: white;
+    font-size: 40px;
+    padding: 1em;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 5%);
+    color: rgba(0, 0, 0, 0.5);
+  }
+  section {
+    gap: 1em;
+  }
+}
+
+.getting-started-content section {
+  &:not(section:last-child) {
+    margin-bottom: 4em;
+    position: relative;
+  }
+}
+.gs-content {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -2em;
+    height: 1px;
+    width: 100%;
+    background: #eaeaed;
+  }
+}
+#getting-started {
+  border-radius: 0px;
+}
+
+.getting-started-content {
+  padding: 1em;
+}

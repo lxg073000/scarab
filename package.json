@@ -43,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/lxg073000/scarab/issues"
   },
-  "homepage": "https://github.com/lxg073000/scarab#readme"
+  "homepage": "https://github.com/lxg073000/scarab#readme",
+  "devDependencies": {
+    "url-loader": "^4.1.1"
+  }
 }

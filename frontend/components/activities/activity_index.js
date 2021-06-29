@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { merge } from "lodash";
 import { formatDuration } from "../../util/conversions";
 
 export default class activity_index_card extends Component {
@@ -15,29 +16,26 @@ export default class activity_index_card extends Component {
   }
 
   componentDidMount() {
+    debugger;
     this.props.fetchActivities();
-    let activities = {};
-    this.props.activities.map(
-      (activity) => (activities[activity.id] = activity)
-    );
+    let activities = merge([], this.props.activities);
+
     this.setState(
       {
-        activities,
+        activities: this.sortActivities_id(activities),
       },
-      this.sortActivities_id()
+      // this.sortActivities_id()
+      console.log(this.state.activities)
     );
   }
   componentDidUpdate(prevProps) {
+    debugger;
     if (prevProps !== this.props) {
-      let activities = {};
-      this.props.activities.map(
-        (activity) => (activities[activity.id] = activity)
-      );
       this.setState(
         {
-          activities,
-        },
-        this.sortActivities_id()
+          activities: this.sortActivities_id(activities),
+        }
+        // this.sortActivities_id()
       );
     }
   }
@@ -65,12 +63,17 @@ export default class activity_index_card extends Component {
     this.props.history.push(`/dashboard`);
   }
 
-  sortActivities_id() {
-    const sortById = this.props.activities.sort(function (a, b) {
+  sortActivities_id(activities) {
+    debugger;
+    console.log(this.state.activities);
+    // let copy = merge([], this.props.activities);
+    const sortById = activities.sort(function (a, b) {
       if (a.id > b.id) return -1;
       if (a.id < b.id) return 1;
       return 0;
     });
+    // console.log(this.props.activities);
+    // console.log(sortById);
 
     this.setState({
       activities: sortById,
@@ -89,7 +92,8 @@ export default class activity_index_card extends Component {
     });
   }
   sortActivities_description() {
-    const sortByDescription = this.props.activities.sort(function (a, b) {
+    let copy = merge([], this.props.activities);
+    const sortByDescription = copy.sort(function (a, b) {
       if (a.description.toLowerCase() < b.description.toLowerCase()) return -1;
       if (a.description.toLowerCase() > b.description.toLowerCase()) return 1;
       return 0;
@@ -198,6 +202,7 @@ export default class activity_index_card extends Component {
   }
 
   render() {
+    debugger;
     return (
       <div className="component-container-main">
         <div className="route-index-shell">
@@ -296,7 +301,7 @@ export default class activity_index_card extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.activities.map((activity) => (
+                  {this.state.activities.map((activity) => (
                     <tr key={`${activity.id}-tr`}>
                       <td
                         key={`${activity.id}-travelMode`}

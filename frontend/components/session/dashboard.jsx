@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Tutorial from "../tutorial/getting_started";
 import UserInfo from "../user/user_profile_card";
 import Activity from "../activity/activity_feed";
 import About from "../nav/about";
@@ -55,6 +56,7 @@ export default class dashboard extends Component {
               />
             </section>
             <section className="activity-pane">
+              <Tutorial history={this.props.history} />
               {Object.entries(this.props.posts).length > 0 ? (
                 this.state.posts.map((post) => (
                   <Activity
