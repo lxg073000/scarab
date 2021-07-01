@@ -1,3 +1,14 @@
+import { merge } from "lodash";
+
+export function sortMostRecent(data) {
+  const sortById = merge([], Object.values(data)).sort(function (a, b) {
+    if (a.id < b.id) return 1;
+    if (a.id > b.id) return -1;
+    return 0;
+  });
+  return sortById;
+}
+
 export function formatDuration(durationArray) {
   const formattedDuration = [];
   if (durationArray[0] > 0) {

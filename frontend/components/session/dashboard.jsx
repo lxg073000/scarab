@@ -44,6 +44,7 @@ export default class dashboard extends Component {
   }
 
   render() {
+    debugger;
     return (
       <div className="component-container-feed">
         <div className="dashboard-shell">
@@ -56,19 +57,22 @@ export default class dashboard extends Component {
               />
             </section>
             <section className="activity-pane">
-              <Tutorial history={this.props.history} />
-              {Object.entries(this.props.posts).length > 0 ? (
-                this.state.posts.map((post) => (
-                  <Activity
-                    key={post.id}
-                    post={post}
-                    activity={this.props.activities}
-                    deletePost={this.props.deletePost}
-                  />
-                ))
-              ) : (
-                <p className="float-card post-item"></p>
+              {this.props.tutorial_dismissed ? null : (
+                <Tutorial
+                  history={this.props.history}
+                  dismissTutorial={() => this.props.dismissTutorial()}
+                />
               )}
+              {Object.entries(this.props.posts).length > 0
+                ? this.state.posts.map((post) => (
+                    <Activity
+                      key={post.id}
+                      post={post}
+                      activity={this.props.activities}
+                      deletePost={this.props.deletePost}
+                    />
+                  ))
+                : null}
             </section>
             <section className="about-pane">
               <About />

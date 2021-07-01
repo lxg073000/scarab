@@ -96,12 +96,12 @@ class Nav_items extends React.Component {
         >
           <i className="fas fa-plus"></i>
           <ul className={`dropdown-menu-right ${this.state.plus}`}>
+            <li onClick={() => this.props.history.push(`/routes`)}>
+              <span className="fas fa-location-arrow"></span> Create a Route
+            </li>
             <li onClick={() => this.props.history.push(`/activity`)}>
               <span className="far fa-arrow-alt-circle-up"></span> Upload
               Activity
-            </li>
-            <li onClick={() => this.props.history.push(`/routes`)}>
-              <span className="fas fa-location-arrow"></span> Create a Route
             </li>
             <li onClick={() => this.props.history.push(`/post`)}>
               <span className="fas fa-file-export"></span> Create a Post

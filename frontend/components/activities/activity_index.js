@@ -8,6 +8,7 @@ export default class activity_index_card extends Component {
 
     this.state = {
       activities: [],
+      sorted: "",
     };
 
     this.formatDuration = this.formatDuration.bind(this);
@@ -16,26 +17,32 @@ export default class activity_index_card extends Component {
   }
 
   componentDidMount() {
-    debugger;
     this.props.fetchActivities();
     let activities = merge([], this.props.activities);
-
+    let activities_indexed = {};
+    this.props.activities.map(
+      (activity) => (activities_indexed[activity.id] = activity)
+    );
     this.setState(
       {
-        activities: this.sortActivities_id(activities),
+        activities_indexed,
       },
-      // this.sortActivities_id()
-      console.log(this.state.activities)
+      this.sortActivities_id(activities)
     );
   }
   componentDidUpdate(prevProps) {
-    debugger;
     if (prevProps !== this.props) {
+      let activities_indexed = {};
+      this.props.activities.map(
+        (activity) => (activities_indexed[activity.id] = activity)
+      );
+
+      let activities = merge([], this.props.activities);
       this.setState(
         {
-          activities: this.sortActivities_id(activities),
-        }
-        // this.sortActivities_id()
+          activities_indexed,
+        },
+        this.sortActivities_id(activities)
       );
     }
   }
@@ -45,18 +52,19 @@ export default class activity_index_card extends Component {
   }
 
   shareActivity(id) {
+    debugger;
     const post = {
       post: {
         activity_id: id,
-        google_route_id: this.state.activities[id].google_route_id,
+        google_route_id: this.state.activities_indexed[id].google_route_id,
         user_id: currentUser.id,
         username: currentUser.username,
-        title: this.state.activities[id].title,
-        body: this.state.activities[id].description,
-        pace: this.state.activities[id].pace,
-        duration: this.state.activities[id].duration,
-        distance: this.state.activities[id].distance,
-        travelMode: this.state.activities[id].travelMode,
+        title: this.state.activities_indexed[id].title,
+        body: this.state.activities_indexed[id].description,
+        pace: this.state.activities_indexed[id].pace,
+        duration: this.state.activities_indexed[id].duration,
+        distance: this.state.activities_indexed[id].distance,
+        travelMode: this.state.activities_indexed[id].travelMode,
       },
     };
     this.props.createPost(post);
@@ -64,109 +72,174 @@ export default class activity_index_card extends Component {
   }
 
   sortActivities_id(activities) {
-    debugger;
-    console.log(this.state.activities);
-    // let copy = merge([], this.props.activities);
-    const sortById = activities.sort(function (a, b) {
-      if (a.id > b.id) return -1;
-      if (a.id < b.id) return 1;
+    const sortById = merge([], activities).sort(function (a, b) {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
       return 0;
     });
-    // console.log(this.props.activities);
-    // console.log(sortById);
+    const sortByIdDESC = merge([], activities).sort(function (a, b) {
+      if (a.id < b.id) return 1;
+      if (a.id > b.id) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortById,
+      activities: this.state.sorted === "id" ? sortByIdDESC : sortById,
+      sorted: this.state.sorted === "id" ? "idDESC" : "id",
     });
   }
-  sortActivities_title() {
-    // debugger;
-    const sortByTitle = this.props.activities.sort(function (a, b) {
+  sortActivities_title(activities) {
+    const sortByTitle = merge([], activities).sort(function (a, b) {
       if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
       if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
       return 0;
     });
+    const sortByTitleDESC = merge([], activities).sort(function (a, b) {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) return 1;
+      if (a.title.toLowerCase() > b.title.toLowerCase()) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortByTitle,
+      activities: this.state.sorted === "title" ? sortByTitleDESC : sortByTitle,
+      sorted: this.state.sorted === "title" ? "titleDESC" : "title",
     });
   }
-  sortActivities_description() {
-    let copy = merge([], this.props.activities);
-    const sortByDescription = copy.sort(function (a, b) {
+  sortActivities_description(activities) {
+    const sortByDescription = merge([], activities).sort(function (a, b) {
       if (a.description.toLowerCase() < b.description.toLowerCase()) return -1;
       if (a.description.toLowerCase() > b.description.toLowerCase()) return 1;
       return 0;
     });
+    const sortByDescriptionDESC = merge([], activities).sort(function (a, b) {
+      if (a.description.toLowerCase() < b.description.toLowerCase()) return 1;
+      if (a.description.toLowerCase() > b.description.toLowerCase()) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortByDescription,
+      activities:
+        this.state.sorted === "description"
+          ? sortByDescriptionDESC
+          : sortByDescription,
+      sorted:
+        this.state.sorted === "description" ? "descriptionDESC" : "description",
     });
   }
-  sortActivities_start_time() {
-    const sortByStartTime = this.props.activities.sort(function (a, b) {
+  sortActivities_start_time(activities) {
+    const sortByStartTime = merge([], activities).sort(function (a, b) {
       if (a.start_time < b.start_time) return -1;
       if (a.start_time > b.start_time) return 1;
       return 0;
     });
+    const sortByStartTimeDESC = merge([], activities).sort(function (a, b) {
+      if (a.start_time < b.start_time) return 1;
+      if (a.start_time > b.start_time) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortByStartTime,
+      activities:
+        this.state.sorted === "startTime"
+          ? sortByStartTimeDESC
+          : sortByStartTime,
+      sorted: this.state.sorted === "startTime" ? "startTimeDESC" : "startTime",
     });
   }
-  sortActivities_duration() {
-    const sortByDuration = this.props.activities.sort(function (a, b) {
+  sortActivities_duration(activities) {
+    const sortByDuration = merge([], activities).sort(function (a, b) {
       if (a.duration < b.duration) return -1;
       if (a.duration > b.duration) return 1;
       return 0;
     });
+    const sortByDurationDESC = merge([], activities).sort(function (a, b) {
+      if (a.duration < b.duration) return 1;
+      if (a.duration > b.duration) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortByDuration,
+      activities:
+        this.state.sorted === "duration" ? sortByDurationDESC : sortByDuration,
+      sorted: this.state.sorted === "duration" ? "durationDESC" : "duration",
     });
   }
-  sortActivities_distance() {
-    const sortByDistance = this.props.activities.sort(function (a, b) {
+  sortActivities_distance(activities) {
+    const sortByDistance = merge([], activities).sort(function (a, b) {
       if (a.distance < b.distance) return -1;
       if (a.distance > b.distance) return 1;
       return 0;
     });
+    const sortByDistanceDESC = merge([], activities).sort(function (a, b) {
+      if (a.distance < b.distance) return 1;
+      if (a.distance > b.distance) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortByDistance,
+      activities:
+        this.state.sorted === "distance" ? sortByDistanceDESC : sortByDistance,
+      sorted: this.state.sorted === "distance" ? "distanceDESC" : "distance",
     });
   }
-  sortActivities_pace() {
-    const sortByPace = this.props.activities.sort(function (a, b) {
+  sortActivities_pace(activities) {
+    const sortByPace = merge([], activities).sort(function (a, b) {
       if (a.pace < b.pace) return -1;
       if (a.pace > b.pace) return 1;
       return 0;
     });
+    const sortByPaceDESC = merge([], activities).sort(function (a, b) {
+      if (a.pace < b.pace) return 1;
+      if (a.pace > b.pace) return -1;
+      return 0;
+    });
 
     this.setState({
-      activities: sortByPace,
+      activities:
+        this.state.sorted === "distance" ? sortByPaceDESC : sortByPace,
+      sorted: this.state.sorted === "distance" ? "distanceDESC" : "distance",
     });
   }
-  sortActivities_date_completed() {
-    const sortByDate = this.props.activities.sort(function (a, b) {
+  sortActivities_date_completed(activities) {
+    const sortByDate = merge([], activities).sort(function (a, b) {
       if (new Date(a.date_completed) < new Date(b.date_completed)) return -1;
       if (new Date(a.date_completed) > new Date(b.date_completed)) return 1;
       return 0;
     });
-
-    this.setState({
-      activities: sortByDate,
-    });
-  }
-  sortActivities_travel_mode() {
-    const sortByTravelMode = this.props.activities.sort(function (a, b) {
-      if (a.travelMode < b.travelMode) return -1;
-      if (a.travelMode > b.travelMode) return 1;
+    const sortByDateDESC = merge([], activities).sort(function (a, b) {
+      if (new Date(a.date_completed) < new Date(b.date_completed)) return 1;
+      if (new Date(a.date_completed) > new Date(b.date_completed)) return -1;
       return 0;
     });
 
     this.setState({
-      activities: sortByTravelMode,
+      activities:
+        this.state.sorted === "dateCompleted" ? sortByDateDESC : sortByDate,
+      sorted:
+        this.state.sorted === "dateCompleted"
+          ? "dateCompletedDESC"
+          : "dateCompleted",
+    });
+  }
+  sortActivities_travel_mode(activities) {
+    const sortByTravelMode = merge([], activities).sort(function (a, b) {
+      if (a.travelMode < b.travelMode) return -1;
+      if (a.travelMode > b.travelMode) return 1;
+      return 0;
+    });
+    const sortByTravelModeDESC = merge([], activities).sort(function (a, b) {
+      if (a.travelMode < b.travelMode) return 1;
+      if (a.travelMode > b.travelMode) return -1;
+      return 0;
+    });
+
+    this.setState({
+      activities:
+        this.state.sorted === "dateCompleted"
+          ? sortByTravelModeDESC
+          : sortByTravelMode,
+      sorted:
+        this.state.sorted === "travelMode" ? "travelModeDESC" : "travelMode",
     });
   }
 
@@ -202,7 +275,6 @@ export default class activity_index_card extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div className="component-container-main">
         <div className="route-index-shell">
@@ -234,11 +306,17 @@ export default class activity_index_card extends Component {
           <section className="route-index-routes">
             {this.props.activities.length > 1 ||
             this.props.activities.length === 0 ? (
-              <h2 onClick={() => this.sortActivities_id()} className="link">
+              <h2
+                onClick={() => this.sortActivities_id(this.state.activities)}
+                className="link"
+              >
                 {this.props.activities.length} Activities
               </h2>
             ) : (
-              <h2 onClick={() => this.sortActivities_id()} className="link">
+              <h2
+                onClick={() => this.sortActivities_id(this.state.activities)}
+                className="link"
+              >
                 {this.props.activities.length} Activity
               </h2>
             )}
@@ -248,49 +326,67 @@ export default class activity_index_card extends Component {
                 <thead>
                   <tr>
                     <th
-                      onClick={(e) => this.sortActivities_travel_mode()}
+                      onClick={(e) =>
+                        this.sortActivities_travel_mode(this.state.activities)
+                      }
                       className="link button-grey"
                     >
                       Sport
                     </th>
                     <th
-                      onClick={() => this.sortActivities_date_completed()}
+                      onClick={() =>
+                        this.sortActivities_date_completed(
+                          this.state.activities
+                        )
+                      }
                       className="link button-grey"
                     >
                       Date
                     </th>
                     <th
-                      onClick={() => this.sortActivities_title()}
+                      onClick={() =>
+                        this.sortActivities_title(this.state.activities)
+                      }
                       className="link button-grey"
                     >
                       Title
                     </th>
                     <th
-                      onClick={() => this.sortActivities_description()}
+                      onClick={() =>
+                        this.sortActivities_description(this.state.activities)
+                      }
                       className="link button-grey"
                     >
                       Description
                     </th>
                     <th
-                      onClick={() => this.sortActivities_start_time()}
+                      onClick={() =>
+                        this.sortActivities_start_time(this.state.activities)
+                      }
                       className="link button-grey"
                     >
                       Start Time
                     </th>
                     <th
-                      onClick={() => this.sortActivities_duration()}
+                      onClick={() =>
+                        this.sortActivities_duration(this.state.activities)
+                      }
                       className="link button-grey"
                     >
                       Duration
                     </th>
                     <th
-                      onClick={() => this.sortActivities_distance()}
+                      onClick={() =>
+                        this.sortActivities_distance(this.state.activities)
+                      }
                       className="link button-grey numeric-align"
                     >
                       Distance
                     </th>
                     <th
-                      onClick={() => this.sortActivities_pace()}
+                      onClick={() =>
+                        this.sortActivities_pace(this.state.activities)
+                      }
                       className="link button-grey numeric-align"
                     >
                       Pace

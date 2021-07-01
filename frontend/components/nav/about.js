@@ -7,11 +7,11 @@ const about = (props) => {
         <article className="mvp-item">
           <i className="fas fa-map-marked-alt"></i>
           <div className="mvp-content">
-            <h2 className="bold">Google Map APIs</h2>
+            <h2 className="bold">Google Maps Integration</h2>
             <h2>
-              Intergrate Google Maps API to build Routes. Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Assumenda adipisci porro
-              possimus hic quo iusto.
+              DOM display of maps and marking managed through Google Map APIs.
+              Receives client requests and generates dynamic path for cycling,
+              driving, and jogging routes.
             </h2>
             <a
               href="https://github.com/lxg073000/scarab#readme"
@@ -26,10 +26,11 @@ const about = (props) => {
         <article className="mvp-item">
           <i className="fas fa-server"></i>
           <div className="mvp-content">
-            <h2 className="bold">Ruby/Rails CRUD</h2>
+            <h2 className="bold">Ruby/Rails Server</h2>
             <h2>
-              Maintain a backend server through Ruby Rails to achieve CRUD
-              actions as well as relationship model associations
+              Maintenance of backend server through Ruby Rails. Client Sessions,
+              Routes, and Activities persist, have full CRUD functionality,
+              relationship model associations.
             </h2>
             <a
               href="https://github.com/lxg073000/scarab#readme"
@@ -46,8 +47,7 @@ const about = (props) => {
           <div className="mvp-content">
             <h2 className="bold">Responsive CSS</h2>
             <h2>
-              Designed media queries to match the functionality and appearance
-              of Strava.com
+              Designed to match the functionality and appearance of Strava.com
             </h2>
             <a
               href="https://github.com/lxg073000/scarab#readme"

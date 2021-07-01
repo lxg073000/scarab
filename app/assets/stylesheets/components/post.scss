@@ -255,7 +255,7 @@ h1.post-title {
 
 // Getting Started Post
 
-banner.getting-started {
+.banner.getting-started {
   width: 100%;
   height: 152px;
   background-image: url("header_image.jpg");
@@ -280,7 +280,12 @@ banner.getting-started {
       background: #eaeaed;
     }
     h1 {
-      margin-bottom: 0.5em;
+      margin-bottom: 7px;
+    }
+    h2 {
+      font-size: 17px;
+      line-height: 20px;
+      letter-spacing: 0.3px;
     }
   }
   .gs-item {
@@ -290,17 +295,43 @@ banner.getting-started {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    h2 {
+      font-size: 20px;
+    }
+    p.light {
+      line-height: 20px;
+      font-size: 15.5px;
+      letter-spacing: 0.3px;
+    }
+    .button-orange {
+      padding: 8px 15px;
+      font-weight: 200;
+      font-size: 13px;
+    }
   }
   .gs-icon {
     background: white;
-    font-size: 40px;
+    font-size: 27px;
     padding: 1em;
     border-radius: 50%;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 5%);
     color: rgba(0, 0, 0, 0.5);
+    place-content: center;
+    display: grid;
+    height: 10px;
+    width: 10px;
+  }
+  i.fas.fa-file-export.gs-icon {
+    padding: 1em;
+    padding-left: 35px;
+    padding-bottom: 30px;
+  }
+  i.fas.fa-location-arrow.gs-icon {
+    font-size: 21px;
+    padding: 27px;
   }
   section {
-    gap: 1em;
+    gap: 2em;
   }
 }
 
@@ -327,4 +358,15 @@ banner.getting-started {
 
 .getting-started-content {
   padding: 1em;
+}
+
+#tutorial i.button-grey.fas.fa-times {
+  position: absolute;
+  background: none;
+  box-shadow: 0 0 0;
+  color: white;
+}
+
+.hide {
+  display: none;
 }

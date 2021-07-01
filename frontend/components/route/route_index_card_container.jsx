@@ -9,21 +9,22 @@ import {
   editRoute,
   deleteRoute,
 } from "../../actions/gRoute";
+import { sortMostRecent } from "../../util/conversions";
 import { connect } from "react-redux";
 import RouteIndexCard from "./route_index_card";
 import { withRouter } from "react-router-dom";
 
 const mapState = (state) => {
   return {
-    routes: Object.values(state.entities.routes),
+    routes: sortMostRecent(state.entities.routes),
     entities: Object.values(state.entities),
-    walking: Object.values(state.entities.routes).filter(
+    walking: sortMostRecent(state.entities.routes).filter(
       (route) => route.travelMode === "WALKING"
     ),
-    driving: Object.values(state.entities.routes).filter(
+    driving: sortMostRecent(state.entities.routes).filter(
       (route) => route.travelMode === "DRIVING"
     ),
-    bicycling: Object.values(state.entities.routes).filter(
+    bicycling: sortMostRecent(state.entities.routes).filter(
       (route) => route.travelMode === "BICYCLING"
     ),
   };
