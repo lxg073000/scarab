@@ -13,6 +13,7 @@ export default class WaypointManager {
     this.render = null;
     this.distance = null;
     this.time = null;
+    this.polyline = [];
   }
 
   calcRoute(waypointMarkers, travelMode) {
@@ -40,6 +41,11 @@ export default class WaypointManager {
         this.directionsRenderer.setDirections(result);
         this.directionsRenderer.setMap(this.map);
         this.handleResult(result);
+        let poly_array = [];
+        result.routes[0].overview_path.map((ele) =>
+          poly_array.push([`${ele.lat()}, ${ele.lng()}`])
+        );
+        this.polyline = poly_array;
       }
     });
   }

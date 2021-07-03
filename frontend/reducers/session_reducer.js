@@ -23,7 +23,6 @@ const session = (oldState = _nullSession, action) => {
       window.currentUser = null;
       return _nullSession;
     case DISMISS_TUTORIAL:
-      debugger;
       nextState = merge(nextState, { tutorial_dismissed: true });
       return nextState;
     default:

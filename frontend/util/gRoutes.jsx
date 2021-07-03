@@ -35,10 +35,11 @@ export const API_fetchRoute = (routeID) =>
     method: "GET",
     url: `/api/google_routes/${routeID}`,
   });
-export const API_fetchStaticMap = (map) =>
+export const API_fetchStaticMap = (x, y, polyline) =>
   $.ajax({
     method: "GET",
-    url: `https://maps.googleapis.com/maps/api/staticmap?${map}`,
+    url: `https://maps.googleapis.com/maps/api/staticmap
+?size=${x}x${y}&path=weight:3%7Ccolor:orange%7Cenc:${polyline}`,
   });
 export const API_editRoute = function (google_route) {
   return $.ajax({

@@ -11,8 +11,6 @@ import { fetchActivities } from "../../actions/activities";
 import { fetchPosts, deletePost } from "../../actions/posts";
 import { fetchComments, deleteComment } from "../../actions/comments";
 
-debugger;
-
 const mapState = (state) => {
   return {
     currentUser: state.session.currentUser,

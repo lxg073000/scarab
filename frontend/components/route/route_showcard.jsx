@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
 import { map_options_slim } from "../../util/conversions";
+import { encodeOptions, options } from "../../util/map_options";
 
 export default class route_showcard extends Component {
   constructor(props) {
@@ -13,17 +14,17 @@ export default class route_showcard extends Component {
   }
 
   componentDidMount() {
-    this.createMap();
+    // this.createMap();
   }
   componentDidUpdate(previousProps) {
     if (previousProps.route !== this.props.route) {
-      this.createMap();
+      // this.createMap();
     }
   }
   createMap() {
     this.map = new google.maps.Map(this.mapNode, map_options_slim);
 
-    this.drawRoute(this.map);
+    // this.drawRoute(this.map);
   }
 
   drawRoute(map) {
@@ -73,12 +74,14 @@ export default class route_showcard extends Component {
             <div onClick={() => this.toggleOptions()}></div>
           </div>
         </div>
-        <section
-          className="thumbnail-map"
-          id={`map-${this.props.route.id}`}
-          ref={(map) => (this.mapNode = map)}
-          onLoad={this.createMap}
-        ></section>
+        <img
+          src={`https://maps.googleapis.com/maps/api/staticmap
+?size=286x184
+&${encodeOptions(options)}path=color:0xfc4d02ff|weight:3|${
+            this.props.route.polyline
+          }&key=AIzaSyCKsZPfy5i6PECSNrTrUgj69YA-_yjnf9Y`}
+          alt=""
+        />
 
         <section className="route-details-mini">
           <h1

@@ -508,6 +508,7 @@ export default class edit_form extends Component {
       description: this.state.description,
       distance: document.getElementById("distance").innerHTML,
       duration: document.getElementById("duration").innerHTML,
+      polyline: this.WaypointManager.polyline.join("|"),
     };
 
     this.props.updateRoute(request);

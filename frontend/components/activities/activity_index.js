@@ -52,7 +52,6 @@ export default class activity_index_card extends Component {
   }
 
   shareActivity(id) {
-    debugger;
     const post = {
       post: {
         activity_id: id,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_202550) do
+ActiveRecord::Schema.define(version: 2021_07_02_173505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_202550) do
     t.string "center"
     t.string "distance"
     t.string "duration"
+    t.string "polyline"
     t.index ["user_id"], name: "index_google_routes_on_user_id"
   end
 

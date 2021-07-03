@@ -1,1 +1,1 @@
-json.extract! @gRoute, :id, :user_id, :name, :description, :waypoints, :travelMode, :distance, :duration, :center, :zoom, :created_at, :activities 
+json.extract! @gRoute, :id, :user_id, :name, :description, :waypoints, :polyline, :travelMode, :distance, :duration, :center, :zoom, :created_at, :activities 
