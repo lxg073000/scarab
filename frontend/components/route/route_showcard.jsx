@@ -77,7 +77,7 @@ export default class route_showcard extends Component {
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap
 ?size=286x184
-&${encodeOptions(options)}path=color:0xfc4d02ff|weight:3|${
+&${encodeOptions(options)}path=color:0xfc4d02ff|weight:3|enc:${
             this.props.route.polyline
           }&key=AIzaSyCKsZPfy5i6PECSNrTrUgj69YA-_yjnf9Y`}
           alt=""

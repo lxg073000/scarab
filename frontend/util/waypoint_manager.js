@@ -13,7 +13,7 @@ export default class WaypointManager {
     this.render = null;
     this.distance = null;
     this.time = null;
-    this.polyline = [];
+    this.polyline = "";
   }
 
   calcRoute(waypointMarkers, travelMode) {
@@ -37,15 +37,12 @@ export default class WaypointManager {
     // Provide packaged request object to GoogleServices API to render to map
     // and dynamically display route distance/estimated time calculations
     this.directionsService.route(request, (result, status) => {
+      debugger;
       if (status == "OK") {
         this.directionsRenderer.setDirections(result);
         this.directionsRenderer.setMap(this.map);
         this.handleResult(result);
-        let poly_array = [];
-        result.routes[0].overview_path.map((ele) =>
-          poly_array.push([`${ele.lat()}, ${ele.lng()}`])
-        );
-        this.polyline = poly_array;
+        this.polyline = result.routes[0].overview_polyline;
       }
     });
   }

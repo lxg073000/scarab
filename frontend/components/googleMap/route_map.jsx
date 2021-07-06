@@ -240,7 +240,7 @@ export default class route_map extends Component {
       description: this.state.description,
       distance: document.getElementById("distance").innerHTML,
       duration: document.getElementById("duration").innerHTML,
-      polyline: this.WaypointManager.polyline.join("|"),
+      polyline: this.WaypointManager.polyline,
     };
 
     this.props.createRoute(request);
