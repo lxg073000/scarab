@@ -36,7 +36,7 @@ const getting_started = (props) => {
         <section className="gs-item">
           <i className="far fa-arrow-alt-circle-up gs-icon"></i>
           <div className="gs-content">
-            <h2 className="bold">Upload Activity</h2>
+            <h2 className="bold">Upload an Activity</h2>
             <p className="light">
               Record a run of a Route from your catalog. Track your progress by
               comparing the pace per mile and share milestones to your feed.
