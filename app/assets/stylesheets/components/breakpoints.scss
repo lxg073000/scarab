@@ -1,0 +1,71 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 280px 660px 280px;
+  gap: 2em;
+  place-content: center;
+}
+
+.dashboard-container > section:nth-child(1) {
+  margin-bottom: 2em;
+  flex: 0 1 auto;
+  grid-row: 1 / auto;
+  grid-column: 1 / auto;
+}
+
+.dashboard-container > section:nth-child(2) {
+  flex: 0 1 41em;
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.dashboard-container > section:nth-child(3) {
+  flex: 0 1 auto;
+  grid-row: 1;
+  grid-column: 3;
+}
+
+@media screen and (max-width: 1350px) {
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: 280px 660px;
+    gap: 2em;
+    place-content: center;
+  }
+
+  .dashboard-container > section:nth-child(3) {
+    flex: 0 1 auto;
+    grid-row: 1;
+    grid-column: 1;
+    place-self: auto;
+    margin-top: calc(315px + 2em);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboard-container {
+    display: flex;
+    max-width: 680px;
+    flex-direction: column;
+  }
+  .dashboard-container > section:nth-child(3) {
+    margin-top: 0;
+    margin-bottom: 2em;
+  }
+
+  .profile-shell {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-shell {
+    width: 100%;
+  }
+
+  .training-stats section:nth-child(2) h2 {
+    justify-content: center;
+    gap: 2em;
+  }
+  .post-item {
+    min-width: 0px;
+  }
+}
