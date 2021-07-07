@@ -37,7 +37,7 @@ export default class WaypointManager {
     // Provide packaged request object to GoogleServices API to render to map
     // and dynamically display route distance/estimated time calculations
     this.directionsService.route(request, (result, status) => {
-      debugger;
+      // debugger;
       if (status == "OK") {
         this.directionsRenderer.setDirections(result);
         this.directionsRenderer.setMap(this.map);
