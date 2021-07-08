@@ -261,6 +261,7 @@ h1.post-title {
   background-image: url("header_image.jpg");
   background-size: cover;
   box-shadow: 0px 8px 24px #99999980;
+  margin-bottom: 6px;
 }
 
 .getting-started {
@@ -358,24 +359,18 @@ h1.post-title {
 
 .getting-started-content {
   padding: 1em;
-  transition: 300ms all ease;
-  height: 0;
-  padding-bottom: 42em;
+  max-height: 780px;
+  transition: 200ms all ease;
+  transform-origin: 100% 50%;
 }
 
 .gsc-hide {
-  transform: translateY(-110px);
-  height: 0;
+  max-height: 0px;
+  overflow: hidden;
   padding-bottom: 0em;
   .gs-header {
-    h1 {
-      color: white;
-    }
-    h2 {
-      color: white;
-    }
     &:after {
-      opacity: 0;
+      height: 0px;
     }
   }
 }
