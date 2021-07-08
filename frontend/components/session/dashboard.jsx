@@ -43,6 +43,12 @@ export default class dashboard extends Component {
     e.preventDefault();
   }
 
+  dismissTutorial() {
+    document
+      .getElementsByClassName("getting-started-content")[0]
+      .classList.toggle("gsc-hide");
+  }
+
   render() {
     return (
       <div className="component-container-feed">
@@ -59,7 +65,7 @@ export default class dashboard extends Component {
               {this.props.tutorial_dismissed ? null : (
                 <Tutorial
                   history={this.props.history}
-                  dismissTutorial={() => this.props.dismissTutorial()}
+                  dismissTutorial={() => this.dismissTutorial()}
                 />
               )}
               {Object.entries(this.props.posts).length > 0

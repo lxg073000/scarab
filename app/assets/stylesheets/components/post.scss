@@ -358,6 +358,30 @@ h1.post-title {
 
 .getting-started-content {
   padding: 1em;
+  transition: 300ms all ease;
+  height: 0;
+  padding-bottom: 42em;
+}
+
+.gsc-hide {
+  transform: translateY(-110px);
+  height: 0;
+  padding-bottom: 0em;
+  .gs-header {
+    h1 {
+      color: white;
+    }
+    h2 {
+      color: white;
+    }
+    &:after {
+      opacity: 0;
+    }
+  }
+}
+
+.post-item#tutorial {
+  gap: 0em;
 }
 
 #tutorial i.button-grey.fas.fa-times {
