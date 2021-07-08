@@ -76,7 +76,7 @@ export default class route_showcard extends Component {
         </div>
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap
-?size=286x184
+?size=484x318
 &${encodeOptions(options)}path=color:0xfc4d02ff|weight:3|enc:${
             this.props.route.polyline
           }&key=${window.googleAPIKey}`}

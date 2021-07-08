@@ -72,8 +72,8 @@ export default class activity_index_card extends Component {
 
   sortActivities_id(activities) {
     const sortById = merge([], activities).sort(function (a, b) {
-      if (a.id < b.id) return -1;
-      if (a.id > b.id) return 1;
+      if (a.id < b.id) return 1;
+      if (a.id > b.id) return -1;
       return 0;
     });
     const sortByIdDESC = merge([], activities).sort(function (a, b) {

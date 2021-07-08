@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WaypointManager from "../../util/waypoint_manager";
+import { encodeOptions, options } from "../../util/map_options";
 
 class route_thumbnail extends Component {
   constructor(props) {
@@ -9,11 +10,11 @@ class route_thumbnail extends Component {
     this.drawRoute = this.drawRoute.bind(this);
   }
 
-  componentDidUpdate(previousProps, previousState) {
-    if (previousProps.route !== this.props.route) {
-      this.createMap();
-    }
-  }
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousProps.route !== this.props.route) {
+  //     this.createMap();
+  //   }
+  // }
 
   createMap() {
     this.map = new google.maps.Map(this.mapNode, {
@@ -246,18 +247,17 @@ class route_thumbnail extends Component {
     return (
       <>
         {this.props.route ? (
-          <div
+          <img
             className="supply-route-map"
-            id={`map-${this.props.route.id}`}
-            ref={(map) => (this.mapNode = map)}
-            onLoad={this.createMap}
-          ></div>
+            src={`https://maps.googleapis.com/maps/api/staticmap
+?size=640x493
+&${encodeOptions(options)}path=color:0xfc4d02ff|weight:3|enc:${
+              this.props.route.polyline
+            }&key=${window.googleAPIKey}`}
+            alt=""
+          />
         ) : (
-          <div
-            className="supply-route-map"
-            ref={(map) => (this.mapNode = map)}
-            onLoad={this.createMap}
-          ></div>
+          <div className="supply-route-map"></div>
         )}
       </>
     );

@@ -39,6 +39,78 @@
     place-self: auto;
     margin-top: calc(315px + 2em);
   }
+
+  main.activity-details {
+    flex-direction: column;
+    flex-flow: column-reverse;
+    place-items: center;
+  }
+
+  section.left,
+  section.right {
+    width: 70%;
+  }
+
+  .time {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: right;
+  }
+  .time-item {
+    flex: 1 1;
+  }
+
+  .hr::after,
+  .min::after,
+  .sec::after {
+    left: 55%;
+  }
+  .flex div {
+    width: 100%;
+    justify-content: center;
+  }
+  #hr-val,
+  #min-val,
+  #sec-val,
+  #edit-hr-val,
+  #edit-min-val,
+  #edit-sec-val {
+    width: 100%;
+  }
+
+  .hr input[type="number"] {
+    padding-right: 54%;
+    min-width: 10ch;
+  }
+  .min input[type="number"] {
+    padding-right: 54%;
+    min-width: 10ch;
+  }
+  .sec input[type="number"] {
+    padding-right: 54%;
+    min-width: 10ch;
+  }
+  .supply-route-map {
+    height: 25vw;
+    object-fit: cover;
+  }
+  .supply-route-select {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    box-shadow: 0 0 0;
+    position: relative;
+    bottom: -40px;
+    background: #f9fcff66;
+    i {
+      padding-left: 7px;
+    }
+  }
+
+  select#new-supply-routes,
+  select#edit-supply-routes {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -68,5 +140,79 @@
   }
   .post-item {
     min-width: 0px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .float-card.activity-index-card {
+    overflow-x: scroll;
+  }
+  .activity-index-card table {
+    font-size: 13px;
+    min-width: 1000px;
+  }
+  .activity-index-card th {
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .route-index-header div {
+    min-width: 240px;
+  }
+  p {
+    min-width: 15ch;
+  }
+}
+
+.route-card img {
+  object-fit: none;
+  width: 100%;
+}
+
+.route-card {
+  width: 100%;
+}
+
+.route-index-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 288px);
+  gap: 1em;
+  place-content: flex-start;
+}
+
+@media screen and (max-width: 670px) {
+  .route-filters {
+    margin: 1em auto;
+  }
+  .route-index-items {
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
+  section.route-index-header {
+    flex-direction: column-reverse;
+    gap: 2em;
+  }
+  .route-index-header div:nth-child(1) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .route-index-header div:nth-child(2) {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    img {
+      width: 89px;
+      object-fit: cover;
+    }
+    p {
+      width: auto;
+      line-height: 24px;
+    }
+  }
+  .route-card img {
+    object-fit: cover;
+    width: 100%;
   }
 }
