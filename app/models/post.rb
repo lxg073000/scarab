@@ -5,6 +5,6 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :comments
   has_one :activity
-  has_one :google_route
+  belongs_to :google_route, optional: true
 
 end

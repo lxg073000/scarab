@@ -69,7 +69,7 @@ section.heading {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  img {
+  .user-pic {
     background: #79d7bd;
     border-radius: 50%;
     height: 50px;
@@ -384,8 +384,13 @@ h1.post-title {
   background: none;
   box-shadow: 0 0 0;
   color: white;
+  transition: all 300ms ease;
 }
 
 .hide {
   display: none;
+}
+
+.rotateZ {
+  transform: rotateZ(45deg);
 }

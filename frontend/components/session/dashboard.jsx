@@ -47,6 +47,7 @@ export default class dashboard extends Component {
     document
       .getElementsByClassName("getting-started-content")[0]
       .classList.toggle("gsc-hide");
+    document.getElementsByClassName("gs-toggle")[0].classList.toggle("rotateZ");
   }
 
   render() {
@@ -69,10 +70,15 @@ export default class dashboard extends Component {
                 />
               )}
               {Object.entries(this.props.posts).length > 0
-                ? this.state.posts.map((post) => (
+                ? this.props.posts.map((post) => (
                     <Activity
                       key={post.id}
                       post={post}
+                      route={
+                        post.google_route_id
+                          ? this.props.routes[post.google_route_id]
+                          : null
+                      }
                       activity={this.props.activities}
                       deletePost={this.props.deletePost}
                     />

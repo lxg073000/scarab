@@ -4,7 +4,7 @@ const getting_started = (props) => {
   return (
     <div id="tutorial" className="float-card post-item getting-started">
       <i
-        className="button-grey fas fa-times"
+        className="button-grey fas fa-times gs-toggle"
         onClick={() => props.dismissTutorial()}
       ></i>
 

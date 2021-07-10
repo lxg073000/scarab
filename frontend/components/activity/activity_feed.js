@@ -3,6 +3,7 @@ import Comment from "../comment/comment_form_new";
 import { formatDuration, formatTravelMode } from "../../util/conversions";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchComments } from "../../actions/comments";
+import { encodeOptions, options } from "../../util/map_options";
 
 const activity_feed = ({ post, deletePost }) => {
   const comments = useSelector((state) => state.entities.comments);
@@ -12,7 +13,7 @@ const activity_feed = ({ post, deletePost }) => {
     <div key={`${post.id}-post`} className="float-card post-item">
       <section className="post-item-heading">
         <div className="flex-col">
-          <img src={window.user_pic} alt="user_pic" />
+          <img className="user-pic" src={window.user_pic} alt="user_pic" />
         </div>
         <div className="post-item-body">
           <section className="headline">
@@ -58,6 +59,17 @@ const activity_feed = ({ post, deletePost }) => {
           </section>
         ) : null}
       </section>
+      {post.polyline ? (
+        <img
+          className="activity-map"
+          src={`https://maps.googleapis.com/maps/api/staticmap
+?size=628x262
+&${encodeOptions(options)}path=color:0xfc4d02ff|weight:3|enc:${
+            post.polyline
+          }&key=${window.googleAPIKey}`}
+          alt=""
+        />
+      ) : null}
 
       <section className="post-item-main">
         {/* <input
