@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CommentNew from "../comment/comment_form_new";
 import Comment from "../comment/comment";
 import { formatDuration, formatTravelMode } from "../../util/conversions";
@@ -8,6 +8,7 @@ import { encodeOptions, options } from "../../util/map_options";
 const activity_feed = ({ post, deletePost }) => {
   const comments = useSelector((state) => state.entities.comments);
   const post_comments = [];
+
   for (const comment_id in post.comments) {
     post_comments.push(
       <Comment
@@ -16,6 +17,16 @@ const activity_feed = ({ post, deletePost }) => {
       />
     );
   }
+  // useEffect(() => {
+  //   for (const comment_id in post.comments) {
+  //     post_comments.push(
+  //       <Comment
+  //         key={post.comments[comment_id].id}
+  //         comment={post.comments[comment_id]}
+  //       />
+  //     );
+  //   }
+  // }, [comments]);
 
   return (
     <div key={`${post.id}-post`} className="float-card post-item">

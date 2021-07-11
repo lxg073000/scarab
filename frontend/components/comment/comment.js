@@ -5,10 +5,8 @@ import { deleteComment } from "../../actions/comments";
 const comment = ({ comment }) => {
   const dispatch = useDispatch();
   function handleDelete(commentID) {
-    debugger;
     dispatch(deleteComment(commentID));
   }
-  debugger;
   return (
     <div className="Comment">
       <img src={window.user_pic} alt="user-pic" className="Comment_userImg" />
