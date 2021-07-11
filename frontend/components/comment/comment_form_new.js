@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createComment } from "../../actions/comments";
 import React, { useState } from "react";
 
-const Comment = ({ post, comments }) => {
+const Comment = ({ post }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.currentUser.id);
   const [body, setBody] = useState("");
@@ -11,7 +11,7 @@ const Comment = ({ post, comments }) => {
     e.preventDefault();
     const comment = {
       body,
-      commenter_id: currentUser,
+      user_id: currentUser,
       post_id,
       post_user_id,
     };

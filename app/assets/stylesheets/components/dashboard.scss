@@ -9,10 +9,6 @@
   gap: 2em;
   justify-content: center;
 
-  h1 {
-    font-size: 1.25em;
-    text-align: center;
-  }
   h2 {
     font-size: 0.9em;
   }
@@ -23,6 +19,10 @@
   a {
     font-size: 0.77em;
   }
+}
+.profile-shell_username {
+  text-align: center;
+  font-size: 1.25em;
 }
 
 .dashboard-container {

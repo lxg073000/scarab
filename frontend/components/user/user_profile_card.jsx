@@ -4,7 +4,7 @@ const user_profile_card = ({ activities, routes, to_activities }) => {
   return (
     <div className="profile-shell float-card">
       <img src={window.user_pic} alt="user_pic" />
-      <h1 className="bold">{currentUser.username}</h1>
+      <h1 className="profile-shell_username bold">{currentUser.username}</h1>
       <div className="profile-stats">
         <div className="profile-stat-item">
           <h3>Following</h3>

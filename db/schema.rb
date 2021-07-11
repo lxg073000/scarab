@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_034842) do
+ActiveRecord::Schema.define(version: 2021_07_10_195449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 2021_07_10_034842) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.integer "commenter_id"
     t.integer "post_user_id"
     t.integer "post_id"
     t.datetime "created_at"
+    t.integer "user_id"
   end
 
   create_table "google_routes", force: :cascade do |t|
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2021_07_10_034842) do
     t.integer "duration", array: true
     t.decimal "distance"
     t.string "travelMode"
-    t.integer "comment_id", default: [], array: true
     t.integer "like_id", default: [], array: true
     t.string "username"
     t.string "title"

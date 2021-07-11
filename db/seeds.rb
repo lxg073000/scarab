@@ -180,7 +180,6 @@ post1 = Post.create!(
         ],
         "distance": "1.89",
         "travelMode": "BICYCLING",
-        "comment_id": [],
         "user_id": user1.id,
         "title": "Sunset Ride",
         "body": "Beautiful Day",
@@ -198,7 +197,7 @@ post2 = Post.create!(
         ],
         "distance": "3509.57",
         "travelMode": "DRIVING",
-        "comment_id": [],
+       
         "user_id": user1.id,
         "title": "Road Trip!",
         "body": "Made it in record time",
@@ -216,7 +215,7 @@ post3 = Post.create!(
         ],
         "distance": "0.96",
         "travelMode": "WALKING",
-        "comment_id": [],
+       
         "user_id": user1.id,
         "title": "After work Jog",
         "body": "Took it easy",
@@ -234,7 +233,7 @@ post4 = Post.create!(
         ],
         "distance": "0.51",
         "travelMode": "WALKING",
-        "comment_id": [],
+       
         "user_id": user1.id,
         "title": "Round and Round",
         "body": "Saw a duck",
@@ -248,7 +247,7 @@ post5 = Post.create!(
         "duration": "",
         "distance": "",
         "travelMode": "",
-        "comment_id": [],
+       
         "user_id": user1.id,
         "title": "Daily Affirmation",
         "body": "You miss 100% of the shots you don't take...",

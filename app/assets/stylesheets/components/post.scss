@@ -235,6 +235,20 @@ h1.post-title {
   }
 }
 
+.Post_comments_count {
+  font-size: 11px;
+}
+.Post_comments_container {
+  display: flex;
+  align-content: space-evenly;
+  max-height: 122px;
+  overflow-y: scroll;
+  flex-direction: column;
+  gap: 1em;
+  padding-left: 1.5em;
+  padding-right: 0.5em;
+}
+
 .post-item-body {
   display: flex;
   flex-direction: column;

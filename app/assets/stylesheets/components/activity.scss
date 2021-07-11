@@ -153,3 +153,8 @@ section.right {
   display: flex;
   gap: 1em;
 }
+
+img.activity-map {
+  object-fit: cover;
+  width: 100%;
+}

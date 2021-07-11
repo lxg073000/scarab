@@ -1,13 +1,21 @@
 import React from "react";
-import Comment from "../comment/comment_form_new";
+import CommentNew from "../comment/comment_form_new";
+import Comment from "../comment/comment";
 import { formatDuration, formatTravelMode } from "../../util/conversions";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchComments } from "../../actions/comments";
 import { encodeOptions, options } from "../../util/map_options";
 
 const activity_feed = ({ post, deletePost }) => {
   const comments = useSelector((state) => state.entities.comments);
-  const dispatch = useDispatch(fetchComments());
+  const post_comments = [];
+  for (const comment_id in post.comments) {
+    post_comments.push(
+      <Comment
+        key={post.comments[comment_id].id}
+        comment={post.comments[comment_id]}
+      />
+    );
+  }
 
   return (
     <div key={`${post.id}-post`} className="float-card post-item">
@@ -70,19 +78,13 @@ const activity_feed = ({ post, deletePost }) => {
           alt=""
         />
       ) : null}
-
+      <p className="Post_comments_count">
+        {post_comments.length}
+        {post_comments.length === 1 ? " comment" : " comments"}
+      </p>
+      <div className="Post_comments_container">{post_comments}</div>
       <section className="post-item-main">
-        {/* <input
-          type="text"
-          className="comment-field shrink"
-          id={`comment-field-${post.id}`}
-        /> */}
-        <Comment
-          post={post}
-          comments={comments}
-          dispatch={dispatch}
-          // handleSubmit={(e, comment) => handleComment(e, comment)}
-        />
+        <CommentNew post={post} comments={comments} />
 
         <i
           className="button-grey far fa-thumbs-up"

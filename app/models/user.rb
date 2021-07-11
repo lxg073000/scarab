@@ -6,11 +6,13 @@ class User < ApplicationRecord
   
   before_validation :ensure_session_token
 
-  has_many :google_routes
-  has_many :activities
-  has_many :trustees
-  has_many :liked_activities
-  has_many :activities_liked
+  has_many :google_routes, dependent: :destroy
+  has_many :activities, dependent: :destroy
+  has_many :trustees, dependent: :destroy
+  has_many :liked_activities, dependent: :destroy
+  has_many :activities_liked, dependent: :destroy
+  has_many :posts
+  has_many :comments
   has_one_attached :profile_picture
 
   def password=(password)

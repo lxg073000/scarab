@@ -1,0 +1,55 @@
+.Comment {
+  display: flex;
+  gap: 1em;
+  font-size: 10px;
+  &_userImg {
+    object-fit: cover;
+    width: 30px;
+    background: #79d7bd;
+    border-radius: 50%;
+  }
+  &_body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    justify-content: space-between;
+    &_username {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    &_text {
+      font-size: 11px;
+    }
+  }
+  &_details {
+    display: flex;
+    gap: 8px;
+    &:hover {
+      li.Comment_details_delete {
+        display: block;
+      }
+    }
+    &_date {
+      color: #333;
+    }
+    &_delete {
+      display: none;
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: -3px;
+        width: 2px;
+        height: 17px;
+        background: #e2e2e2;
+      }
+    }
+  }
+}
+
+.Comment:hover {
+  li.Comment_details_delete {
+    display: block;
+  }
+}
