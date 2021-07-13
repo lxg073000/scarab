@@ -13,7 +13,6 @@ import { fetchPosts, deletePost } from "../../actions/posts";
 import { fetchComments, deleteComment } from "../../actions/comments";
 
 const mapState = (state) => {
-  debugger;
   return {
     currentUser: state.session.currentUser,
     activities: Object.values(state.entities.activities),
@@ -24,9 +23,7 @@ const mapState = (state) => {
   };
 };
 const mapDispatch = (dispatch) => {
-  debugger;
   return {
-    // fetchUser: (userID) => dispatch(fetchUser(userID)),
     fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (postID) => dispatch(deletePost(postID)),
     fetchComments: () => dispatch(fetchComments()),

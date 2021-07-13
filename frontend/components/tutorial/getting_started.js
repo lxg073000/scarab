@@ -1,7 +1,6 @@
 import React from "react";
 
 const getting_started = (props) => {
-  debugger;
   return (
     <div id="tutorial" className="float-card post-item getting-started">
       <i

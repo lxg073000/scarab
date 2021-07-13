@@ -42,7 +42,6 @@ export const dismissTutorial = () => {
   };
 };
 export const toggleTutorial = (status) => {
-  debugger;
   return {
     type: TOGGLE_TUTORIAL,
     status,
