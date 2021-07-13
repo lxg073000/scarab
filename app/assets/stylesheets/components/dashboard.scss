@@ -20,9 +20,12 @@
     font-size: 0.77em;
   }
 }
-.profile-shell_username {
+h1.profile-shell_username.bold {
   text-align: center;
   font-size: 1.25em;
+}
+h1.bold {
+  font-size: 2em;
 }
 
 .dashboard-container {
