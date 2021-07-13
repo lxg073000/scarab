@@ -4,6 +4,7 @@ import {
   receiveCurrentUser,
   fetchUser,
   dismissTutorial,
+  toggleTutorial,
 } from "../../actions/session";
 import Dashboard from "./dashboard";
 import { fetchRoutes } from "../../actions/gRoute";
@@ -12,25 +13,31 @@ import { fetchPosts, deletePost } from "../../actions/posts";
 import { fetchComments, deleteComment } from "../../actions/comments";
 
 const mapState = (state) => {
+  debugger;
   return {
     currentUser: state.session.currentUser,
     activities: Object.values(state.entities.activities),
     routes: Object.values(state.entities.routes),
     posts: Object.values(state.entities.posts),
-    tutorial_dismissed: state.session.tutorial_dismissed,
+    comments: Object.values(state.entities.comments),
+    tutorialStatus: state.entities.tutorialStatus,
   };
 };
-const mapDispatch = (dispatch) => ({
-  fetchUser: (userID) => dispatch(fetchUser(userID)),
-  fetchPosts: () => dispatch(fetchPosts()),
-  deletePost: (postID) => dispatch(deletePost(postID)),
-  fetchComments: () => dispatch(fetchComments()),
-  deleteComment: (commentID) => dispatch(deleteComment(commentID)),
-  fetchRoutes: () => dispatch(fetchRoutes()),
-  fetchActivities: () => dispatch(fetchActivities()),
-  receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),
-  clearSessionErrors: () => dispatch(clearSessionErrors()),
-  dismissTutorial: () => dispatch(dismissTutorial()),
-});
+const mapDispatch = (dispatch) => {
+  debugger;
+  return {
+    // fetchUser: (userID) => dispatch(fetchUser(userID)),
+    fetchPosts: () => dispatch(fetchPosts()),
+    deletePost: (postID) => dispatch(deletePost(postID)),
+    fetchComments: () => dispatch(fetchComments()),
+    deleteComment: (commentID) => dispatch(deleteComment(commentID)),
+    fetchRoutes: () => dispatch(fetchRoutes()),
+    fetchActivities: () => dispatch(fetchActivities()),
+    receiveCurrentUser: (user) => dispatch(receiveCurrentUser(user)),
+    clearSessionErrors: () => dispatch(clearSessionErrors()),
+    dismissTutorial: () => dispatch(dismissTutorial()),
+    toggleTutorial: (status) => dispatch(toggleTutorial(status)),
+  };
+};
 
 export default connect(mapState, mapDispatch)(Dashboard);

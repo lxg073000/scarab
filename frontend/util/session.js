@@ -15,6 +15,12 @@ export const API_sessionLogin = (user) =>
     url: "/api/session",
     data: { user },
   });
+export const API_toggleUserTutorial = (user) =>
+  $.ajax({
+    method: "PATCH",
+    url: `/api/session/user/${user.id}`,
+    data: { user },
+  });
 export const API_sessionLogout = () =>
   $.ajax({
     method: "DELETE",

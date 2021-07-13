@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CommentNew from "../comment/comment_form_new";
 import Comment from "../comment/comment";
 import { formatDuration, formatTravelMode } from "../../util/conversions";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { encodeOptions, options } from "../../util/map_options";
 
 const activity_feed = ({ post, deletePost }) => {
@@ -17,16 +17,6 @@ const activity_feed = ({ post, deletePost }) => {
       />
     );
   }
-  // useEffect(() => {
-  //   for (const comment_id in post.comments) {
-  //     post_comments.push(
-  //       <Comment
-  //         key={post.comments[comment_id].id}
-  //         comment={post.comments[comment_id]}
-  //       />
-  //     );
-  //   }
-  // }, [comments]);
 
   return (
     <div key={`${post.id}-post`} className="float-card post-item">
@@ -101,14 +91,14 @@ const activity_feed = ({ post, deletePost }) => {
           className="button-grey far fa-thumbs-up"
           onClick={(e) => e.target.classList.toggle("selected")}
         ></i>
-        <i
+        {/* <i
           className="button-grey far fa-comment-alt"
           onClick={() =>
             document
               .getElementById(`comment-field-${post.id}`)
               .classList.toggle("grow")
           }
-        ></i>
+        ></i> */}
         <i
           className="button-grey fas fa-times"
           onClick={() => deletePost(post.id)}

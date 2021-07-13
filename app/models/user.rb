@@ -5,6 +5,7 @@ class User < ApplicationRecord
   attr_reader :password
   
   before_validation :ensure_session_token
+  before_validation :ensure_tutorial_status
 
   has_many :google_routes, dependent: :destroy
   has_many :activities, dependent: :destroy
@@ -26,6 +27,9 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= SecureRandom.base64
+  end
+  def ensure_tutorial_status
+    self.tutorial_status ||= false
   end
 
   def reset_session_token!

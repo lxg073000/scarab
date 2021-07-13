@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteComment } from "../../actions/comments";
 
 const comment = ({ comment }) => {

@@ -1,16 +1,22 @@
 import React from "react";
 
 const getting_started = (props) => {
+  debugger;
   return (
     <div id="tutorial" className="float-card post-item getting-started">
       <i
-        className="button-grey fas fa-times gs-toggle"
-        onClick={() => props.dismissTutorial()}
+        className={`button-grey fas fa-times gs-toggle ${
+          props.tutorialStatus ? "rotateZ" : ""
+        }`}
+        onClick={() => props.toggleTutorial(!props.tutorialStatus)}
       ></i>
 
       <div className="banner getting-started"></div>
-      {/* <img id="getting-started" src={window.getting_started} alt="" /> */}
-      <div className="getting-started-content">
+      <div
+        className={`getting-started-content ${
+          props.tutorialStatus ? "gsc-hide" : ""
+        }`}
+      >
         <section className="gs-header">
           <h1>Getting Started</h1>
           <h2>

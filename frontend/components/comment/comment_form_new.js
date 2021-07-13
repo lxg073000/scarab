@@ -22,7 +22,7 @@ const Comment = ({ post }) => {
   return (
     <form
       id={`comment-field-${post.id}`}
-      className="comment-form shrink"
+      className="comment-form"
       onSubmit={(e) => handleSubmit(e, body, post.id, post.user_id)}
     >
       <input

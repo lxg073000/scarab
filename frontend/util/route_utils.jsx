@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 const mapState = (state) => ({
   loggedIn: Boolean(state.session.currentUser),
   currentUser: state.session.currentUser,
+  tutorial_dismissed: state.session.tutorial_dismissed,
 });
 
 const Auth = ({ loggedIn, path, component: Component }) => (
