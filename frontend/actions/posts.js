@@ -19,9 +19,9 @@ export const receivePost = (post) => ({
   type: RECEIVE_POST,
   post,
 });
-export const removePost = (post_id) => ({
+export const removePost = (post) => ({
   type: REMOVE_POST,
-  post_id,
+  post,
 });
 export const receivePostErrors = (errors) => ({
   type: RECEIVE_POST_ERRORS,

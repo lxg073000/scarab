@@ -14,7 +14,7 @@ const PostsReducer = (oldState = {}, action) => {
       });
       return nextState;
     case REMOVE_POST:
-      delete nextState[action.post_id.id];
+      delete nextState[action.post.id];
       return nextState;
     case LOGOUT_CURRENT_USER:
       return {};
