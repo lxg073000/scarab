@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # has_many :activities_liked, dependent: :destroy
   has_many :posts
   has_many :comments
-  has_one_attached :profile_picture
+  # has_one_attached :profile_picture
 
   def password=(password)
     @password = password
