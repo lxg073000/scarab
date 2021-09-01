@@ -9,8 +9,9 @@ class User < ApplicationRecord
 
   has_many :google_routes, dependent: :destroy
   has_many :activities, dependent: :destroy
-  has_many :liked_activities, dependent: :destroy
-  has_many :activities_liked, dependent: :destroy
+  # has_many :trustees, dependent: :destroy
+  # has_many :liked_activities, dependent: :destroy
+  # has_many :activities_liked, dependent: :destroy
   has_many :posts
   has_many :comments
   has_one_attached :profile_picture
